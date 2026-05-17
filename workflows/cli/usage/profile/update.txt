@@ -1,0 +1,12 @@
+Update authenticated profile
+
+Usage:
+  kue profile update [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file
+  --name, -n      Display name
+  --username, -u  Username
+
+At least one of --name or --username is required.

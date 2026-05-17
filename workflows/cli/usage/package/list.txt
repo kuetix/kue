@@ -1,0 +1,8 @@
+List packages from api.kuetix.com/packages (requires login)
+
+Usage:
+  kue package list [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

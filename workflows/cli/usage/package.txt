@@ -1,0 +1,27 @@
+Manage Kuetix package dependencies and publishing
+
+Usage:
+  kue package <subcommand> [options]
+
+Subcommands:
+  add           Add a package to api.kuetix.com/packages (requires login)
+  update        Update a package on api.kuetix.com/packages (requires login)
+  search        Search remote packages (requires login)
+  install       Install remote package metadata (requires login)
+  list          List packages from api.kuetix.com/packages (requires login)
+  list-local    List modules already enabled in the current project
+  enable        Enable a module in the current project (generate bootstrap file)
+  publish       Update package metadata and print release instructions
+  show          Show current package information
+
+Options:
+  --path, -p    Path to kuetix.json or package directory
+  --host, -H    API host (default: api.kuetix.com)
+  --config, -c  Path to config file
+
+Examples:
+  kue package list
+  kue package add
+  kue package publish
+
+Use 'kue package <subcommand> --help' for more information about a subcommand.

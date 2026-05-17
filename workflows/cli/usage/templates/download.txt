@@ -1,0 +1,4 @@
+Download and cache templates from the configured source
+
+Usage:
+  kue templates download

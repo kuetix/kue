@@ -1,0 +1,4 @@
+Remove all cached templates from .kue/templates
+
+Usage:
+  kue templates clear

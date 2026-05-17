@@ -1,0 +1,11 @@
+Register a new Kuetix account
+
+Usage:
+  kue register [options]
+
+Options:
+  --host, -H        API host (default: api.kuetix.com)
+  --email, -e       Email for registration (required)
+  --password, -p    Password for registration (required)
+  --name, -n        Display name (optional)
+  --username, -u    Username (optional)

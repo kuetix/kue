@@ -1,0 +1,12 @@
+Authenticate with Kuetix API
+
+Usage:
+  kue login [options]
+
+Options:
+  --host, -H        API host (default: api.kuetix.com)
+  --config, -c      Path to a config file
+  --username, -u    Username for login
+  --password, -p    Password for login
+
+Credentials can be provided via flags, stdin, or interactive prompt.

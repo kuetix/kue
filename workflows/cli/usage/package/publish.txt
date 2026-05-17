@@ -1,0 +1,11 @@
+Update package metadata and print release instructions
+
+Usage:
+  kue package publish [<package>] [options]
+
+Options:
+  --description, -d   Package description
+  --version, -V       Package version (e.g. 0.2.0)
+  --publisher, -p     Publisher name or organisation
+  --keywords, -k      Comma-separated list of keywords
+  --output, -o        Package directory (default: current directory)

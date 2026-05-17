@@ -1,0 +1,7 @@
+Show current package information
+
+Usage:
+  kue package show [<path>] [options]
+
+Options:
+  --path, -p    Path to kuetix.json or package directory

@@ -1,0 +1,18 @@
+Manage the .kue/templates cache
+
+Usage:
+  kue templates <subcommand> [options]
+
+Subcommands:
+  download    Download and cache templates from the configured source
+  update      Force-refresh the template cache from the configured source
+  clear       Remove all cached templates from .kue/templates
+  status      Show the current template cache location and status
+
+Examples:
+  kue templates download
+  kue templates update
+  kue templates clear
+  kue templates status
+
+Use 'kue templates <subcommand> --help' for more information about a subcommand.

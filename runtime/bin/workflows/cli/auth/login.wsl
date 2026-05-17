@@ -1,0 +1,33 @@
+module login
+
+workflow startup {
+  start: Config
+
+  state Config {
+    action config/config.Resolve(options: {}) as KueConfig
+    on success -> _
+    on failure -> Failed
+  }
+
+  state Command {
+    action auth/auth.LoginCommand(command: $command, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
+    on success -> _
+    on failure -> Failed
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: $Result.response??Result??@??"Command executed successfully without response",
+      statusCode: 200
+    ) as FinalResult
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(
+      value: "Failed to execute login command",
+      statusCode: 500
+    ) as ErrorResult
+    end fail
+  }
+}

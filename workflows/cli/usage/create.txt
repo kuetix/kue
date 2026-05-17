@@ -1,0 +1,10 @@
+Create a new Kuetix application or package
+
+Usage:
+  kue create [options]
+
+Options:
+  --name, -n        Project name (required)
+  --app-type, -a    Application type: cli, api, consumer, service, package, all (default: cli)
+  --output, -o      Output directory (default: current directory)
+  --force, -f       Force creation without confirmation

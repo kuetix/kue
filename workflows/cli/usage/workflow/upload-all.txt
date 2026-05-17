@@ -1,0 +1,10 @@
+Upload every workflow in the current project (batch)
+
+Usage:
+  kue workflow upload-all [options]
+
+Options:
+  --output, -o    Project root containing the workflows/ directory (default: .)
+  --method, -M    HTTP method to use per workflow: POST (create) or PUT (update). Default: POST
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

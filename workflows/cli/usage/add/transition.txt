@@ -1,0 +1,10 @@
+Add a transition method to an existing or new module
+
+Usage:
+  kue add transition <module/TransitionName> [options]
+  kue add transition <TransitionName> --module <module> [options]
+
+Options:
+  --module, -m       Module name to add the transition to
+  --description, -d  Method description comment
+  --output, -o       Output directory (default: current directory)

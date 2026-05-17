@@ -1,0 +1,23 @@
+Add modules, workflows, features, and solutions to your project
+
+Usage:
+  kue add <subcommand> [options]
+
+Subcommands:
+  module      Add a new module to the project
+  workflow    Add a new workflow to the project
+  feature     Add a new feature workflow to the project
+  solution    Add a new solution workflow to the project
+  package     Create a kuetix.json package descriptor
+  transition  Add a new transition method to an existing or new module
+
+Options:
+  --output, -o    Output directory (default: current directory)
+  --force, -f     Force creation without confirmation
+
+Examples:
+  kue add module mymodule
+  kue add workflow myworkflow
+  kue add transition mymodule/MyTransition
+
+Use 'kue add <subcommand> --help' for more information about a subcommand.

@@ -1,0 +1,4 @@
+Force-refresh the template cache from the configured source
+
+Usage:
+  kue templates update

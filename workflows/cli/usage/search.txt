@@ -1,0 +1,13 @@
+Search the Kuetix registry for workflows or packages
+
+Usage:
+  kue search wsl <query> [options]
+  kue search workflow <query> [options]   (alias for 'wsl')
+  kue search package <query> [options]
+
+Options:
+  -n, --limit <number>   Maximum number of results (default: 10)
+  -H, --host             API host (default: api.kuetix.com)
+  -c, --config           Path to config file
+
+Run 'kue search <subcommand> --help' for more details.

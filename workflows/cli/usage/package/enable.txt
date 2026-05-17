@@ -1,0 +1,7 @@
+Enable a module in the current project (generate bootstrap file)
+
+Usage:
+  kue package enable <import-path> [options]
+
+Options:
+  --output, -o    Current project directory (default: current directory)

@@ -1,0 +1,9 @@
+Build and run a Kuetix Engine project
+
+Usage:
+  kue run [options]
+
+Options:
+  --name, -n        Project name (used as binary name)
+  --app-type, -a    Application type: cli, api, consumer, service, package
+  --output, -o      Project directory (default: current directory)

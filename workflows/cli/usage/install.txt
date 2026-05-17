@@ -1,0 +1,24 @@
+Download a workflow or package and install it into the current project
+
+Usage:
+  kue install <name> [options]
+
+Examples:
+  kue install cli/auth/login                  # install a workflow (auto-detected)
+  kue install -t workflow services/foo/bar    # force workflow type
+  kue install -t package my-org/my-package    # install a package
+
+Behavior:
+  - Workflows are written under ./workflows/<name>.wsl (any imported workflows
+    are written alongside it).
+  - Each Go module listed in the workflow's dependencies is appended to go.mod
+    in the current project (if not already present).
+  - On completion the CLI prints the `go mod tidy` / `go mod vendor` commands
+    you should run next.
+
+Options:
+  --type, -t      Asset type: 'workflow' or 'package' (auto-detect if empty)
+  --output, -o    Project directory (default: .)
+  --force, -f     Overwrite existing files without prompting
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

@@ -1,0 +1,7 @@
+extends commands
+
+const {
+    description: "CLI workflow",
+    version: "1.0.0",
+    enabled: true,
+}

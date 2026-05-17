@@ -1,0 +1,4 @@
+Show the current template cache location and status
+
+Usage:
+  kue templates status

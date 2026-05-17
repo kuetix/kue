@@ -1,0 +1,8 @@
+Install remote package metadata (requires login)
+
+Usage:
+  kue package install <name> [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

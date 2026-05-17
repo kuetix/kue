@@ -1,0 +1,78 @@
+Kuetix Engine CLI - Kue
+
+Usage: kue [global-options] <command> [subcommand] [options]
+
+Project scaffolding & build:
+  create      Create a new application/project from template
+  add         Add a module, workflow, feature, solution, package, or transition
+              Subcommands: module, workflow, feature, solution, package, transition
+  run         Build and run a project (compile check for packages)
+  update      Regenerate module cache (di.go, meta.go, modules.json)
+  show        List applications, solutions, features, workflows, modules in the current project
+
+Workflow registry (api.kuetix.com, requires login):
+  workflow    Inspect a workflow locally, or push/pull workflows on the API server
+              Subcommands: inspect, status, upload, upload-all, update, get, list, delete
+
+Authentication:
+  register    Register a new Kuetix account
+  login       Authenticate with Kuetix API and store login payload
+  logout      Remove stored Kuetix login payload from local config
+  profile     Manage authenticated user profile
+              Subcommands: get, update
+
+Package management (api.kuetix.com, requires login for remote ops):
+  package     Manage Kuetix package dependencies and publishing
+              Subcommands: add, update, search, install, list, list-local,
+                           enable, publish, show
+  install     Download a workflow (or package) into ./workflows and add its
+              Go module dependencies to the current project's go.mod
+  search      Search the registry for workflows or packages
+              Subcommands: wsl, workflow, package
+
+Templates:
+  templates   Manage the .kue/templates cache
+              Subcommands: download, update, clear, status
+
+Global Template Options:
+  --template-url <url>        URL to fetch templates from
+                              (default: https://templates.kuetix.com/latest/)
+  --template-version <ver>    Template version, e.g., 0.1.0 (default: latest)
+  --template-path <path>      Local directory path for templates
+  --template-git <url>        Git repository URL for templates
+
+Template Priority: local path > git > web URL
+
+Environment Variables:
+  KUE_TEMPLATE_URL            Set default template URL
+  KUE_TEMPLATE_VERSION        Set default template version
+  KUE_TEMPLATE_PATH           Set default template path
+  KUE_TEMPLATE_GIT            Set default template git repository
+  KUE_HOST                    Default API host (overridden by --host)
+  KUE_CONFIG_PATH             Default path to config file (overridden by --config)
+
+Examples:
+  kue create --name myapp
+  kue create -n mypackage -a package
+  kue add module billing
+  kue add transition billing/ChargeCard
+  kue update
+  kue run -n mypackage -a package -o mypackage
+  kue login -u alice
+  kue package add mypackage/billing
+  kue package list
+  kue workflow inspect --name cli/project/update
+  kue workflow status
+  kue workflow upload --name cli/project/update
+  kue workflow upload-all
+  kue workflow list
+  kue workflow get --name cli/project/update
+  kue workflow delete --name cli/project/update
+  kue install cli/auth/login
+  kue search wsl auth -n 20
+  kue search package billing
+  kue templates download
+  kue templates status
+  kue --template-version 0.1.0 create --name myapp
+
+Use 'kue <command> --help' or 'kue <command> <subcommand> --help' for more details.

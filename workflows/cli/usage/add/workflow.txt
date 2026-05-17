@@ -1,0 +1,8 @@
+Add a new workflow to the project
+
+Usage:
+  kue add workflow <name> [options]
+
+Options:
+  --output, -o    Output directory (default: current directory)
+  --force, -f     Force creation without confirmation

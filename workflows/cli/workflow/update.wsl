@@ -1,0 +1,36 @@
+module update
+
+import workflow/workflow
+import services/common/response
+
+workflow startup {
+  start: Config
+
+  state Config {
+    action config/config.Resolve(options: {}) as KueConfig
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Command {
+    action workflow/workflow.UpdateCommand(command: $command, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: "<<Result.response??Result??''>>",
+      statusCode: 200
+    ) as FinalResult
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(
+      value: "Failed to update workflow",
+      statusCode: 500
+    ) as ErrorResult
+    end fail
+  }
+}

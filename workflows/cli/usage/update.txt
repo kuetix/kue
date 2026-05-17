@@ -1,0 +1,8 @@
+Update module cache files for the Kuetix Engine
+
+Usage:
+  kue update [options]
+
+Options:
+  --verbose, -v    Verbose mode
+  --quiet, -q      Quiet mode

@@ -1,0 +1,9 @@
+Add a package to api.kuetix.com/packages (requires login)
+
+Usage:
+  kue package add [options]
+
+Options:
+  --path, -p      Path to kuetix.json or package directory
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

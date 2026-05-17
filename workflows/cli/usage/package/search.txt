@@ -1,0 +1,8 @@
+Search remote packages (requires login)
+
+Usage:
+  kue package search <query> [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

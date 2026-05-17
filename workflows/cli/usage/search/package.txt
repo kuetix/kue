@@ -1,0 +1,13 @@
+Search the registry for packages matching <query>
+
+Usage:
+  kue search package <query> [options]
+
+Examples:
+  kue search package billing
+  kue search package my-org -n 25
+
+Options:
+  -n, --limit <number>   Maximum number of results (default: 10)
+  -H, --host             API host (default: api.kuetix.com)
+  -c, --config           Path to config file

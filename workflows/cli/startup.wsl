@@ -1,0 +1,57 @@
+module startup
+
+extends consts
+import cli/cli
+
+workflow startup {
+  start: RegisterCommands
+
+  state RegisterCommands {
+    action cli/cli.RegisterCommands(
+      modulesPath: $env.Config.application.modules_path,
+      workflowsPath: $env.Config.application.workflows_path,
+      version: $env.Config.application.version,
+      buildTime: $env.Config.application.build_time,
+      defaultCommand: "help",
+      groups: $commands
+    ) as Result
+    on success -> WorkflowExecutor
+    on fail -> UnregisteredCommand
+  }
+
+  state UnregisteredCommand {
+    action cli/cli.UnregisteredCommand(value: $@) as Result
+    on success -> Finish
+    on fail -> Failed
+  }
+
+  state WorkflowExecutor {
+    action cli/cli.WorkflowExecutor(
+      command: $Result.command,
+      workflowPath: $Result.workflow,
+      config: $Result.config,
+      args: $Result.args,
+      verbose: "<<Result.global.verbose ?? false>>",
+      debug: $Result.global.debug??false,
+      quiet: $Result.global.quiet??false
+    ) as Result
+    on success -> Finish
+    on fail -> Failed
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: $Result??$@??"Done",
+      statusCode: 200
+    ) as FinalResult
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(
+      value: "Failed to run command",
+      statusCode: 500
+    ) as ErrorResult
+    end fail
+  }
+}

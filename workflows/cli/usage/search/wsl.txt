@@ -1,0 +1,16 @@
+Search the registry for workflows matching <query>
+
+Usage:
+  kue search wsl <query> [options]
+  kue search workflow <query> [options]
+
+Examples:
+  kue search wsl auth
+  kue search wsl cli/project -n 20
+
+Matching is case-insensitive substring matching against workflow names.
+
+Options:
+  -n, --limit <number>   Maximum number of results (default: 10)
+  -H, --host             API host (default: api.kuetix.com)
+  -c, --config           Path to config file

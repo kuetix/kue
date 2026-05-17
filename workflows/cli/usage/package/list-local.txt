@@ -1,0 +1,7 @@
+List modules already enabled in the current project
+
+Usage:
+  kue package list-local [options]
+
+Options:
+  --output, -o    Current project directory (default: current directory)

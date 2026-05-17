@@ -1,0 +1,8 @@
+Add a new feature workflow to the project
+
+Usage:
+  kue add feature <name> [options]
+
+Options:
+  --output, -o    Output directory (default: current directory)
+  --force, -f     Force creation without confirmation

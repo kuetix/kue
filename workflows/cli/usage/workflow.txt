@@ -1,0 +1,22 @@
+Inspect a workflow or manage workflows on the API server
+
+Usage:
+  kue workflow --name <name> [options]      # inspect (legacy form)
+  kue workflow <subcommand> [options]
+
+Subcommands:
+  status             Show local workflows + sync state vs server
+  upload <name>      Upload a workflow + dependencies (POST /workflow)
+  upload-all         Upload every workflow under ./workflows (batch)
+  update <name>      Update an existing workflow (PUT /workflow/{name})
+  get <name>         Fetch a workflow from the server (GET /workflow/{name})
+  list               List all workflows owned by the JWT user (GET /workflow)
+  delete <name>      Delete a workflow (DELETE /workflow/{name})
+  inspect <name>     Inspect a workflow locally (same as --name)
+
+Options (inspect):
+  --name, -n      Workflow name or path (e.g. cli/project/show, @cli/startup)
+  --json, -j      Output as JSON
+  --pretty, -P    Pretty-print JSON output (implies --json)
+
+Use 'kue workflow <subcommand> --help' for subcommand options.

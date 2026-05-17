@@ -1,0 +1,503 @@
+const {
+    commands: {
+        "*": [{
+            "*": {
+                "options": [
+                    {"long": "verbose", "short": "v", "value": false, "usage": "Verbose output", "type": "bool"},
+                    {"long": "debug", "short": "vv", "value": false, "usage": "Debug output", "type": "bool"},
+                    {"long": "quiet", "short": "q", "value": false, "usage": "Quiet mode", "type": "bool"},
+                    {"long": "help", "short": "h", "value": false, "usage": "Help", "type": "bool"},
+                    {"long": "modules", "short": "mp", "value": "modules", "usage": "Path to modules directory"},
+                    {"long": "workflows", "short": "w", "value": "workflows", "usage": "Path to workflows directory"},
+                ]
+            }
+        },],
+
+        "help": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/help.txt",
+                "options": []
+            }
+            "*": {
+                "$extends": "",
+            },
+        },],
+
+        // Auth commands
+        "login": [{
+            "": {
+                "workflow": "cli/auth/login",
+                "usage": "file://cli/usage/login.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                    {"long": "username", "short": "u", "value": "", "usage": "Username for login"},
+                    {"long": "password", "short": "p", "value": "", "usage": "Password for login"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+        },],
+
+        "logout": [{
+            "": {
+                "workflow": "cli/auth/logout",
+                "usage": "file://cli/usage/logout.txt",
+                "options": [
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        "register": [{
+            "": {
+                "workflow": "cli/auth/register",
+                "usage": "file://cli/usage/register.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "email", "short": "e", "value": "", "usage": "Email for registration (required)"},
+                    {"long": "password", "short": "p", "value": "", "usage": "Password for registration (required)"},
+                    {"long": "name", "short": "n", "value": "", "usage": "Display name (optional)"},
+                    {"long": "username", "short": "u", "value": "", "usage": "Username (optional)"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        "profile": [{
+            "get": {
+                "workflow": "cli/auth/profile_get",
+                "usage": "file://cli/usage/profile/get.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "update": {
+                "workflow": "cli/auth/profile_update",
+                "usage": "file://cli/usage/profile/update.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                    {"long": "name", "short": "n", "value": "", "usage": "Display name"},
+                    {"long": "username", "short": "u", "value": "", "usage": "Username"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+        },],
+
+        // Create command
+        "create": [{
+            "": {
+                "workflow": "cli/create/create",
+                "usage": "file://cli/usage/create.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Project name (required)"},
+                    {"long": "app-type", "short": "a", "value": "cli", "usage": "Application type: cli, api, consumer, service, package, all"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        // Add commands (subcommands)
+        "add": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/add.txt",
+                "options": []
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+            "module": {
+                "workflow": "cli/add/module",
+                "usage": "file://cli/usage/add/module.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Module name"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "workflow": {
+                "workflow": "cli/add/workflow",
+                "usage": "file://cli/usage/add/workflow.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "feature": {
+                "workflow": "cli/add/feature",
+                "usage": "file://cli/usage/add/feature.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "solution": {
+                "workflow": "cli/add/solution",
+                "usage": "file://cli/usage/add/solution.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "package": {
+                "workflow": "cli/add/package",
+                "usage": "file://cli/usage/add/package.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                ]
+            },
+            "transition": {
+                "workflow": "cli/add/transition",
+                "usage": "file://cli/usage/add/transition.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Transition name (e.g. moduleName/MethodName)"},
+                    {"long": "module", "short": "m", "value": "", "usage": "Module name to add the transition to"},
+                    {"long": "description", "short": "d", "value": "", "usage": "Method description comment"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
+                ]
+            },
+        },],
+
+        // Search command — look up workflows or packages on the registry
+        "search": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/search.txt",
+                "options": []
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+            "wsl": {
+                "workflow": "cli/search/wsl",
+                "usage": "file://cli/usage/search/wsl.txt",
+                "options": [
+                    {"long": "limit", "short": "n", "value": 10, "usage": "Maximum number of results (default: 10)", "type": "int"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "workflow": {
+                "workflow": "cli/search/wsl",
+                "usage": "file://cli/usage/search/wsl.txt",
+                "options": [
+                    {"long": "limit", "short": "n", "value": 10, "usage": "Maximum number of results (default: 10)", "type": "int"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "package": {
+                "workflow": "cli/search/package",
+                "usage": "file://cli/usage/search/package.txt",
+                "options": [
+                    {"long": "limit", "short": "n", "value": 10, "usage": "Maximum number of results (default: 10)", "type": "int"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+        },],
+
+        // Install command — download a workflow or package and wire it into the local project
+        "install": [{
+            "": {
+                "workflow": "cli/install/install",
+                "usage": "file://cli/usage/install.txt",
+                "options": [
+                    {"long": "type", "short": "t", "value": "", "usage": "Asset type: 'workflow' or 'package' (auto-detected if empty)"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Project directory (default: .)"},
+                    {"long": "force", "short": "f", "value": false, "usage": "Overwrite existing files without prompting", "type": "bool"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "*": {
+                "$extends": "",
+            }
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        // Project commands
+        "run": [{
+            "": {
+                "workflow": "cli/project/run",
+                "usage": "file://cli/usage/run.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Project name (used as binary name)"},
+                    {"long": "app-type", "short": "a", "value": "", "usage": "Application type: cli, api, consumer, service, package"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Project directory"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        "update": [{
+            "": {
+                "workflow": "cli/project/update",
+                "usage": "file://cli/usage/update.txt",
+                "options": [
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        "show": [{
+            "": {
+                "workflow": "cli/project/show",
+                "usage": "file://cli/usage/show.txt",
+                "options": []
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            }
+        },],
+
+        "workflow": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/workflow.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name or path"},
+                    {"long": "json", "short": "j", "value": false, "usage": "Output as JSON", "type": "bool"},
+                    {"long": "pretty", "short": "P", "value": false, "usage": "Pretty-print JSON output", "type": "bool"},
+                ]
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+            "inspect": {
+                "workflow": "cli/project/workflow",
+                "usage": "file://cli/usage/workflow/inspect.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name or path"},
+                    {"long": "json", "short": "j", "value": false, "usage": "Output as JSON", "type": "bool"},
+                    {"long": "pretty", "short": "P", "value": false, "usage": "Pretty-print JSON output", "type": "bool"},
+                ]
+            },
+            "upload": {
+                "workflow": "cli/workflow/upload",
+                "usage": "file://cli/usage/workflow/upload.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name"},
+                    {"long": "projectName", "short": "p", "value": "", "usage": "Override project name (defaults to go.mod module, then project root)"},
+                    {"long": "public", "short": "P", "value": false, "usage": "Make workflow public (default: private)", "type": "bool"},
+                    {"long": "publish", "short": "u", "value": false, "usage": "Publish workflow (default: unpublished)", "type": "bool"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "update": {
+                "workflow": "cli/workflow/update",
+                "usage": "file://cli/usage/workflow/update.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "upload-all": {
+                "workflow": "cli/workflow/upload_all",
+                "usage": "file://cli/usage/workflow/upload-all.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Project root containing workflows/"},
+                    {"long": "method", "short": "M", "value": "POST", "usage": "HTTP method per workflow: POST or PUT"},
+                    {"long": "projectName", "short": "p", "value": "", "usage": "Override project name (defaults to go.mod module, then project root)"},
+                    {"long": "public", "short": "P", "value": false, "usage": "Make workflows public (default: private)", "type": "bool"},
+                    {"long": "publish", "short": "u", "value": false, "usage": "Publish workflows (default: unpublished)", "type": "bool"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "get": {
+                "workflow": "cli/workflow/get",
+                "usage": "file://cli/usage/workflow/get.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "list": {
+                "workflow": "cli/workflow/list",
+                "usage": "file://cli/usage/workflow/list.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "delete": {
+                "workflow": "cli/workflow/delete",
+                "usage": "file://cli/usage/workflow/delete.txt",
+                "options": [
+                    {"long": "name", "short": "n", "value": "", "usage": "Workflow name"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "status": {
+                "workflow": "cli/workflow/status",
+                "usage": "file://cli/usage/workflow/status.txt",
+                "options": [
+                    {"long": "no-check", "short": "N", "value": false, "usage": "Skip server comparison; list local only", "type": "bool"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+        },],
+
+        // Package management commands
+        "package": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/package.txt",
+                "options": []
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+            "add": {
+                "workflow": "cli/package/add",
+                "usage": "file://cli/usage/package/add.txt",
+                "options": [
+                    {"long": "path", "short": "p", "value": "", "usage": "Path to kuetix.json or package directory"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "update": {
+                "workflow": "cli/package/update",
+                "usage": "file://cli/usage/package/update.txt",
+                "options": [
+                    {"long": "path", "short": "p", "value": "", "usage": "Path to kuetix.json or package directory"},
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "search": {
+                "workflow": "cli/package/search",
+                "usage": "file://cli/usage/package/search.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "install": {
+                "workflow": "cli/package/install",
+                "usage": "file://cli/usage/package/install.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "list": {
+                "workflow": "cli/package/list",
+                "usage": "file://cli/usage/package/list.txt",
+                "options": [
+                    {"long": "host", "short": "H", "value": "", "usage": "API host (default: api.kuetix.com)"},
+                    {"long": "config", "short": "c", "value": "", "usage": "Path to config file"},
+                ]
+            },
+            "list-local": {
+                "workflow": "cli/package/list_local",
+                "usage": "file://cli/usage/package/list-local.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Current project directory"},
+                ]
+            },
+            "enable": {
+                "workflow": "cli/package/enable",
+                "usage": "file://cli/usage/package/enable.txt",
+                "options": [
+                    {"long": "output", "short": "o", "value": ".", "usage": "Current project directory"},
+                ]
+            },
+            "publish": {
+                "workflow": "cli/package/publish",
+                "usage": "file://cli/usage/package/publish.txt",
+                "options": [
+                    {"long": "description", "short": "d", "value": "", "usage": "Package description"},
+                    {"long": "version", "short": "V", "value": "", "usage": "Package version (e.g. 0.2.0)"},
+                    {"long": "publisher", "short": "p", "value": "", "usage": "Publisher name or organisation"},
+                    {"long": "keywords", "short": "k", "value": "", "usage": "Comma-separated list of keywords"},
+                    {"long": "output", "short": "o", "value": ".", "usage": "Package directory"},
+                ]
+            },
+            "show": {
+                "workflow": "cli/package/show",
+                "usage": "file://cli/usage/package/show.txt",
+                "options": [
+                    {"long": "path", "short": "p", "value": "", "usage": "Path to kuetix.json or package directory"},
+                ]
+            },
+        },],
+
+        // Templates commands
+        "templates": [{
+            "": {
+                "workflow": "cli/help",
+                "usage": "file://cli/usage/templates.txt",
+                "options": []
+            },
+            "help": {
+                "$extends": "",
+                "workflow": "cli/help"
+            },
+            "download": {
+                "workflow": "cli/templates/download",
+                "usage": "file://cli/usage/templates/download.txt",
+                "options": []
+            },
+            "update": {
+                "workflow": "cli/templates/update",
+                "usage": "file://cli/usage/templates/update.txt",
+                "options": []
+            },
+            "clear": {
+                "workflow": "cli/templates/clear",
+                "usage": "file://cli/usage/templates/clear.txt",
+                "options": []
+            },
+            "status": {
+                "workflow": "cli/templates/status",
+                "usage": "file://cli/usage/templates/status.txt",
+                "options": []
+            },
+        },],
+
+    }
+}

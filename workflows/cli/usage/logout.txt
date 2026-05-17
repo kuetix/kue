@@ -1,0 +1,7 @@
+Remove stored Kuetix authentication data
+
+Usage:
+  kue logout [options]
+
+Options:
+  --config, -c  Path to config file

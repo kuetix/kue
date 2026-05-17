@@ -1,0 +1,8 @@
+Inspect a workflow file and list all actions and params
+
+Usage:
+  kue workflow inspect <name> [options]
+
+Options:
+  --json, -j      Output as JSON
+  --pretty, -P    Pretty-print JSON output (implies --json)

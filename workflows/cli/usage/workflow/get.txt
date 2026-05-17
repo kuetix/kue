@@ -1,0 +1,9 @@
+Fetch a workflow from the server (GET /workflow/{name})
+
+Usage:
+  kue workflow get <name> [options]
+
+Options:
+  --name, -n      Workflow name (alternative to positional arg)
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file

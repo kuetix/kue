@@ -1,0 +1,30 @@
+module help
+
+import cli/cli
+import cli/help
+
+workflow startup {
+  start: HelpCommand
+
+  state HelpCommand {
+    action cli/help.Help(command: $command, commands: $commands, commandConfig: $config, config: $config.config, flagSet: $config.flagSet, flags: $config.flags) as Result
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: $Result,
+      statusCode: 200
+    ) as FinalResult
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(
+      value: "Failed to execute help command",
+      statusCode: 500
+    ) as ErrorResult
+    end fail
+  }
+}

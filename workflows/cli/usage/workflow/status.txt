@@ -1,0 +1,16 @@
+List local workflows with dependencies and compare against the server
+
+Usage:
+  kue workflow status [options]
+
+By default this fetches the authenticated user's server-side workflows and
+marks each local workflow as one of:
+  [new]        present locally, missing on the server (needs upload)
+  [modified]   present on both, content differs (needs update)
+  [unchanged]  present on both, content matches
+Server-only workflows (not present locally) are listed at the end.
+
+Options:
+  --no-check, -N  Skip server comparison and just list local workflows + deps
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file
