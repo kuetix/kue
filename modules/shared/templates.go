@@ -15,6 +15,7 @@ import (
 	"text/template"
 	"unicode"
 
+	"github.com/kuetix/kue"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
@@ -22,7 +23,7 @@ import (
 const (
 	DefaultTemplateURL  = "https://templates.kuetix.com/latest/"
 	TemplateURLPattern  = "https://templates.kuetix.com/%s/"
-	TemplateCacheDir    = ".kue/templates"
+	TemplateCacheDir    = "templates"
 	KuetixEngineVersion = "v0.1.4"
 	MinGoVersion        = "1.21"
 )
@@ -47,8 +48,7 @@ type TemplateManager struct {
 
 // NewTemplateManager creates a new template manager.
 func NewTemplateManager(source TemplateSource) *TemplateManager {
-	homeDir, _ := os.UserHomeDir()
-	cacheDir := filepath.Join(homeDir, TemplateCacheDir)
+	cacheDir := filepath.Join(kue.HomeDir, kue.CacheDir, TemplateCacheDir)
 	return &TemplateManager{
 		source:   source,
 		cacheDir: cacheDir,

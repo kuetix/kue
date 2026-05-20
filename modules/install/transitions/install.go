@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"maps"
 	"net/http"
 	"net/url"
 	"os"
@@ -22,9 +23,12 @@ import (
 
 type installTransitions struct {
 	workflow.BaseServiceTransition
+	ListNames *shared.ListNames
 }
 
-func NewInstallTransition() interfaces.ServiceTransitions { return &installTransitions{} }
+func NewInstallTransition() interfaces.ServiceTransitions {
+	return &installTransitions{ListNames: shared.NewListNames("workflow", "list")}
+}
 
 // InstallCommand downloads a workflow (or package) from the registry, writes
 // the workflow file (and any imported workflow files) into ./workflows, and
@@ -35,24 +39,24 @@ func NewInstallTransition() interfaces.ServiceTransitions { return &installTrans
 func (i *installTransitions) InstallCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	options := GetFlags(flags)
 
-	name := firstPositional(command, config, options)
+	name := i.firstPositional(command, config, options)
 	if name == "" {
 		r.Error = fmt.Errorf("name is required (usage: kue install <name>)")
 		return
 	}
 
-	assetType := strings.ToLower(strings.TrimSpace(strOpt(options, "type")))
-	output := strOpt(options, "output")
+	assetType := strings.ToLower(strings.TrimSpace(i.strOpt(options, "type")))
+	output := i.strOpt(options, "output")
 	if strings.TrimSpace(output) == "" {
 		output = "."
 	}
-	force := boolOpt(options, "force")
+	force := i.boolOpt(options, "force")
 
 	switch assetType {
 	case "", "workflow":
 		body, statusCode, werr := shared.PerformAuthenticatedRequest(kueConfig, http.MethodGet, "/workflow/"+url.PathEscape(name), nil)
 		if werr == nil {
-			report, err := installWorkflowFromBody(name, body, output, force)
+			report, err := i.installWorkflowFromBody(name, body, output, force)
 			r.StatusCode = statusCode
 			if err != nil {
 				r.Error = err
@@ -62,7 +66,7 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 			r.Response = report
 			return
 		}
-		if assetType == "workflow" || !isNotFound(statusCode) {
+		if assetType == "workflow" || !i.isNotFound(statusCode) {
 			r.StatusCode = statusCode
 			r.Error = fmt.Errorf("workflow install failed: %w", werr)
 			return
@@ -75,7 +79,7 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 			r.Error = fmt.Errorf("package install failed: %w", perr)
 			return
 		}
-		report, err := installPackageFromBody(name, body, output)
+		report, err := i.installPackageFromBody(name, body, output)
 		if err != nil {
 			r.Error = err
 			return
@@ -89,12 +93,72 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 	}
 }
 
+// InstallBulkCommand downloads a workflow (or package) from the registry, writes
+// the workflow file (and any imported workflow files) into ./workflows, and
+// adds each Go module dependency to the current project's go.mod. It prints a
+// reminder to run `go mod tidy && go mod vendor` afterwards.
+//
+//goland:noinspection GoUnusedParameter
+func (i *installTransitions) InstallBulkCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+	options, helpText, helped := i.parseFlags(config["usage"].(string), flagSet, flags)
+	if helped {
+		r.Success = true
+		r.Response = helpText
+		return
+	}
+
+	pattern := i.firstPositional(command, config, options)
+	if pattern == "" {
+		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow get <name>)")
+		return
+	}
+	records, err := i.ListNames.ListOfNames(pattern, kueConfig)
+	if err != nil {
+		r.Error = fmt.Errorf("failed to list workflows: %w", err)
+		return
+	}
+
+	results := make([]domain.FlowStepResult, 0, len(records))
+	for _, record := range records {
+		cmd := maps.Clone(command)
+		cFlags := maps.Clone(flags)
+		cFlags["name"] = []string{record}
+		cmd["parts"] = make([]string, 2)
+		cmd["parts"].([]string)[0] = command["main_command"].(string)
+		cmd["parts"].([]string)[1] = record
+		rs := i.InstallCommand(cmd, config, kueConfig, flagSet, cFlags)
+		results = append(results, rs)
+	}
+
+	r.Success = true
+	r.Response = results
+	return
+}
+
+// ---------------------------------------------------------------------------
+// Internals
+// ---------------------------------------------------------------------------
+
+func (i *installTransitions) parseFlags(usage string, flagSet *flag.FlagSet, flags map[string]interface{}) (options map[string]interface{}, helpText string, helped bool) {
+	options = GetFlags(flags)
+	if options != nil {
+		if _, ok := options["help"].(bool); ok {
+			var buf bytes.Buffer
+			flagSet.SetOutput(&buf)
+			flagSet.Usage()
+			helpText = buf.String() + "\n" + usage + "\n"
+			helped = true
+		}
+	}
+	return
+}
+
 // ---------------------------------------------------------------------------
 // Workflow install
 // ---------------------------------------------------------------------------
 
-func installWorkflowFromBody(name, body, output string, force bool) (string, error) {
-	content, imports, deps, err := parseWorkflowResponse(body)
+func (i *installTransitions) installWorkflowFromBody(name, body, output string, force bool) (string, error) {
+	content, imports, deps, err := i.parseWorkflowResponse(body)
 	if err != nil {
 		return "", err
 	}
@@ -104,7 +168,7 @@ func installWorkflowFromBody(name, body, output string, force bool) (string, err
 
 	workflowsRoot := filepath.Join(output, "workflows")
 	wsl := filepath.Join(workflowsRoot, filepath.FromSlash(name)+".wsl")
-	if err = writeWorkflowFile(wsl, content, force); err != nil {
+	if err = i.writeWorkflowFile(wsl, content, force); err != nil {
 		return "", err
 	}
 
@@ -114,13 +178,13 @@ func installWorkflowFromBody(name, body, output string, force bool) (string, err
 			continue
 		}
 		path := filepath.Join(workflowsRoot, filepath.FromSlash(impName)+".wsl")
-		if err := writeWorkflowFile(path, impContent, force); err != nil {
+		if err = i.writeWorkflowFile(path, impContent, force); err != nil {
 			return "", err
 		}
 		importedPaths = append(importedPaths, path)
 	}
 
-	addedMods, skippedMods, modErrs := addGoModuleRequires(output, deps)
+	addedMods, skippedMods, modErrs := i.addGoModuleRequires(output, deps)
 
 	var sb strings.Builder
 	sb.WriteString(fmt.Sprintf("Installed workflow %q to %s\n", name, wsl))
@@ -131,12 +195,12 @@ func installWorkflowFromBody(name, body, output string, force bool) (string, err
 			sb.WriteString("  - " + p + "\n")
 		}
 	}
-	writeDependencyReport(&sb, addedMods, skippedMods, modErrs)
-	writeFollowupHint(&sb, len(addedMods) > 0)
+	i.writeDependencyReport(&sb, addedMods, skippedMods, modErrs)
+	i.writeFollowupHint(&sb, len(addedMods) > 0)
 	return sb.String(), nil
 }
 
-func writeWorkflowFile(path, content string, force bool) error {
+func (i *installTransitions) writeWorkflowFile(path, content string, force bool) error {
 	if !force {
 		if _, err := os.Stat(path); err == nil {
 			return fmt.Errorf("file already exists: %s (use --force to overwrite)", path)
@@ -158,7 +222,7 @@ func writeWorkflowFile(path, content string, force bool) error {
 // dependency list out of a server response body. The server is permissive
 // about envelope shape — the response may be either the workflow payload
 // directly, or wrapped under "data" / "workflow".
-func parseWorkflowResponse(body string) (string, map[string]string, []string, error) {
+func (i *installTransitions) parseWorkflowResponse(body string) (string, map[string]string, []string, error) {
 	body = strings.TrimSpace(body)
 	if body == "" {
 		return "", nil, nil, fmt.Errorf("empty response body")
@@ -184,11 +248,11 @@ func parseWorkflowResponse(body string) (string, map[string]string, []string, er
 			}
 		}
 	}
-	deps := extractGoModules(payload["dependencies"])
+	deps := i.extractGoModules(payload["dependencies"])
 	return content, imports, deps, nil
 }
 
-func extractGoModules(raw interface{}) []string {
+func (i *installTransitions) extractGoModules(raw interface{}) []string {
 	items, ok := raw.([]interface{})
 	if !ok {
 		return nil
@@ -215,10 +279,10 @@ func extractGoModules(raw interface{}) []string {
 // Package install
 // ---------------------------------------------------------------------------
 
-func installPackageFromBody(name, body, output string) (string, error) {
+func (i *installTransitions) installPackageFromBody(name, body, output string) (string, error) {
 	body = strings.TrimSpace(body)
-	deps := extractPackageGoModules(body)
-	addedMods, skippedMods, modErrs := addGoModuleRequires(output, deps)
+	deps := i.extractPackageGoModules(body)
+	addedMods, skippedMods, modErrs := i.addGoModuleRequires(output, deps)
 
 	var sb strings.Builder
 	sb.WriteString(fmt.Sprintf("Installed package %q\n", name))
@@ -227,12 +291,12 @@ func installPackageFromBody(name, body, output string) (string, error) {
 		sb.WriteString("Raw response:\n")
 		sb.WriteString(body + "\n")
 	}
-	writeDependencyReport(&sb, addedMods, skippedMods, modErrs)
-	writeFollowupHint(&sb, len(addedMods) > 0)
+	i.writeDependencyReport(&sb, addedMods, skippedMods, modErrs)
+	i.writeFollowupHint(&sb, len(addedMods) > 0)
 	return sb.String(), nil
 }
 
-func extractPackageGoModules(body string) []string {
+func (i *installTransitions) extractPackageGoModules(body string) []string {
 	if body == "" {
 		return nil
 	}
@@ -269,7 +333,7 @@ func extractPackageGoModules(body string) []string {
 			}
 		}
 	}
-	if deps := extractGoModules(payload["dependencies"]); len(deps) > 0 {
+	if deps := i.extractGoModules(payload["dependencies"]); len(deps) > 0 {
 		for _, d := range deps {
 			add(d)
 		}
@@ -286,13 +350,13 @@ func extractPackageGoModules(body string) []string {
 // `go get <mod>` to resolve a real version. Both calls are best-effort: if
 // `go` is missing or a network call fails, the failure is reported back to
 // the user without aborting the whole install.
-func addGoModuleRequires(projectDir string, modules []string) (added []string, skipped []string, errs map[string]error) {
+func (i *installTransitions) addGoModuleRequires(projectDir string, modules []string) (added []string, skipped []string, errs map[string]error) {
 	errs = map[string]error{}
 	if len(modules) == 0 {
 		return
 	}
 	goModPath := filepath.Join(projectDir, "go.mod")
-	existing, err := readExistingRequires(goModPath)
+	existing, err := i.readExistingRequires(goModPath)
 	if err != nil {
 		for _, m := range modules {
 			errs[m] = err
@@ -304,7 +368,7 @@ func addGoModuleRequires(projectDir string, modules []string) (added []string, s
 			skipped = append(skipped, mod)
 			continue
 		}
-		if err := runGoGet(projectDir, mod); err != nil {
+		if err = i.runGoGet(projectDir, mod); err != nil {
 			errs[mod] = err
 			continue
 		}
@@ -314,7 +378,7 @@ func addGoModuleRequires(projectDir string, modules []string) (added []string, s
 	return
 }
 
-func readExistingRequires(goModPath string) (map[string]bool, error) {
+func (i *installTransitions) readExistingRequires(goModPath string) (map[string]bool, error) {
 	data, err := os.ReadFile(goModPath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read %s: %w", goModPath, err)
@@ -334,7 +398,7 @@ func readExistingRequires(goModPath string) (map[string]bool, error) {
 	return out, nil
 }
 
-func runGoGet(projectDir, mod string) error {
+func (i *installTransitions) runGoGet(projectDir, mod string) error {
 	cmd := exec.Command("go", "get", mod)
 	cmd.Dir = projectDir
 	var stderr bytes.Buffer
@@ -353,7 +417,7 @@ func runGoGet(projectDir, mod string) error {
 // Reporting helpers
 // ---------------------------------------------------------------------------
 
-func writeDependencyReport(sb *strings.Builder, added, skipped []string, errs map[string]error) {
+func (i *installTransitions) writeDependencyReport(sb *strings.Builder, added, skipped []string, errs map[string]error) {
 	if len(added) > 0 {
 		sb.WriteString("Added go.mod requires:\n")
 		sort.Strings(added)
@@ -381,7 +445,7 @@ func writeDependencyReport(sb *strings.Builder, added, skipped []string, errs ma
 	}
 }
 
-func writeFollowupHint(sb *strings.Builder, addedAny bool) {
+func (i *installTransitions) writeFollowupHint(sb *strings.Builder, addedAny bool) {
 	if !addedAny {
 		return
 	}
@@ -394,7 +458,7 @@ func writeFollowupHint(sb *strings.Builder, addedAny bool) {
 // Flag/argument helpers
 // ---------------------------------------------------------------------------
 
-func firstPositional(command, config map[string]interface{}, options map[string]interface{}) string {
+func (i *installTransitions) firstPositional(command, config map[string]interface{}, options map[string]interface{}) string {
 	if n, ok := options["name"].(string); ok && strings.TrimSpace(n) != "" {
 		return strings.TrimSpace(n)
 	}
@@ -413,20 +477,20 @@ func firstPositional(command, config map[string]interface{}, options map[string]
 	return ""
 }
 
-func strOpt(options map[string]interface{}, key string) string {
+func (i *installTransitions) strOpt(options map[string]interface{}, key string) string {
 	if v, ok := options[key].(string); ok {
 		return v
 	}
 	return ""
 }
 
-func boolOpt(options map[string]interface{}, key string) bool {
+func (i *installTransitions) boolOpt(options map[string]interface{}, key string) bool {
 	if v, ok := options[key].(bool); ok {
 		return v
 	}
 	return false
 }
 
-func isNotFound(statusCode int) bool {
+func (i *installTransitions) isNotFound(statusCode int) bool {
 	return statusCode == http.StatusNotFound
 }

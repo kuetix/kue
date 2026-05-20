@@ -3,6 +3,7 @@ module github.com/kuetix/kue
 go 1.26.1
 
 require (
+	github.com/anare/filejsondb v1.0.0
 	github.com/kuetix/container v0.1.0
 	github.com/kuetix/engine v1.0.0
 	github.com/kuetix/helpers v1.0.0
@@ -23,6 +24,7 @@ require (
 	github.com/mitchellh/colorstring v0.0.0-20190213212951-d06e56a500db // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.3.1 // indirect
+	github.com/pnkj-kmr/simple-json-db v1.3.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/sagikazarmark/locafero v0.12.0 // indirect
 	github.com/spf13/afero v1.15.0 // indirect

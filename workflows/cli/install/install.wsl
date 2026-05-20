@@ -10,7 +10,7 @@ workflow startup {
   }
 
   state Command {
-    action install/install.InstallCommand(command: $requestedCommand, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
+    action install/install.InstallBulkCommand(command: $requestedCommand, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
     on success -> _
     on fail -> Failed
   }

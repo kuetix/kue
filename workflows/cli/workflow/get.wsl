@@ -13,7 +13,7 @@ workflow startup {
   }
 
   state Command {
-    action workflow/workflow.GetCommand(command: $command, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
+    action workflow/workflow.GetBulkCommand(command: $requestedCommand, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
     on success -> _
     on fail -> Failed
   }

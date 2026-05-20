@@ -7,6 +7,7 @@ import (
 	"flag"
 	"fmt"
 	"io/fs"
+	"maps"
 	"net/http"
 	"net/url"
 	"os"
@@ -25,9 +26,12 @@ import (
 
 type workflowTransitions struct {
 	workflow.BaseServiceTransition
+	ListNames *shared.ListNames
 }
 
-func NewWorkflowTransition() interfaces.ServiceTransitions { return &workflowTransitions{} }
+func NewWorkflowTransition() interfaces.ServiceTransitions {
+	return &workflowTransitions{ListNames: shared.NewListNames("workflow", "list")}
+}
 
 // ---------------------------------------------------------------------------
 // Payload types sent to the server
@@ -217,7 +221,7 @@ func (w *workflowTransitions) UploadAllCommand(command string, config map[string
 }
 
 //goland:noinspection GoUnusedParameter
-func (w *workflowTransitions) GetCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+func (w *workflowTransitions) GetCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	options, helpText, helped := w.parseFlags(config["usage"].(string), flagSet, flags)
 	if helped {
 		r.Success = true
@@ -225,7 +229,7 @@ func (w *workflowTransitions) GetCommand(command string, config map[string]inter
 		return
 	}
 
-	name := w.firstPositional(config, options)
+	name := w.firstPositional(command, options)
 	if name == "" {
 		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow get <name>)")
 		return
@@ -237,13 +241,48 @@ func (w *workflowTransitions) GetCommand(command string, config map[string]inter
 		r.Error = fmt.Errorf("workflow get failed: %w", err)
 		return
 	}
+
 	r.Success = true
 	r.Response = body
 	return
 }
 
 //goland:noinspection GoUnusedParameter
-func (w *workflowTransitions) ListCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+func (w *workflowTransitions) GetBulkCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+	options, helpText, helped := w.parseFlags(config["usage"].(string), flagSet, flags)
+	if helped {
+		r.Success = true
+		r.Response = helpText
+		return
+	}
+
+	pattern := w.firstPositional(command, options)
+	if pattern == "" {
+		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow get <name>)")
+		return
+	}
+
+	cmd := maps.Clone(command)
+	names, err := w.ListNames.ListOfNames(pattern, kueConfig)
+	if err != nil {
+		r.Error = fmt.Errorf("failed to list workflows: %w", err)
+		return
+	}
+
+	results := make([]domain.FlowStepResult, 0, len(names))
+	for _, name := range names {
+		cmd["args"] = []string{name}
+		result := w.GetCommand(cmd, config, kueConfig, flagSet, flags)
+		results = append(results, result)
+	}
+
+	r.Success = true
+	r.Response = results
+	return
+}
+
+//goland:noinspection GoUnusedParameter
+func (w *workflowTransitions) ListCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	_, helpText, helped := w.parseFlags(config["usage"].(string), flagSet, flags)
 	if helped {
 		r.Success = true
@@ -251,87 +290,11 @@ func (w *workflowTransitions) ListCommand(command string, config map[string]inte
 		return
 	}
 
-	var cursor string = ""
-	var cursorDetails string = ""
-	var count int = 0
-	var limit = 100
-	var records []string = []string{}
-	var body string = ""
-	var statusCode int = 0
-	var err error = nil
-	var urlPath string = ""
-	page := 0
-	pageMax := 100
-	bar := progressbar.Default(int64(pageMax))
-	for count >= 0 {
-		urlPath = fmt.Sprintf("/workflow?limit=%d&cursor=%s", limit, cursor)
-		body, statusCode, err = shared.PerformAuthenticatedRequest(kueConfig, http.MethodGet, urlPath, nil)
-		r.StatusCode = statusCode
-		if err != nil {
-			r.Error = fmt.Errorf("workflow list failed: %w", err)
-			return
-		}
-		var obj map[string]interface{}
-		if err = json.Unmarshal([]byte(body), &obj); err != nil {
-			r.Error = fmt.Errorf("invalid workflow list JSON: %w", err)
-			return
-		}
-
-		data := obj["data"].(map[string]interface{})
-		if data != nil {
-			if c, ok := data["count"].(float64); ok {
-				count = int(c)
-			}
-
-			if c, ok := data["cursor"].(string); ok {
-				cursor = c
-				var bin []byte
-				bin, err = base64.StdEncoding.DecodeString(strings.TrimSpace(cursor))
-				if err != nil {
-					cursorDetails = ""
-				} else {
-					cursorDetails = string(bin)
-					if cursorDetails == "" || cursorDetails == "|" {
-						cursorDetails = ""
-						cursor = ""
-						count = -1
-					}
-				}
-			} else {
-				cursor = ""
-				count = -1
-			}
-		}
-		if cursor != "" {
-			page++
-			if page > pageMax {
-				pageMax = bar.GetMax() + 1
-				bar = progressbar.Default(int64(pageMax))
-				_ = bar.Add(0)
-			}
-			_ = bar.Add(1)
-		}
-
-		for _, key := range []string{"workflows", "items", "data", "results"} {
-			if v, ok := obj[key]; ok {
-				if items, ok := v.([]interface{}); ok {
-					records = append(records, namesFromArray(items)...)
-				}
-			}
-		}
-
-		if d, ok := obj["data"].(map[string]interface{}); ok {
-			for _, key := range []string{"workflows", "items", "results"} {
-				if v, ok := d[key]; ok {
-					if items, ok := v.([]interface{}); ok {
-						records = append(records, namesFromArray(items)...)
-					}
-				}
-			}
-		}
+	records, err := w.ListNames.ListOfNames("*", kueConfig)
+	if err != nil {
+		r.Error = fmt.Errorf("failed to list workflows: %w", err)
+		return
 	}
-	bar.ChangeMax(page)
-	_ = bar.Finish()
 
 	r.Success = true
 	r.Response = records
@@ -537,12 +500,12 @@ func (w *workflowTransitions) uploadOne(name string, kueConfig shared.KueConfig,
 		return "", 0, err
 	}
 
-	path := "/workflow"
+	pathWorkflow := "/workflow"
 	if method == http.MethodPut {
-		path = "/workflow/" + url.PathEscape(name)
+		pathWorkflow = "/workflow/" + url.PathEscape(name)
 	}
 
-	body, statusCode, err := shared.PerformAuthenticatedRequest(kueConfig, method, path, payload)
+	body, statusCode, err := shared.PerformAuthenticatedRequest(kueConfig, method, pathWorkflow, payload)
 	if err != nil {
 		return "", statusCode, fmt.Errorf("workflow %s %s failed: %w", method, name, err)
 	}
@@ -900,7 +863,7 @@ func fetchServerWorkflowNames(kueConfig shared.KueConfig) ([]string, error) {
 
 		var arr []interface{}
 		if err = json.Unmarshal([]byte(body), &arr); err == nil {
-			records = append(records, namesFromArray(arr)...)
+			records = append(records, shared.NamesFromArray(arr)...)
 		}
 
 		var obj map[string]interface{}
@@ -946,7 +909,7 @@ func fetchServerWorkflowNames(kueConfig shared.KueConfig) ([]string, error) {
 		for _, key := range []string{"workflows", "items", "data", "results"} {
 			if v, ok := obj[key]; ok {
 				if items, ok := v.([]interface{}); ok {
-					records = append(records, namesFromArray(items)...)
+					records = append(records, shared.NamesFromArray(items)...)
 				}
 			}
 		}
@@ -954,7 +917,7 @@ func fetchServerWorkflowNames(kueConfig shared.KueConfig) ([]string, error) {
 			for _, key := range []string{"workflows", "items", "results"} {
 				if v, ok := d[key]; ok {
 					if items, ok := v.([]interface{}); ok {
-						records = append(records, namesFromArray(items)...)
+						records = append(records, shared.NamesFromArray(items)...)
 					}
 				}
 			}
@@ -964,26 +927,6 @@ func fetchServerWorkflowNames(kueConfig shared.KueConfig) ([]string, error) {
 	_ = bar.Finish()
 
 	return records, nil
-}
-
-func namesFromArray(items []interface{}) []string {
-	out := make([]string, 0, len(items))
-	for _, it := range items {
-		switch v := it.(type) {
-		case string:
-			if s := strings.TrimSpace(v); s != "" {
-				out = append(out, s)
-			}
-		case map[string]interface{}:
-			for _, key := range []string{"name", "workflow", "id"} {
-				if s, ok := v[key].(string); ok && strings.TrimSpace(s) != "" {
-					out = append(out, strings.TrimSpace(s))
-					break
-				}
-			}
-		}
-	}
-	return out
 }
 
 // fetchServerWorkflowContent fetches a single workflow and extracts its
