@@ -67,6 +67,19 @@ func (s *createTransitions) CreateCommand(command string, config map[string]inte
 
 	force := options["force"].(bool)
 
+	// Optional template source overrides (--template-path/-url/-git/-version);
+	// default is the cached web templates initialized in modules.Enable().
+	templatePath, _ := options["template-path"].(string)
+	templateURL, _ := options["template-url"].(string)
+	templateGit, _ := options["template-git"].(string)
+	templateVersion, _ := options["template-version"].(string)
+	if templatePath != "" || templateURL != "" || templateGit != "" || templateVersion != "" {
+		if err := shared.InitializeTemplateManager(templateURL, templatePath, templateGit, templateVersion); err != nil {
+			r.Error = fmt.Errorf("failed to load templates: %w", err)
+			return
+		}
+	}
+
 	projectPath := filepath.Join(output, name)
 
 	ok, err := shared.CheckPathExistsAndConfirm(projectPath, force)

@@ -32,6 +32,12 @@ func (l *ListNames) ListOfNames(pattern string, kueConfig KueConfig) (names []st
 	records, err := l.List(kueConfig)
 	if len(records) > 0 {
 		for _, record := range records {
+			// path.Match's "*" does not cross "/", but workflow names are
+			// slash-namespaced (cli/auth/login) — treat "*" as match-all.
+			if pattern == "" || pattern == "*" {
+				names = append(names, record)
+				continue
+			}
 			if ok, err := path.Match(pattern, record); err == nil && ok {
 				names = append(names, record)
 			}

@@ -24,8 +24,8 @@ const (
 	DefaultTemplateURL  = "https://templates.kuetix.com/latest/"
 	TemplateURLPattern  = "https://templates.kuetix.com/%s/"
 	TemplateCacheDir    = "templates"
-	KuetixEngineVersion = "v0.1.4"
-	MinGoVersion        = "1.21"
+	KuetixEngineVersion = "v1.0.0"
+	MinGoVersion        = "1.26.1"
 )
 
 // TemplateManagerInstance is the global template manager instance.
@@ -368,6 +368,42 @@ func WriteTemplateToFile(templatePath, outputPath string, data TemplateData, per
 		return fmt.Errorf("failed to create directory for %s: %w", outputPath, err)
 	}
 	return os.WriteFile(outputPath, []byte(content), perm)
+}
+
+// InstallTemplateTree copies a whole template directory into projectPath:
+// files ending in .tmpl are rendered with data (suffix stripped), all other
+// files are copied verbatim. Used by full-app skeletons (templates/apps/cli, …).
+func InstallTemplateTree(templateRelDir, projectPath string, data TemplateData) error {
+	root := TemplateManagerInstance.GetTemplatePath(templateRelDir)
+	info, err := os.Stat(root)
+	if err != nil || !info.IsDir() {
+		return fmt.Errorf("template directory not found: %s (run 'kue templates update'?)", templateRelDir)
+	}
+	return filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() {
+			return err
+		}
+		if filepath.Base(path) == ".DS_Store" {
+			return nil
+		}
+		rel, err := filepath.Rel(root, path)
+		if err != nil {
+			return err
+		}
+		if strings.HasSuffix(rel, ".tmpl") {
+			outPath := filepath.Join(projectPath, strings.TrimSuffix(rel, ".tmpl"))
+			return WriteTemplateToFile(filepath.Join(templateRelDir, rel), outPath, data, 0644)
+		}
+		content, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		outPath := filepath.Join(projectPath, rel)
+		if err := os.MkdirAll(filepath.Dir(outPath), 0755); err != nil {
+			return err
+		}
+		return os.WriteFile(outPath, content, info.Mode().Perm())
+	})
 }
 
 func ExtractTarGz(src, dest string) error {

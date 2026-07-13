@@ -52,6 +52,12 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 	}
 	force := i.boolOpt(options, "force")
 
+	// Workflows are user-scoped on the registry, so the workflow branch needs
+	// a login; anonymous installs go straight to the (public) package path.
+	if assetType == "" && shared.GetLoginToken(kueConfig) == "" {
+		assetType = "package"
+	}
+
 	switch assetType {
 	case "", "workflow":
 		body, statusCode, werr := shared.PerformAuthenticatedRequest(kueConfig, http.MethodGet, "/workflow/"+url.PathEscape(name), nil)
@@ -73,7 +79,8 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 		}
 		fallthrough
 	case "package":
-		body, statusCode, perr := shared.PerformAuthenticatedRequest(kueConfig, http.MethodGet, "/packages/install?name="+url.QueryEscape(name), nil)
+		// Optional auth: anonymous installs resolve public packages only.
+		body, statusCode, perr := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, "/packages/install?name="+url.QueryEscape(name), nil)
 		r.StatusCode = statusCode
 		if perr != nil {
 			r.Error = fmt.Errorf("package install failed: %w", perr)
@@ -112,10 +119,24 @@ func (i *installTransitions) InstallBulkCommand(command, config map[string]inter
 		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow get <name>)")
 		return
 	}
-	records, err := i.ListNames.ListOfNames(pattern, kueConfig)
-	if err != nil {
-		r.Error = fmt.Errorf("failed to list workflows: %w", err)
-		return
+	// Anonymous users cannot list user-scoped workflows — go straight to an
+	// exact-name install (public package path).
+	var records []string
+	if shared.GetLoginToken(kueConfig) == "" {
+		records = []string{pattern}
+	} else {
+		var err error
+		records, err = i.ListNames.ListOfNames(pattern, kueConfig)
+		if err != nil {
+			r.Error = fmt.Errorf("failed to list workflows: %w", err)
+			return
+		}
+		// Nothing in the workflow list matches: treat the pattern as an exact
+		// asset name and let InstallCommand resolve it (workflow first, then
+		// package fallthrough).
+		if len(records) == 0 {
+			records = []string{pattern}
+		}
 	}
 
 	results := make([]domain.FlowStepResult, 0, len(records))

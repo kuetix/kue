@@ -90,8 +90,8 @@ func (a *authTransitions) LoginCommand(command string, config map[string]interfa
 }
 
 //goland:noinspection GoUnusedParameter
-func (a *authTransitions) LogoutCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
-	helpText := cfg["usage"].(string) + "\n"
+func (a *authTransitions) LogoutCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
+	helpText := config["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
 	if options["help"].(bool) {
@@ -117,8 +117,8 @@ func (a *authTransitions) LogoutCommand(command string, cfg map[string]interface
 }
 
 //goland:noinspection GoUnusedParameter
-func (a *authTransitions) RegisterCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
-	helpText := cfg["usage"].(string) + "\n"
+func (a *authTransitions) RegisterCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
+	helpText := config["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
 	if options["help"].(bool) {
@@ -149,7 +149,8 @@ func (a *authTransitions) RegisterCommand(command string, cfg map[string]interfa
 		payload["username"] = strings.TrimSpace(username)
 	}
 
-	if err := shared.PostJSON(kueConfig.Host, "/auth/register", payload, nil); err != nil {
+	apiHost := shared.ResolveAPIHost(shared.FirstNonEmpty(options["host"].(string), kueConfig.Host))
+	if err := shared.PostJSON(apiHost, "/auth/register", payload, nil); err != nil {
 		r.Error = fmt.Errorf("register failed: %w", err)
 		return
 	}
@@ -160,8 +161,8 @@ func (a *authTransitions) RegisterCommand(command string, cfg map[string]interfa
 }
 
 //goland:noinspection GoUnusedParameter
-func (a *authTransitions) ProfileGetCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
-	helpText := cfg["usage"].(string) + "\n"
+func (a *authTransitions) ProfileGetCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
+	helpText := config["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
 	if options["help"].(bool) {
@@ -187,8 +188,8 @@ func (a *authTransitions) ProfileGetCommand(command string, cfg map[string]inter
 }
 
 //goland:noinspection GoUnusedParameter
-func (a *authTransitions) ProfileUpdateCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
-	helpText := cfg["usage"].(string) + "\n"
+func (a *authTransitions) ProfileUpdateCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult) {
+	helpText := config["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
 	if options["help"].(bool) {

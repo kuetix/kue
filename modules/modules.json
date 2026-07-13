@@ -467,8 +467,8 @@
       },
       {
         "value": "LogoutCommand",
-        "label": "LogoutCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "LogoutCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "LogoutCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "LogoutCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "LogoutCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -493,7 +493,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -543,8 +543,8 @@
       },
       {
         "value": "LogoutCommand",
-        "label": "LogoutCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "LogoutCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "LogoutCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "LogoutCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "LogoutCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -569,7 +569,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -581,8 +581,8 @@
       },
       {
         "value": "RegisterCommand",
-        "label": "RegisterCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "RegisterCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "RegisterCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RegisterCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "RegisterCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -607,7 +607,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -619,8 +619,8 @@
       },
       {
         "value": "ProfileGetCommand",
-        "label": "ProfileGetCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "ProfileGetCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "ProfileGetCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ProfileGetCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "ProfileGetCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -645,7 +645,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -657,8 +657,8 @@
       },
       {
         "value": "ProfileUpdateCommand",
-        "label": "ProfileUpdateCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "ProfileUpdateCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "ProfileUpdateCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ProfileUpdateCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "ProfileUpdateCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -683,7 +683,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -695,8 +695,8 @@
       },
       {
         "value": "ProfileGetCommand",
-        "label": "ProfileGetCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "ProfileGetCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "ProfileGetCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ProfileGetCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "ProfileGetCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -721,7 +721,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -733,8 +733,8 @@
       },
       {
         "value": "ProfileUpdateCommand",
-        "label": "ProfileUpdateCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "ProfileUpdateCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "ProfileUpdateCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ProfileUpdateCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "ProfileUpdateCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -759,7 +759,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -771,8 +771,8 @@
       },
       {
         "value": "RegisterCommand",
-        "label": "RegisterCommand(command string, cfg map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "RegisterCommand(command, cfg, flagSet, kueConfig, flags) r",
+        "label": "RegisterCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RegisterCommand(command, config, flagSet, kueConfig, flags) r",
         "types": "RegisterCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
@@ -797,7 +797,7 @@
           ],
           "arg_names": [
             "command",
-            "cfg",
+            "config",
             "flagSet",
             "kueConfig",
             "flags"
@@ -1803,10 +1803,10 @@
       },
       {
         "value": "PackagePublishCommand",
-        "label": "PackagePublishCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "PackagePublishCommand(command, config, flagSet, flags) r",
-        "types": "PackagePublishCommand(string, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 4 input(s) and 1 output(s)",
+        "label": "PackagePublishCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "PackagePublishCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "PackagePublishCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
           "go_module": "github.com/kuetix/kue",
           "file_path": "modules/pkg/transitions/pkg.go",
@@ -1815,11 +1815,12 @@
           "class": "pkg",
           "name": "PackagePublishCommand",
           "receiver_type": "*pkgTransitions",
-          "num_in": 4,
+          "num_in": 5,
           "num_out": 1,
           "arg_types": [
             "string",
             "map[string]interface{}",
+            "shared.KueConfig",
             "*flag.FlagSet",
             "map[string]interface{}"
           ],
@@ -1829,6 +1830,7 @@
           "arg_names": [
             "command",
             "config",
+            "kueConfig",
             "flagSet",
             "flags"
           ],
@@ -2061,10 +2063,10 @@
       },
       {
         "value": "PackagePublishCommand",
-        "label": "PackagePublishCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "PackagePublishCommand(command, config, flagSet, flags) r",
-        "types": "PackagePublishCommand(string, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 4 input(s) and 1 output(s)",
+        "label": "PackagePublishCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "PackagePublishCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "PackagePublishCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
         "method": {
           "go_module": "github.com/kuetix/kue",
           "file_path": "modules/pkg/transitions/pkg.go",
@@ -2073,11 +2075,12 @@
           "class": "pkg",
           "name": "PackagePublishCommand",
           "receiver_type": "*pkgTransitions",
-          "num_in": 4,
+          "num_in": 5,
           "num_out": 1,
           "arg_types": [
             "string",
             "map[string]interface{}",
+            "shared.KueConfig",
             "*flag.FlagSet",
             "map[string]interface{}"
           ],
@@ -2087,6 +2090,7 @@
           "arg_names": [
             "command",
             "config",
+            "kueConfig",
             "flagSet",
             "flags"
           ],

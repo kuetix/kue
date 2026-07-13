@@ -2,33 +2,30 @@ package shared
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 )
 
+// GenerateCLIApp installs the full CLI skeleton (cmd/, embed.go, modules/,
+// workflows/) mirrored from the kue source into projectPath.
 func GenerateCLIApp(projectPath, name string) error {
 	data := TemplateData{
 		ProjectName:         name,
 		KuetixEngineVersion: KuetixEngineVersion,
 		MinGoVersion:        MinGoVersion,
 	}
-	return WriteTemplateToFile(
-		"templates/apps/cli/main.go.tmpl",
-		filepath.Join(projectPath, "cmd/cli/main.go"),
-		data, 0644,
-	)
+	return InstallTemplateTree("templates/apps/cli", projectPath, data)
 }
 
+// GenerateAPIApp installs the full API-server skeleton (cmd/, embed.go,
+// internal/, modules/, workflows/) mirrored from the kuetix/api source.
 func GenerateAPIApp(projectPath, name string) error {
 	data := TemplateData{
 		ProjectName:         name,
 		KuetixEngineVersion: KuetixEngineVersion,
 		MinGoVersion:        MinGoVersion,
 	}
-	return WriteTemplateToFile(
-		"templates/apps/api/main.go.tmpl",
-		filepath.Join(projectPath, "cmd/api/main.go"),
-		data, 0644,
-	)
+	return InstallTemplateTree("templates/apps/api", projectPath, data)
 }
 
 func GenerateConsumerApp(projectPath, name string) error {
@@ -79,7 +76,7 @@ func GeneratePackageSkeleton(projectPath, name string) error {
 		return fmt.Errorf("failed to create kuetix.json: %w", err)
 	}
 	if err := WriteTemplateToFile(
-		"templates/apps/cli/main.go.tmpl",
+		"templates/apps/pkg/main.go.tmpl",
 		filepath.Join(projectPath, "cmd/pkg/main.go"),
 		data, 0644,
 	); err != nil {
@@ -141,12 +138,17 @@ func GenerateCommonFiles(projectPath, name, appType string) error {
 	); err != nil {
 		return fmt.Errorf("failed to create docker-compose.yml: %w", err)
 	}
-	if err := WriteTemplateToFile(
-		"templates/modules/modules.go.tmpl",
-		filepath.Join(projectPath, "modules/modules.go"),
-		data, 0644,
-	); err != nil {
-		return fmt.Errorf("failed to create modules/modules.go: %w", err)
+	// Full app skeletons (cli, api) ship their own modules/modules.go —
+	// don't overwrite it with the generic one.
+	modulesGoPath := filepath.Join(projectPath, "modules/modules.go")
+	if _, err := os.Stat(modulesGoPath); os.IsNotExist(err) {
+		if err := WriteTemplateToFile(
+			"templates/modules/modules.go.tmpl",
+			modulesGoPath,
+			data, 0644,
+		); err != nil {
+			return fmt.Errorf("failed to create modules/modules.go: %w", err)
+		}
 	}
 	return nil
 }

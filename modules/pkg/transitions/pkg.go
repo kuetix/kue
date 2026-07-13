@@ -120,14 +120,23 @@ func (p *pkgTransitions) PackageSearchCommand(command string, config map[string]
 		return
 	}
 
-	query := strings.TrimSpace(options["query"].(string))
+	var query string
+	if q, ok := options["query"].(string); ok {
+		query = strings.TrimSpace(q)
+	}
 	if query == "" {
-		r.Error = fmt.Errorf("--query is required")
+		if args, ok := config["args"].([]string); ok && len(args) > 0 {
+			query = strings.TrimSpace(args[0])
+		}
+	}
+	if query == "" {
+		r.Error = fmt.Errorf("query is required (usage: kue package search <query>)")
 		return
 	}
 
 	searchPath := buildPackageSearchPath(query)
-	body, statusCode, err := performPackageAuthRequest(kueConfig, http.MethodGet, searchPath, nil)
+	// Optional auth: anonymous search returns public packages only.
+	body, statusCode, err := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, searchPath, nil)
 	r.StatusCode = statusCode
 	if err != nil {
 		r.Error = fmt.Errorf("package search failed: %w", err)
@@ -151,14 +160,23 @@ func (p *pkgTransitions) PackageInstallCommand(command string, config map[string
 		return
 	}
 
-	name := strings.TrimSpace(options["name"].(string))
+	var name string
+	if n, ok := options["name"].(string); ok {
+		name = strings.TrimSpace(n)
+	}
 	if name == "" {
-		r.Error = fmt.Errorf("--name is required")
+		if args, ok := config["args"].([]string); ok && len(args) > 0 {
+			name = strings.TrimSpace(args[0])
+		}
+	}
+	if name == "" {
+		r.Error = fmt.Errorf("package name is required (usage: kue package install <name>)")
 		return
 	}
 
 	installPath := buildPackageInstallPath(name)
-	body, statusCode, err := performPackageAuthRequest(kueConfig, http.MethodGet, installPath, nil)
+	// Optional auth: anonymous installs resolve public packages only.
+	body, statusCode, err := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, installPath, nil)
 	r.StatusCode = statusCode
 	if err != nil {
 		r.Error = fmt.Errorf("package install failed: %w", err)
@@ -270,7 +288,7 @@ func (p *pkgTransitions) PackageEnableCommand(command string, config map[string]
 }
 
 //goland:noinspection GoUnusedParameter
-func (p *pkgTransitions) PackagePublishCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+func (p *pkgTransitions) PackagePublishCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	var helpText string
 	options := GetFlags(flags)
 
@@ -281,7 +299,7 @@ func (p *pkgTransitions) PackagePublishCommand(command string, config map[string
 		return
 	}
 
-	result, err := publishPackage(options)
+	result, err := publishPackage(options, kueConfig)
 	if err != nil {
 		r.Error = fmt.Errorf("publish failed: %w", err)
 		return
@@ -634,13 +652,19 @@ func resolvePublishDir(name string) string {
 
 // publishPackage updates kuetix.json with metadata from flags and returns
 // instructions for releasing.
-func publishPackage(options map[string]interface{}) (string, error) {
-	name := strings.TrimSpace(options["name"].(string))
-	description := strings.TrimSpace(options["description"].(string))
-	version := strings.TrimSpace(options["version"].(string))
-	publisher := strings.TrimSpace(options["publisher"].(string))
-	keywords := strings.TrimSpace(options["keywords"].(string))
-	output := strings.TrimSpace(options["output"].(string))
+func publishPackage(options map[string]interface{}, kueConfig shared.KueConfig) (string, error) {
+	strOpt := func(key string) string {
+		if v, ok := options[key].(string); ok {
+			return strings.TrimSpace(v)
+		}
+		return ""
+	}
+	name := strOpt("name")
+	description := strOpt("description")
+	version := strOpt("version")
+	publisher := strOpt("publisher")
+	keywords := strOpt("keywords")
+	output := strOpt("output")
 
 	pkgDir := resolvePublishDir(output)
 
@@ -701,11 +725,24 @@ func publishPackage(options map[string]interface{}) (string, error) {
 	if len(info.Keywords) > 0 {
 		sb.WriteString(fmt.Sprintf("  Keywords:    %s\n", strings.Join(info.Keywords, ", ")))
 	}
-	sb.WriteString("\nTo release this package:\n")
-	sb.WriteString("  1. Commit and push your changes\n")
-	sb.WriteString(fmt.Sprintf("  2. Tag the release: git tag v%s\n", info.Version))
-	sb.WriteString("  3. Push the tag: git push origin --tags\n")
-	sb.WriteString("  4. Register with the registry: kue package add\n")
+	// When logged in, also flip the published flag on the registry so the
+	// package becomes publicly visible (search / pkg.kuetix.com).
+	if shared.GetLoginToken(kueConfig) != "" && info.Version != "" {
+		payload := map[string]string{"name": info.Name, "version": info.Version}
+		body, _, err := shared.PerformAuthenticatedRequest(kueConfig, http.MethodPost, "/package/publish", payload)
+		if err != nil {
+			sb.WriteString(fmt.Sprintf("\nRegistry publish failed: %v\n", err))
+			sb.WriteString("If the package is not registered yet, run: kue package add\n")
+		} else {
+			sb.WriteString(fmt.Sprintf("\nPublished %s@%s on the registry (now publicly visible).\n", info.Name, info.Version))
+			_ = body
+		}
+	} else {
+		sb.WriteString("\nTo make this package publicly visible on the registry:\n")
+		sb.WriteString("  1. kue login\n")
+		sb.WriteString("  2. kue package add   (first time only)\n")
+		sb.WriteString("  3. kue package publish\n")
+	}
 
 	return sb.String(), nil
 }

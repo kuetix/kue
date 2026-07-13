@@ -270,6 +270,17 @@ func PerformAuthenticatedRequest(kueConfig KueConfig, method, path string, paylo
 	if token == "" {
 		return "", http.StatusUnauthorized, fmt.Errorf("no JWT token found. Run 'kue login' first")
 	}
+	return performRequest(kueConfig, token, method, path, payload)
+}
+
+// PerformOptionalAuthRequest behaves like PerformAuthenticatedRequest but
+// does not require a login: when no token is stored the request is sent
+// anonymously, so it only reaches public resources (e.g. package search).
+func PerformOptionalAuthRequest(kueConfig KueConfig, method, path string, payload interface{}) (string, int, error) {
+	return performRequest(kueConfig, GetLoginToken(kueConfig), method, path, payload)
+}
+
+func performRequest(kueConfig KueConfig, token, method, path string, payload interface{}) (string, int, error) {
 	var bodyData []byte
 	var err error
 	if payload != nil {
@@ -279,12 +290,14 @@ func PerformAuthenticatedRequest(kueConfig KueConfig, method, path string, paylo
 		}
 	}
 	host := FirstNonEmpty(kueConfig.Host, os.Getenv("KUE_HOST"), DefaultAPIHost)
-	requestURL := strings.TrimRight(host, "/") + path
+	requestURL := strings.TrimRight(NormalizeHost(host), "/") + path
 	req, err := http.NewRequest(method, requestURL, bytes.NewReader(bodyData))
 	if err != nil {
 		return "", http.StatusInternalServerError, err
 	}
-	req.Header.Set("Authorization", "Bearer "+token)
+	if token != "" {
+		req.Header.Set("Authorization", "Bearer "+token)
+	}
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

@@ -17,7 +17,7 @@ workflow startup {
 
   state Finish {
     action services/common/response.Response(
-      value: $Result.response,
+      value: $Result.response??Result??@??"Command executed successfully without response",
       statusCode: 200
     ) as FinalResult
     end ok

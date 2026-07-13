@@ -4,7 +4,16 @@ Usage:
   kue create [options]
 
 Options:
-  --name, -n        Project name (required)
-  --app-type, -a    Application type: cli, api, consumer, service, package, all (default: cli)
-  --output, -o      Output directory (default: current directory)
-  --force, -f       Force creation without confirmation
+  --name, -n              Project name (required)
+  --app-type, -a          Application type: cli, api, consumer, service, package, all (default: cli)
+  --output, -o            Output directory (default: current directory)
+  --force, -f             Force creation without confirmation
+  --template-path, -tp    Local templates directory (the folder containing templates/)
+  --template-url, -tu     URL to fetch templates from (default: https://templates.kuetix.com/latest/)
+  --template-git, -tg     Git repository URL for templates
+  --template-version, -tv Template version (default: latest)
+
+The cli and api app types install a full runnable skeleton: cmd/, embed.go,
+modules/ (service transitions + generated caches) and workflows/. After
+creation run:
+  cd <name> && go mod tidy && make build

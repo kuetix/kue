@@ -109,6 +109,10 @@ const {
                     {"long": "app-type", "short": "a", "value": "cli", "usage": "Application type: cli, api, consumer, service, package, all"},
                     {"long": "output", "short": "o", "value": ".", "usage": "Output directory"},
                     {"long": "force", "short": "f", "value": false, "usage": "Force creation without confirmation", "type": "bool"},
+                    {"long": "template-path", "short": "tp", "value": "", "usage": "Local templates directory (the folder containing templates/)"},
+                    {"long": "template-url", "short": "tu", "value": "", "usage": "URL to fetch templates from"},
+                    {"long": "template-git", "short": "tg", "value": "", "usage": "Git repository URL for templates"},
+                    {"long": "template-version", "short": "tv", "value": "", "usage": "Template version (default: latest)"},
                 ]
             },
             "help": {
@@ -480,22 +484,42 @@ const {
             "download": {
                 "workflow": "cli/templates/download",
                 "usage": "file://cli/usage/templates/download.txt",
-                "options": []
+                "options": [
+                    {"long": "template-path", "short": "tp", "value": "", "usage": "Local templates directory (the folder containing templates/)"},
+                    {"long": "template-url", "short": "tu", "value": "", "usage": "URL to fetch templates from"},
+                    {"long": "template-git", "short": "tg", "value": "", "usage": "Git repository URL for templates"},
+                    {"long": "template-version", "short": "tv", "value": "", "usage": "Template version (default: latest)"},
+                ]
             },
             "update": {
                 "workflow": "cli/templates/update",
                 "usage": "file://cli/usage/templates/update.txt",
-                "options": []
+                "options": [
+                    {"long": "template-path", "short": "tp", "value": "", "usage": "Local templates directory (the folder containing templates/)"},
+                    {"long": "template-url", "short": "tu", "value": "", "usage": "URL to fetch templates from"},
+                    {"long": "template-git", "short": "tg", "value": "", "usage": "Git repository URL for templates"},
+                    {"long": "template-version", "short": "tv", "value": "", "usage": "Template version (default: latest)"},
+                ]
             },
             "clear": {
                 "workflow": "cli/templates/clear",
                 "usage": "file://cli/usage/templates/clear.txt",
-                "options": []
+                "options": [
+                    {"long": "template-path", "short": "tp", "value": "", "usage": "Local templates directory (the folder containing templates/)"},
+                    {"long": "template-url", "short": "tu", "value": "", "usage": "URL to fetch templates from"},
+                    {"long": "template-git", "short": "tg", "value": "", "usage": "Git repository URL for templates"},
+                    {"long": "template-version", "short": "tv", "value": "", "usage": "Template version (default: latest)"},
+                ]
             },
             "status": {
                 "workflow": "cli/templates/status",
                 "usage": "file://cli/usage/templates/status.txt",
-                "options": []
+                "options": [
+                    {"long": "template-path", "short": "tp", "value": "", "usage": "Local templates directory (the folder containing templates/)"},
+                    {"long": "template-url", "short": "tu", "value": "", "usage": "URL to fetch templates from"},
+                    {"long": "template-git", "short": "tg", "value": "", "usage": "Git repository URL for templates"},
+                    {"long": "template-version", "short": "tv", "value": "", "usage": "Template version (default: latest)"},
+                ]
             },
         },],
 

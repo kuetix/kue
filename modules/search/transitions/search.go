@@ -80,7 +80,7 @@ func (s *searchTransitions) SearchPackageCommand(command string, config map[stri
 		limit = 10
 	}
 
-	body, statusCode, err := shared.PerformAuthenticatedRequest(kueConfig, http.MethodGet, "/packages/search?q="+url.QueryEscape(query), nil)
+	body, statusCode, err := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, "/packages/search?q="+url.QueryEscape(query), nil)
 	r.StatusCode = statusCode
 	if err != nil {
 		r.Error = fmt.Errorf("package search failed: %w", err)
