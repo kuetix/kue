@@ -28,7 +28,7 @@ test: ## Run all tests
 clean: ## Remove build artifacts
 	rm -rf $(BUILD_DIR)
 
-install: ## Install kue binary (GOBIN > GOPATH/bin > HOME/go/bin > /usr/local/bin)
+install: build ## Install kue binary (GOBIN > GOPATH/bin > HOME/go/bin > /usr/local/bin)
 	INSTALL_DIR=$(INSTALL_DIR) ./install.sh kue
 
 uninstall: ## Uninstall kue binary from the resolved install directory
