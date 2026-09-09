@@ -2,77 +2,69 @@ Kuetix Engine CLI - Kue
 
 Usage: kue [global-options] <command> [subcommand] [options]
 
-Project scaffolding & build:
-  create      Create a new application/project from template
-  add         Add a module, workflow, feature, solution, package, or transition
-              Subcommands: module, workflow, feature, solution, package, transition
-  run         Build and run a project (compile check for packages)
-  update      Regenerate module cache (di.go, meta.go, modules.json)
-  show        List applications, solutions, features, workflows, modules in the current project
+LOCAL — work on files in the current project / machine, no network:
+  create       Create a new application/project from a template
+  add          Add a module, workflow, feature, solution, package, or transition
+               Subcommands: module, workflow, feature, solution, package, transition
+  update       Regenerate the module cache (di.go, meta.go, modules.json)
+  show         List apps, solutions, features, workflows, modules in the project
+  inspect      Show a workflow's source, provenance, dependencies, and actions
+               (resolves a local file, ./workflows, or the ~/.kue cache)
+  run          Execute a workflow — a local .wsl/.swsl file, a project dir, or a
+               registry name (fetched + verified + cached).  Alias: r
+  modules      List the packages compiled into this kue binary.  Alias: m
+  transitions  List every action a workflow can call here.  Alias: t
 
-Workflow registry (api.kuetix.com, requires login):
-  workflow    Inspect a workflow locally, or push/pull workflows on the API server
-              Subcommands: inspect, status, upload, upload-all, update, get, list, delete
+REGISTRY (api.kuetix.com) — find, fetch, publish, manage:
+  wsl <query>  Search published workflows.  `--search` forces search on a word
+               that names a command.
+  get          Fetch a workflow + its Go deps into the project; idempotent
+               (installs, or refreshes an existing copy).  Also: install / i
+  upload       Publish local workflows (all, or a name/glob).  --public lists
+               them in the open registry.
+  list         List workflows owned by the authenticated user
+  status       Compare local workflows against the server
+  delete       Delete a workflow on the server
+  package      Look up a package (`kue package <name>` / `package search
+               <query>`), or manage package deps + publishing.
+               Subcommands: search, get, add, update, install, list,
+                            list-local, enable, publish, show
+  login        Authenticate and store the login payload
+  logout       Remove the stored login payload
+  register     Register a new Kuetix account
+  whoami       Show the currently authenticated identity
+  profile      Manage the authenticated user profile.  Subcommands: get, update
 
-Authentication:
-  register    Register a new Kuetix account
-  login       Authenticate with Kuetix API and store login payload
-  logout      Remove stored Kuetix login payload from local config
-  profile     Manage authenticated user profile
-              Subcommands: get, update
+OTHER:
+  completion   Output a shell completion script.  Subcommands: bash, zsh
+  templates    Manage the .kue/templates cache
+               Subcommands: download, update, clear, status
+  help         Show this help, `kue help examples`, or `kue help env`
 
-Package management (api.kuetix.com, requires login for remote ops):
-  package     Manage Kuetix package dependencies and publishing
-              Subcommands: add, update, search, install, list, list-local,
-                           enable, publish, show
-  install     Download a workflow (or package) into ./workflows and add its
-              Go module dependencies to the current project's go.mod
-  search      Search the registry for workflows or packages
-              Subcommands: wsl, workflow, package
+get / inspect / status / upload / list / delete are also spellable with a
+`wsl ` prefix (`kue wsl get …`).
 
-Templates:
-  templates   Manage the .kue/templates cache
-              Subcommands: download, update, clear, status
+Global Options:
+  -v, --verbose              Verbose output
+      --debug                Debug output
+  -q, --quiet                Quiet mode
+  -h, --help                 Show help for a command or subcommand
+      --modules <path>       Path to the modules directory (default: modules)
+      --workflows <path>     Path to the workflows directory (default: workflows)
+  -H, --host <host>          API host (default: api.kuetix.com)
+  -c, --config <path>        Path to the config file
 
 Global Template Options:
-  --template-url <url>        URL to fetch templates from
-                              (default: https://templates.kuetix.com/latest/)
-  --template-version <ver>    Template version, e.g., 0.1.0 (default: latest)
-  --template-path <path>      Local directory path for templates
-  --template-git <url>        Git repository URL for templates
+  --template-url <url>       URL to fetch templates from
+                             (default: https://templates.kuetix.com/latest/)
+  --template-version <ver>   Template version, e.g., 0.1.0 (default: latest)
+  --template-path <path>     Local directory path for templates
+  --template-git <url>       Git repository URL for templates
 
 Template Priority: local path > git > web URL
 
-Environment Variables:
-  KUE_TEMPLATE_URL            Set default template URL
-  KUE_TEMPLATE_VERSION        Set default template version
-  KUE_TEMPLATE_PATH           Set default template path
-  KUE_TEMPLATE_GIT            Set default template git repository
-  KUE_HOST                    Default API host (overridden by --host)
-  KUE_CONFIG_PATH             Default path to config file (overridden by --config)
-
-Examples:
-  kue create --name myapp
-  kue create -n mypackage -a package
-  kue add module billing
-  kue add transition billing/ChargeCard
-  kue update
-  kue run -n mypackage -a package -o mypackage
-  kue login -u alice
-  kue package add mypackage/billing
-  kue package list
-  kue workflow inspect --name cli/project/update
-  kue workflow status
-  kue workflow upload --name cli/project/update
-  kue workflow upload-all
-  kue workflow list
-  kue workflow get --name cli/project/update
-  kue workflow delete --name cli/project/update
-  kue install cli/auth/login
-  kue search wsl auth -n 20
-  kue search package billing
-  kue templates download
-  kue templates status
-  kue --template-version 0.1.0 create --name myapp
-
-Use 'kue <command> --help' or 'kue <command> <subcommand> --help' for more details.
+More help:
+  kue help examples            Common command examples
+  kue help env                 Environment variables
+  kue <command> --help         Help for a specific command
+  kue <command> <sub> --help   Help for a subcommand

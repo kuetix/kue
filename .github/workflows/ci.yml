@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+    tags-ignore: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  actionlint:
+    name: Lint workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run actionlint
+        uses: docker://rhysd/actionlint:1.7.7
+        with:
+          args: -color
+
+  go:
+    name: Build, vet & test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+
+      # kue resolves the engine + std packages through ../ replace directives
+      # and commits a vendor/ tree (some of those siblings are unpublished), so
+      # every go command below runs in vendor mode and needs no network.
+      - name: Verify vendor tree is in sync
+        run: go mod verify && go mod vendor && git diff --exit-code -- vendor go.mod go.sum
+
+      - name: gofmt
+        run: |
+          out=$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l)
+          if [ -n "$out" ]; then
+            echo "::error::gofmt needed on:"; echo "$out"; exit 1
+          fi
+
+      - name: go vet
+        run: go vet -mod=vendor ./...
+
+      - name: go build
+        run: go build -mod=vendor ./...
+
+      - name: go test (unit + integration)
+        run: go test -mod=vendor -race -count=1 ./...
+
+      - name: go test (e2e)
+        run: go test -mod=vendor -tags e2e -count=1 ./tests/e2e/...

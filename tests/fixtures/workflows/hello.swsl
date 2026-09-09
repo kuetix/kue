@@ -1,0 +1,9 @@
+// Module name derived from filename: hello
+// Minimal SWSL fixture for kue's test suite.
+
+import services/common
+
+def services/common/errors.OnAnyError(msg: "hello.swsl failed", statusCode: 500) as errorHandler -> .
+
+services/common/debug.Log(message: "hello from hello.swsl") as log <- errorHandler ->
+services/common/response.Response(value: {ok: true, source: "hello.swsl"}, statusCode: 200) -> .

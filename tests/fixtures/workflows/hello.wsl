@@ -1,0 +1,23 @@
+module hello
+
+import services/common
+
+workflow hello {
+  start: Say
+
+  state Say {
+    action services/common/debug.Log(
+      message: "hello from a kue test fixture"
+    ) as log
+    on success -> Finish
+    on fail -> Finish
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: {ok: true, source: "hello.wsl"},
+      statusCode: 200
+    ) as response
+    end ok
+  }
+}

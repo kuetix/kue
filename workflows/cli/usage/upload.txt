@@ -1,0 +1,27 @@
+Upload local workflows with their action dependencies (POST /workflow)
+
+Usage:
+  kue upload [query] [options]
+
+With no query every workflow under ./workflows is uploaded (batch). A query
+restricts it to matching local workflows:
+
+  kue upload api_server/routes        one workflow, by exact name
+  kue upload 'api_server/*'            everything under api_server/
+  kue upload '*/endpoints/*'           path.Match glob
+
+This is the single publish step: with --public each workflow lands in the open
+registry immediately and the packages it depends on are registered
+automatically.
+
+Options:
+  --name, -n         Restrict to local workflows matching this name or glob
+                     (alternative to the positional query)
+  --public, -P       List in the public registry (default: private/personal use)
+  --method, -M       HTTP method per workflow: POST (create/update) or PUT (replace)
+  --projectName, -p  Override project name (defaults to go.mod module, then dir)
+  --output, -o       Project root containing workflows/ (default: .)
+  --host, -H         API host (default: api.kuetix.com)
+  --config, -c       Path to config file (default: ~/.kue/config.json)
+
+Also available as `kue wsl upload`.

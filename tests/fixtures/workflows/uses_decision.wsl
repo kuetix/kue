@@ -1,0 +1,30 @@
+module uses_decision
+
+import services/common
+import decision
+
+// Exercises a transition from one of the newly linked-in std packages
+// (std-decision) end to end, so the test suite fails if that wiring in
+// modules/modules.go regresses.
+workflow uses_decision {
+  start: Check
+
+  state Check {
+    action decision/cond.Number(
+      value: 100,
+      op: "gte",
+      threshold: 50,
+      upper: 1000
+    ) as check
+    on success -> Finish
+    on fail -> Finish
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: {matched: $check.success},
+      statusCode: 200
+    ) as response
+    end ok
+  }
+}

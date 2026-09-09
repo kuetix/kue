@@ -1,0 +1,13 @@
+List every action (transition) runnable in this kue binary
+
+Usage:
+  kue transitions [--module <substr>] [--json]
+  kue t           [--module <substr>] [--json]
+
+Each line is an action reference and its parameters, e.g.
+  services/common/response.Response(value string, statusCode int)
+Write these in WSL as `action services/common/response.Response(...)`.
+
+Options:
+  --module, -m   Filter by Go module or namespace/class substring
+  --json, -j     Machine-readable output

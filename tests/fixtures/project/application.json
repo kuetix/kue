@@ -1,0 +1,7 @@
+{
+  "name": "demo-project",
+  "type": "cli",
+  "description": "Kuetix Engine application: demo-project",
+  "version": "0.1.0",
+  "engine": "v1.2.0"
+}

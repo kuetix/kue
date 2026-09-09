@@ -4,7 +4,7 @@ workflow startup {
   start: Config
 
   state Config {
-    action config/config.Resolve(options: {}) as KueConfig
+    action config/config.Resolve(flags: $config.flags) as KueConfig
     on success -> _
     on fail -> Failed
   }
@@ -25,7 +25,7 @@ workflow startup {
 
   state Failed {
     action services/common/response.Response(
-      value: "Failed to execute search wsl command",
+      value: "Failed to search workflows",
       statusCode: 500
     ) as ErrorResult
     end fail

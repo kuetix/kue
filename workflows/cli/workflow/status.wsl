@@ -7,7 +7,7 @@ workflow startup {
   start: Config
 
   state Config {
-    action config/config.Resolve(options: {}) as KueConfig
+    action config/config.Resolve(flags: $config.flags) as KueConfig
     on success -> _
     on fail -> Failed
   }

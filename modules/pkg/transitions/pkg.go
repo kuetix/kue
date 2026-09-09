@@ -188,6 +188,143 @@ func (p *pkgTransitions) PackageInstallCommand(command string, config map[string
 	return
 }
 
+// PackageInfoCommand backs `kue package <name>` — look up a single package on
+// the registry and print its metadata. Falls back to a name search with
+// suggestions when there is no exact match.
+//
+//goland:noinspection GoUnusedParameter
+func (p *pkgTransitions) PackageInfoCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
+	options := GetFlags(flags)
+	if b, _ := options["help"].(bool); b {
+		r.Success = true
+		r.Response = GetUsage(p.Ctx.Engine.GetApplication(), config["usage"].(string), flagSet, p.Ctx.WorkflowContext.Value("workflowsPath").(string))
+		return
+	}
+
+	name := packageInfoName(command, config, options)
+	if name == "" {
+		r.Error = fmt.Errorf("package name is required (usage: kue package <name>  |  kue package search <query>)")
+		return
+	}
+
+	// Exact lookup: the public detail endpoint (package metadata + module
+	// catalog + the workflows that depend on it), falling back to the
+	// install-metadata endpoint.
+	body, statusCode, err := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, "/packages/detail?name="+url.QueryEscape(name), nil)
+	if err != nil || statusCode < 200 || statusCode >= 300 || !packageBodyHasData(body) {
+		body, statusCode, err = shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, buildPackageInstallPath(name), nil)
+	}
+	if err == nil && statusCode >= 200 && statusCode < 300 && packageBodyHasData(body) {
+		r.StatusCode = statusCode
+		r.Success = true
+		var pretty bytes.Buffer
+		if json.Indent(&pretty, []byte(body), "", "  ") == nil {
+			r.Response = pretty.String()
+		} else {
+			r.Response = body
+		}
+		return
+	}
+
+	// No exact hit — search and suggest.
+	sBody, _, sErr := shared.PerformOptionalAuthRequest(kueConfig, http.MethodGet, buildPackageSearchPath(name), nil)
+	names := packageNamesFromSearch(sBody)
+	var sb strings.Builder
+	sb.WriteString(fmt.Sprintf("No package named %q on the registry.\n", name))
+	if sErr == nil && len(names) > 0 {
+		sb.WriteString("Did you mean:\n")
+		for _, n := range names {
+			sb.WriteString("  - " + n + "\n")
+		}
+	} else {
+		sb.WriteString("`kue package search " + name + "` found nothing either.\n")
+		sb.WriteString("(Registry package names are the Go module path with the host dropped and '/'→'-',\n")
+		sb.WriteString(" e.g. github.com/kuetix/std-core -> kuetix-std-core. Deps behind a `replace`\n")
+		sb.WriteString(" directive are never published.)\n")
+	}
+	r.Success = true
+	r.Response = sb.String()
+	return
+}
+
+// packageInfoName resolves the package name for `kue package <name>`: an
+// explicit --name, a positional arg, or — when the CLI parsed <name> as the
+// subcommand token (`package.<name>`) — the tail of the requested command.
+func packageInfoName(command, config, options map[string]interface{}) string {
+	if n, ok := options["name"].(string); ok && strings.TrimSpace(n) != "" {
+		return strings.TrimSpace(n)
+	}
+	if args, ok := config["args"].([]string); ok && len(args) > 0 {
+		return strings.TrimSpace(args[0])
+	}
+	full, _ := command["command"].(string)
+	main, _ := command["main_command"].(string)
+	if main != "" && strings.HasPrefix(full, main+".") {
+		if t := strings.TrimSpace(strings.TrimPrefix(full, main+".")); t != "" && t != "*" {
+			return t
+		}
+	}
+	return ""
+}
+
+func packageBodyHasData(body string) bool {
+	body = strings.TrimSpace(body)
+	if body == "" {
+		return false
+	}
+	var obj map[string]interface{}
+	if json.Unmarshal([]byte(body), &obj) != nil {
+		return body != ""
+	}
+	if s, ok := obj["success"].(bool); ok && !s {
+		return false
+	}
+	if d, ok := obj["data"].(map[string]interface{}); ok {
+		if len(d) == 0 {
+			return false
+		}
+		// A wrapped-but-empty package payload.
+		if n, ok := d["name"].(string); ok && strings.TrimSpace(n) == "" {
+			return false
+		}
+		// /packages/detail shape: {package, catalog, workflows} — real only
+		// when `package` resolved to an object.
+		if pkgVal, present := d["package"]; present {
+			if _, isObj := pkgVal.(map[string]interface{}); !isObj {
+				return false
+			}
+		}
+	}
+	if d, ok := obj["data"].([]interface{}); ok {
+		return len(d) > 0
+	}
+	return true
+}
+
+func packageNamesFromSearch(body string) []string {
+	body = strings.TrimSpace(body)
+	if body == "" {
+		return nil
+	}
+	var obj struct {
+		Data struct {
+			Packages []struct {
+				Name string `json:"name"`
+			} `json:"packages"`
+		} `json:"data"`
+	}
+	if json.Unmarshal([]byte(body), &obj) != nil {
+		return nil
+	}
+	out := make([]string, 0, len(obj.Data.Packages))
+	for _, p := range obj.Data.Packages {
+		if strings.TrimSpace(p.Name) != "" {
+			out = append(out, p.Name)
+		}
+	}
+	return out
+}
+
 //goland:noinspection GoUnusedParameter
 func (p *pkgTransitions) PackageListCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	var helpText string
@@ -425,15 +562,61 @@ func buildPackagePayload(pkgDir string) (packagePayload, error) {
 		return payload, fmt.Errorf("failed to parse kuetix.json: %w", err)
 	}
 
-	modulesPath := filepath.Join(pkgDir, "modules.json")
-	if modulesData, err := os.ReadFile(modulesPath); err == nil {
+	// Packages generated by kueinit keep the module catalog at
+	// modules/modules.json. Keep supporting the older root-level modules.json
+	// format as well. The registry needs the Go module paths, not the complete
+	// catalog object.
+	for _, modulesPath := range []string{
+		filepath.Join(pkgDir, "modules.json"),
+		filepath.Join(pkgDir, "modules", "modules.json"),
+	} {
+		modulesData, readErr := os.ReadFile(modulesPath)
+		if readErr != nil {
+			continue
+		}
+
 		var modules []string
 		if err := json.Unmarshal(modulesData, &modules); err == nil {
-			payload.Modules = modules
+			payload.Modules = uniqueStrings(modules)
+			break
 		}
+
+		var catalog map[string]json.RawMessage
+		if err := json.Unmarshal(modulesData, &catalog); err != nil {
+			continue
+		}
+		for _, raw := range catalog {
+			var entry struct {
+				Info struct {
+					GoModule string `json:"go_module"`
+				} `json:"info"`
+			}
+			if err := json.Unmarshal(raw, &entry); err == nil && entry.Info.GoModule != "" {
+				payload.Modules = append(payload.Modules, entry.Info.GoModule)
+			}
+		}
+		payload.Modules = uniqueStrings(payload.Modules)
+		break
 	}
 
 	return payload, nil
+}
+
+func uniqueStrings(values []string) []string {
+	seen := make(map[string]struct{}, len(values))
+	result := make([]string, 0, len(values))
+	for _, value := range values {
+		value = strings.TrimSpace(value)
+		if value == "" {
+			continue
+		}
+		if _, ok := seen[value]; ok {
+			continue
+		}
+		seen[value] = struct{}{}
+		result = append(result, value)
+	}
+	return result
 }
 
 // performPackageAuthRequest performs an authenticated HTTP request and returns

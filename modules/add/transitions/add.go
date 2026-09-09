@@ -1,7 +1,6 @@
 package transitions
 
 import (
-	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -24,48 +23,52 @@ type addTransitions struct {
 
 func NewAddTransition() interfaces.ServiceTransitions { return &addTransitions{} }
 
+// targetName resolves a command's target from the leading positional arg,
+// falling back to --name. A command may register neither (the value is then
+// absent from the map), so every read is comma-ok — a bare type assertion
+// panics the transition.
+func targetName(config, options map[string]interface{}) string {
+	if args, ok := config["args"].([]string); ok && len(args) > 0 {
+		if s := strings.TrimSpace(args[0]); s != "" {
+			return s
+		}
+	}
+	if n, ok := options["name"].(string); ok {
+		return strings.TrimSpace(n)
+	}
+	return ""
+}
+
+// outputDir returns --output, defaulting to the current directory.
+func outputDir(options map[string]interface{}) string {
+	if o, ok := options["output"].(string); ok && strings.TrimSpace(o) != "" {
+		return o
+	}
+	return "."
+}
+
 // ---------------------------------------------------------------------------
 // AddModuleCommand — add a module to an existing project
 // ---------------------------------------------------------------------------
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddModuleCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	// Get module name from args or options
-	var moduleName string
-	if args, ok := config["args"].([]string); ok && len(args) > 0 {
-		moduleName = args[0]
-	}
+	moduleName := targetName(config, options)
 	if moduleName == "" {
-		if n, ok := options["name"].(string); ok && strings.TrimSpace(n) != "" {
-			moduleName = n
-		}
-	}
-	if strings.TrimSpace(moduleName) == "" {
-		r.Error = fmt.Errorf("module name is required")
+		r.Error = fmt.Errorf("module name is required (usage: kue add module <name>)")
 		return
 	}
 
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
-
-	force := options["force"].(bool)
+	output := outputDir(options)
+	force, _ := options["force"].(bool)
 
 	camelName := shared.ToCamelCase(moduleName)
 	pascalName := shared.ToPascalCase(moduleName)
@@ -108,33 +111,22 @@ func (a *addTransitions) AddModuleCommand(command string, config map[string]inte
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddWorkflowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	nameArg := options["name"].(string)
-	if strings.TrimSpace(nameArg) == "" {
-		r.Error = fmt.Errorf("workflow name is required (--name)")
+	nameArg := targetName(config, options)
+	if nameArg == "" {
+		r.Error = fmt.Errorf("workflow name is required (usage: kue add workflow <name>)")
 		return
 	}
 
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
-
-	force := options["force"].(bool)
+	output := outputDir(options)
+	force, _ := options["force"].(bool)
 
 	subDir, wfName := parseWorkflowArg(nameArg)
 
@@ -184,33 +176,22 @@ func (a *addTransitions) AddWorkflowCommand(command string, config map[string]in
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddFeatureCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	nameArg := options["name"].(string)
-	if strings.TrimSpace(nameArg) == "" {
-		r.Error = fmt.Errorf("feature name is required (--name)")
+	nameArg := targetName(config, options)
+	if nameArg == "" {
+		r.Error = fmt.Errorf("feature name is required (usage: kue add feature <name>)")
 		return
 	}
 
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
-
-	force := options["force"].(bool)
+	output := outputDir(options)
+	force, _ := options["force"].(bool)
 
 	camelName := shared.ToCamelCase(nameArg)
 	pascalName := shared.ToPascalCase(nameArg)
@@ -258,33 +239,22 @@ func (a *addTransitions) AddFeatureCommand(command string, config map[string]int
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddSolutionCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	nameArg := options["name"].(string)
-	if strings.TrimSpace(nameArg) == "" {
-		r.Error = fmt.Errorf("solution name is required (--name)")
+	nameArg := targetName(config, options)
+	if nameArg == "" {
+		r.Error = fmt.Errorf("solution name is required (usage: kue add solution <name>)")
 		return
 	}
 
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
-
-	force := options["force"].(bool)
+	output := outputDir(options)
+	force, _ := options["force"].(bool)
 
 	camelName := shared.ToCamelCase(nameArg)
 	pascalName := shared.ToPascalCase(nameArg)
@@ -332,33 +302,34 @@ func (a *addTransitions) AddSolutionCommand(command string, config map[string]in
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddPackageCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	nameArg := options["name"].(string)
-	if strings.TrimSpace(nameArg) == "" {
-		r.Error = fmt.Errorf("package name is required (--name)")
+	// `kue add package [name]` — the name is a positional (--name also works)
+	// and is optional: with neither, fall back to the output directory's name.
+	nameArg := targetName(config, options)
+	output := outputDir(options)
+
+	if nameArg == "" {
+		abs, err := filepath.Abs(output)
+		if err != nil {
+			r.Error = fmt.Errorf("failed to resolve output directory: %w", err)
+			return
+		}
+		nameArg = filepath.Base(abs)
+	}
+
+	force, _ := options["force"].(bool)
+
+	if err := os.MkdirAll(output, 0o755); err != nil {
+		r.Error = fmt.Errorf("failed to create output directory %s: %w", output, err)
 		return
 	}
-
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
-
-	force := options["force"].(bool)
 
 	pkgFile := filepath.Join(output, "kuetix.json")
 
@@ -419,42 +390,40 @@ func (a *addTransitions) AddPackageCommand(command string, config map[string]int
 
 //goland:noinspection GoUnusedParameter
 func (a *addTransitions) AddTransitionCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 
-	nameArg := options["name"].(string)
-	if strings.TrimSpace(nameArg) == "" {
-		r.Error = fmt.Errorf("transition name is required (--name)")
+	nameArg := targetName(config, options)
+	if nameArg == "" {
+		r.Error = fmt.Errorf("transition name is required (usage: kue add transition <module>/<Method>)")
 		return
 	}
 
-	moduleArg := options["module"].(string)
-	if strings.TrimSpace(moduleArg) == "" {
-		r.Error = fmt.Errorf("module name is required (--module)")
-		return
+	moduleArg, _ := options["module"].(string)
+	moduleArg = strings.TrimSpace(moduleArg)
+
+	// A "<module>/<Method>" positional carries the module too.
+	if moduleArg == "" {
+		if slash := strings.LastIndex(nameArg, "/"); slash > 0 {
+			moduleArg, nameArg = nameArg[:slash], nameArg[slash+1:]
+		}
 	}
 
-	description := options["description"].(string)
+	description, _ := options["description"].(string)
 
-	output := options["output"].(string)
-	if strings.TrimSpace(output) == "" {
-		output = "."
-	}
+	output := outputDir(options)
 
 	// Parse dot notation if present (e.g. "module.transition")
 	moduleName, transitionName := parseDotNotation(nameArg, moduleArg)
+	if strings.TrimSpace(moduleName) == "" {
+		r.Error = fmt.Errorf("module name is required (--module, or pass <module>/<Method>)")
+		return
+	}
 
 	camelModule := shared.ToCamelCase(moduleName)
 	pascalModule := shared.ToPascalCase(moduleName)
@@ -549,18 +518,11 @@ func addTransitionCore(moduleCamel, methodName, description string) string {
 
 	return fmt.Sprintf(`%s//goland:noinspection GoUnusedParameter
 func (%s *%s) %s(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(a.GetSession(), config, flags)
 		return
 	}
 

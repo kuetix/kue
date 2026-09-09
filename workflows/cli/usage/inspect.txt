@@ -1,0 +1,24 @@
+Inspect a workflow — source location, provenance, dependencies, and actions
+
+Usage:
+  kue inspect <name> [options]
+  kue inspect ./workflows/foo.wsl [options]
+
+Also available as `kue wsl inspect`.
+
+<name> is resolved, in order, against:
+  1. an explicit .wsl / .swsl file path
+  2. ./workflows/<name>  (the current project)
+  3. ~/.kue cache        (whatever `kue get` / `kue install` has fetched)
+
+For a cached workflow the output also shows where it came from (registry owner,
+version, content hash, fetch time) and its recorded dependencies — for each
+non-local one, the registry package name to `kue package get`.
+
+The WSL text itself is not printed unless you ask for it with --source / -S.
+
+Options:
+  --source, -S    Also print the full WSL source
+  --json, -j      Output as JSON ({name, source, source_kind, registry,
+                  dependencies, actions}; adds "content" with -S)
+  --pretty, -P    Pretty-print the JSON (implies --json)

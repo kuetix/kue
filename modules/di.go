@@ -12,6 +12,7 @@ import (
 	transitionsInstall "github.com/kuetix/kue/modules/install/transitions"
 	transitionsPkg "github.com/kuetix/kue/modules/pkg/transitions"
 	transitionsProject "github.com/kuetix/kue/modules/project/transitions"
+	transitionsRunner "github.com/kuetix/kue/modules/runner/transitions"
 	transitionsSearch "github.com/kuetix/kue/modules/search/transitions"
 	transitionsTemplates "github.com/kuetix/kue/modules/templates/transitions"
 	transitionsWorkflow "github.com/kuetix/kue/modules/workflow/transitions"
@@ -52,6 +53,11 @@ func init() {
 	di.DependencyInjection["project"] = func(name string) {
 		di.ToResolve(defines.TransitionPrefix+"project"+"/"+"project", func() interface{} {
 			return workflow.ServiceTransitionMapping{ServiceName: name, Name: "project", Impl: transitionsProject.NewProjectTransition()}
+		})
+	}
+	di.DependencyInjection["runner"] = func(name string) {
+		di.ToResolve(defines.TransitionPrefix+"runner"+"/"+"runner", func() interface{} {
+			return workflow.ServiceTransitionMapping{ServiceName: name, Name: "runner", Impl: transitionsRunner.NewRunnerTransitions()}
 		})
 	}
 	di.DependencyInjection["search"] = func(name string) {

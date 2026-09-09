@@ -8,7 +8,7 @@ Subcommands:
   workflow    Add a new workflow to the project
   feature     Add a new feature workflow to the project
   solution    Add a new solution workflow to the project
-  package     Create a kuetix.json package descriptor
+  package     Add a kuetix.json package file to the project
   transition  Add a new transition method to an existing or new module
 
 Options:

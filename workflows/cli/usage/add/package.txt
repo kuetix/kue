@@ -3,6 +3,14 @@ Add a kuetix.json package file to the project
 Usage:
   kue add package [name] [options]
 
+The name is optional — with none, it defaults to the output directory's name.
+
 Options:
+  --name, -n      Package name (defaults to the output directory name)
   --output, -o    Output directory (default: current directory)
-  --force, -f     Force creation without confirmation
+  --force, -f     Overwrite an existing kuetix.json without confirmation
+
+Examples:
+  kue add package
+  kue add package billing
+  kue add package billing -o ./packages/billing

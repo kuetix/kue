@@ -1,12 +1,19 @@
-Manage Kuetix package dependencies and publishing
+Look up packages and manage package dependencies + publishing
 
 Usage:
+  kue package <name>              Look up one package on the registry
+  kue package search <query>      Search the registry for packages
   kue package <subcommand> [options]
 
+Registry package names are the Go module path with the VCS host dropped and
+'/' replaced by '-' (github.com/kuetix/std-core -> kuetix-std-core). A
+dependency behind a `replace` directive is never published.
+
 Subcommands:
+  search        Search remote packages
+  get           Fetch a package's metadata / modules
   add           Add a package to api.kuetix.com/packages (requires login)
   update        Update a package on api.kuetix.com/packages (requires login)
-  search        Search remote packages (requires login)
   install       Install remote package metadata (requires login)
   list          List packages from api.kuetix.com/packages (requires login)
   list-local    List modules already enabled in the current project

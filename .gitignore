@@ -14,13 +14,18 @@ runtime/bin/
 *.out
 
 # Dependency directories
-vendor/
+# NOTE: vendor/ is committed on purpose — kue depends on sibling workspace
+# modules via ../ replace directives (github.com/kuetix/std-decision and
+# std-push are not published anywhere), so a committed vendor tree is the only
+# way CI and a fresh clone can build. Refresh it with `go mod vendor` after
+# changing go.mod. (See CLAUDE.md: "a module may also commit a vendor/ tree".)
 
 # Go workspace file
 go.work
 
 # Runtime files
 runtime/log/
+/*.log
 *.log
 
 # Environment files
@@ -37,6 +42,7 @@ runtime/log/
 # Local testing / scratch
 /tmp/
 .playwright-mcp/
+vendor/
 
 # OS
 .DS_Store

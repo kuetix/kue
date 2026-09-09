@@ -6,7 +6,9 @@ LDFLAGS := -X 'main.Version=$(VERSION)' -X 'main.BuildTime=$(BUILD_TIME)'
 
 .DEFAULT_GOAL := help
 
-.PHONY: all cli clean test install uninstall
+GO ?= go
+
+.PHONY: all cli clean test test-race test-integration test-e2e test-all test-trace cover fmt-check vet ci install uninstall tag
 
 help: ## Display this help message
 	@echo "Available targets:"
@@ -21,9 +23,42 @@ cli: ## Build the kue CLI tool
 	@echo "Building CLI..."
 	go build -ldflags "$(LDFLAGS)" -o $(BUILD_DIR)/$(APP_NAME) ./cmd/cli
 
-test: ## Run all tests
-	go test ./...
-	kue test --dir tests
+# RUN, if set, is passed to `go test -run` (e.g. `make test-e2e RUN=TestRunHello`).
+RUN ?=
+RUNFLAG := $(if $(RUN),-run '$(RUN)',)
+
+test: ## Run unit + integration tests (quiet)
+	$(GO) test $(RUNFLAG) ./...
+
+test-race: ## Run unit + integration tests with the race detector
+	$(GO) test -race -count=1 $(RUNFLAG) ./...
+
+test-integration: ## Run integration tests, verbose — narrates every workflow, status & timing
+	$(GO) test -count=1 -v $(RUNFLAG) ./tests/integration/...
+
+test-e2e: ## Run e2e tests, verbose — narrates every `kue` invocation, exit code & output
+	$(GO) test -tags e2e -count=1 -v $(RUNFLAG) ./tests/e2e/...
+
+test-all: test test-e2e ## Run every test layer
+
+test-trace: ## Run integration + e2e verbose, one test binary at a time (best for debugging)
+	$(GO) test -count=1 -v $(RUNFLAG) ./tests/integration/...
+	$(GO) test -tags e2e -count=1 -v $(RUNFLAG) ./tests/e2e/...
+
+cover: ## Run tests with coverage and print a summary
+	$(GO) test -coverprofile=coverage.out ./...
+	$(GO) tool cover -func=coverage.out | tail -1
+
+fmt-check: ## Fail if any tracked .go file needs gofmt
+	@out=$$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l); \
+	if [ -n "$$out" ]; then echo "gofmt needed on:"; echo "$$out"; exit 1; fi
+
+vet: ## Run go vet
+	$(GO) vet ./...
+
+ci: fmt-check vet build ## Run the full CI gate locally (quiet; -v output only on failure)
+	$(GO) test -race -count=1 ./...
+	$(GO) test -tags e2e -count=1 ./tests/e2e/...
 
 clean: ## Remove build artifacts
 	rm -rf $(BUILD_DIR)
@@ -47,3 +82,11 @@ uninstall: ## Uninstall kue binary from the resolved install directory
 		fi \
 	fi
 	@echo "Uninstall complete!"
+
+tag: ## Create an annotated release tag (usage: make tag TAG=v0.x.y)
+	@if [ -z "$(TAG)" ]; then echo "Usage: make tag TAG=v0.x.y"; exit 1; fi
+	@case "$(TAG)" in v[0-9]*) ;; *) echo "TAG must look like vX.Y.Z"; exit 1;; esac
+	@if [ -n "$$(git status --porcelain)" ]; then echo "working tree not clean"; exit 1; fi
+	git tag -a $(TAG) -m "Release $(TAG)"
+	@echo "Created tag $(TAG). Push it with:  git push origin $(TAG)"
+	@echo "The release workflow builds and publishes the GitHub Release."

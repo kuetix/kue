@@ -1,0 +1,33 @@
+kue — command examples
+
+Scaffolding & build:
+  kue create --name myapp
+  kue add module billing
+  kue add transition billing/ChargeCard
+  kue update
+  kue --template-version 0.1.0 create --name myapp
+
+Running workflows:
+  kue run ./flows/report.wsl arg1=value
+  kue run acme/nightly-close --check
+  kue modules
+  kue transitions --module std-http
+
+Registry:
+  kue login -u alice
+  kue wsl auth -n 20
+  kue inspect --name cli/project/update
+  kue status
+  kue upload --public                  # every local workflow
+  kue upload 'cli/project/*' --public  # just a subset
+  kue list
+  kue get acme/nightly-close          # fetch workflow + deps into ./workflows
+  kue inspect acme/nightly-close       # source + provenance (works from cache)
+  kue delete --name cli/project/update
+  kue package list
+  kue package publish
+
+Templates & shell:
+  kue templates download
+  kue templates status
+  kue completion zsh > "${fpath[1]}/_kue"

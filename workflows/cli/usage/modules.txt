@@ -1,0 +1,11 @@
+List the packages (Go modules) compiled into this kue binary
+
+Usage:
+  kue modules [--json]
+  kue m       [--json]
+
+A workflow run with `kue run` can only call actions provided by one of the
+listed packages. Use `kue transitions` for the full method list.
+
+Options:
+  --json, -j    Machine-readable output

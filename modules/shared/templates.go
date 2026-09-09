@@ -325,6 +325,9 @@ func ToMethodName(s string) string {
 }
 
 func RenderTemplate(templatePath string, data TemplateData) (string, error) {
+	if TemplateManagerInstance == nil {
+		return "", fmt.Errorf("template manager not initialized (run `kue templates download`)")
+	}
 	tmplContent, err := TemplateManagerInstance.ReadTemplate(templatePath)
 	if err != nil {
 		return "", fmt.Errorf("failed to read template %s: %w", templatePath, err)

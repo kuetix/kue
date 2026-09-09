@@ -4,5 +4,6 @@ Usage:
   kue add workflow <name> [options]
 
 Options:
+  --name, -n      Name (also accepted as the positional argument)
   --output, -o    Output directory (default: current directory)
   --force, -f     Force creation without confirmation

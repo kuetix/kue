@@ -1,0 +1,33 @@
+module modules
+
+workflow startup {
+  start: Config
+
+  state Config {
+    action config/config.Resolve(flags: $config.flags) as KueConfig
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Command {
+    action runner/runner.ModulesCommand(command: $requestedCommand, config: $config.config, kueConfig: $KueConfig.kueConfig, flagSet: $config.flagSet, flags: $config.flags) as Result
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Finish {
+    action services/common/response.Response(
+      value: $Result.response??Result??@??"No modules",
+      statusCode: 200
+    ) as FinalResult
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(
+      value: "Failed to list modules",
+      statusCode: 500
+    ) as ErrorResult
+    end fail
+  }
+}

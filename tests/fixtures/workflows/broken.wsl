@@ -1,0 +1,14 @@
+module broken
+
+import services/common
+
+// Deliberately invalid: the `state` block is never closed, so the parser
+// must reject this file. Used for negative-path tests.
+workflow broken {
+  start: Oops
+
+  state Oops {
+    action services/common/debug.Log(
+      message: "this file does not parse"
+    ) as log
+    on success -> Finish

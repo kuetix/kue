@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/kuetix/logger"
 	"golang.org/x/term"
 )
 
@@ -59,17 +60,31 @@ func IsHostUseSecure(host string) bool {
 	return false
 }
 
+// NormalizeHost ensures host carries an explicit scheme. A host with no
+// scheme at all (the common case — a bare "api.kuetix.com" from
+// DefaultAPIHost, a config file, or --host without a scheme) is a real
+// domain, not a local dev server, so it defaults to https://. This used to
+// default such hosts to http://, which for a production host behind an
+// HTTP->HTTPS redirect is a serious, silent correctness bug: a 301/302 on a
+// POST/PUT/DELETE is replayed by net/http as a GET with the body dropped
+// (see performRequest's redirect guard below, which now refuses to follow
+// such a redirect rather than silently downgrade the request) — so a
+// mis-scheme'd upload reported "success" while never actually reaching the
+// create/update endpoint. An explicit "http://" prefix is still honored
+// as-is, for local/dev servers that genuinely run plaintext.
 func NormalizeHost(host string) string {
 	host = strings.TrimSpace(host)
 	if host == "" {
-		return "https://" + DefaultAPIHost
+		host = DefaultAPIHost
 	}
-	if IsHostUseSecure(host) {
-		host = strings.TrimPrefix(host, "https://")
-		return "https://" + host
+	lower := strings.ToLower(host)
+	if strings.HasPrefix(lower, "https://") {
+		return "https://" + host[len("https://"):]
 	}
-	host = strings.TrimPrefix(host, "http://")
-	return "http://" + host
+	if strings.HasPrefix(lower, "http://") {
+		return "http://" + host[len("http://"):]
+	}
+	return "https://" + host
 }
 
 func DefaultKueConfigPath() string {
@@ -280,6 +295,27 @@ func PerformOptionalAuthRequest(kueConfig KueConfig, method, path string, payloa
 	return performRequest(kueConfig, GetLoginToken(kueConfig), method, path, payload)
 }
 
+// apiHTTPClient refuses to auto-follow a redirect on any request that isn't
+// a GET/HEAD. net/http's default behavior on a 301/302/303 replays the
+// request as a GET with the body dropped — so a POST/PUT/DELETE silently
+// becomes a no-op GET that still returns 200, and the caller has no way to
+// tell its write never happened. This is exactly what a plain http:// scheme
+// against a host that enforces HTTPS does (see NormalizeHost): the write
+// looks like it succeeded while the server never saw it. GET/HEAD redirects
+// (e.g. a trailing-slash normalization) are harmless and still followed.
+var apiHTTPClient = &http.Client{
+	CheckRedirect: func(req *http.Request, via []*http.Request) error {
+		orig := via[0].Method
+		if orig != http.MethodGet && orig != http.MethodHead {
+			return fmt.Errorf("refusing to follow a redirect on a %s request (to %s) — it would be replayed as a %s with the body dropped, silently discarding the request; check the request's scheme/host (a plain http:// request to a host that requires https will redirect exactly like this)", orig, req.URL, req.Method)
+		}
+		if len(via) >= 10 {
+			return errors.New("stopped after 10 redirects")
+		}
+		return nil
+	},
+}
+
 func performRequest(kueConfig KueConfig, token, method, path string, payload interface{}) (string, int, error) {
 	var bodyData []byte
 	var err error
@@ -291,6 +327,16 @@ func performRequest(kueConfig KueConfig, token, method, path string, payload int
 	}
 	host := FirstNonEmpty(kueConfig.Host, os.Getenv("KUE_HOST"), DefaultAPIHost)
 	requestURL := strings.TrimRight(NormalizeHost(host), "/") + path
+	authed := "anonymous"
+	if token != "" {
+		authed = "authenticated"
+	}
+	// Visible under --debug/-vv: which host+path a command actually hit, and
+	// whether a token went with it — the single most useful thing to check
+	// when a command seems to have used the wrong server or identity (a
+	// stored config file or KUE_HOST silently overriding an expected
+	// --host, a missing login, ...).
+	logger.Debugf("[shared.performRequest] -> %s %s (%s)", method, requestURL, authed)
 	req, err := http.NewRequest(method, requestURL, bytes.NewReader(bodyData))
 	if err != nil {
 		return "", http.StatusInternalServerError, err
@@ -299,12 +345,13 @@ func performRequest(kueConfig KueConfig, token, method, path string, payload int
 		req.Header.Set("Authorization", "Bearer "+token)
 	}
 	req.Header.Set("Content-Type", "application/json")
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := apiHTTPClient.Do(req)
 	if err != nil {
 		code := http.StatusInternalServerError
 		if resp != nil {
 			code = resp.StatusCode
 		}
+		logger.Debugf("[shared.performRequest] <- %s %s: request error: %v", method, requestURL, err)
 		return "", code, err
 	}
 	defer func(Body io.ReadCloser) {
@@ -312,12 +359,29 @@ func performRequest(kueConfig KueConfig, token, method, path string, payload int
 	}(resp.Body)
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
+		logger.Debugf("[shared.performRequest] <- %s %s: %d, error reading body: %v", method, requestURL, resp.StatusCode, err)
 		return "", resp.StatusCode, err
 	}
+	logger.Debugf("[shared.performRequest] <- %s %s: %d (%d bytes)", method, requestURL, resp.StatusCode, len(respBody))
+	// A snippet of the body itself, not just its size — the size alone can't
+	// tell a create/update confirmation from, say, an unexpectedly-routed
+	// list response; the shape of the first ~300 bytes usually can.
+	logger.Debugf("[shared.performRequest]    body: %s", snippet(respBody, 300))
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 		return "", resp.StatusCode, fmt.Errorf("unexpected status %d: %s", resp.StatusCode, string(respBody))
 	}
 	return string(respBody), resp.StatusCode, nil
+}
+
+// snippet truncates b to at most n bytes for a debug log line, marking
+// whether it was cut, and replaces embedded newlines so the log stays
+// one line.
+func snippet(b []byte, n int) string {
+	s := strings.ReplaceAll(string(b), "\n", "\\n")
+	if len(s) <= n {
+		return s
+	}
+	return s[:n] + fmt.Sprintf("...(%d more bytes)", len(s)-n)
 }
 
 func ReadCredentialsFromStdin() (string, string, error) {

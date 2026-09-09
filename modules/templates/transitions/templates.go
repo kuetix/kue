@@ -1,7 +1,6 @@
 package transitions
 
 import (
-	"bytes"
 	"flag"
 	"fmt"
 	"os"
@@ -31,18 +30,11 @@ func NewTemplatesTransition() interfaces.ServiceTransitions {
 
 //goland:noinspection GoUnusedParameter
 func (t *templatesTransitions) TemplatesDownloadCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(t.GetSession(), config, flags)
 		return
 	}
 
@@ -64,18 +56,11 @@ func (t *templatesTransitions) TemplatesDownloadCommand(command string, config m
 
 //goland:noinspection GoUnusedParameter
 func (t *templatesTransitions) TemplatesUpdateCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(t.GetSession(), config, flags)
 		return
 	}
 
@@ -100,18 +85,11 @@ func (t *templatesTransitions) TemplatesUpdateCommand(command string, config map
 
 //goland:noinspection GoUnusedParameter
 func (t *templatesTransitions) TemplatesClearCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(t.GetSession(), config, flags)
 		return
 	}
 
@@ -135,18 +113,11 @@ func (t *templatesTransitions) TemplatesClearCommand(command string, config map[
 
 //goland:noinspection GoUnusedParameter
 func (t *templatesTransitions) TemplatesStatusCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(t.GetSession(), config, flags)
 		return
 	}
 

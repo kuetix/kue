@@ -1,0 +1,32 @@
+Output a shell completion script for kue
+
+Usage:
+  kue completion <shell>
+
+Shells:
+  bash    Print a bash completion script to stdout
+  zsh     Print a zsh completion script to stdout
+
+Bash:
+  # current shell only:
+  source <(kue completion bash)
+
+  # persistent (Linux, bash-completion installed):
+  kue completion bash | sudo tee /etc/bash_completion.d/kue > /dev/null
+
+  # persistent (macOS, Homebrew bash-completion@2):
+  kue completion bash > "$(brew --prefix)/etc/bash_completion.d/kue"
+
+Zsh:
+  # make sure compinit runs in ~/.zshrc:
+  #   autoload -Uz compinit && compinit
+
+  # install the script onto $fpath:
+  kue completion zsh > "${fpath[1]}/_kue"
+
+  # or into a user-local dir (add it to fpath before compinit):
+  mkdir -p ~/.zsh/completions
+  kue completion zsh > ~/.zsh/completions/_kue
+  #   fpath=(~/.zsh/completions $fpath)
+
+Restart your shell (or run `exec $SHELL`) to load the completions.

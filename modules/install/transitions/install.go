@@ -17,6 +17,7 @@ import (
 	"github.com/kuetix/engine/engine/domain"
 	"github.com/kuetix/engine/engine/domain/interfaces"
 	"github.com/kuetix/engine/engine/workflow"
+	runnerTransitions "github.com/kuetix/kue/modules/runner/transitions"
 	"github.com/kuetix/kue/modules/shared"
 	. "github.com/kuetix/std-cli/modules/cli/helpers"
 )
@@ -38,6 +39,11 @@ func NewInstallTransition() interfaces.ServiceTransitions {
 //goland:noinspection GoUnusedParameter
 func (i *installTransitions) InstallCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
 	options := GetFlags(flags)
+	if b, _ := options["help"].(bool); b {
+		r.Success = true
+		r.Response = RenderHelp(i.GetSession(), config, flags)
+		return
+	}
 
 	name := i.firstPositional(command, config, options)
 	if name == "" {
@@ -51,6 +57,20 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 		output = "."
 	}
 	force := i.boolOpt(options, "force")
+
+	// Outside a Kuetix project there is nothing to compose the workflow into —
+	// fetch + verify + cache it into ~/.kue instead so `kue run <name>` can use
+	// it, and skip the go.mod wiring entirely.
+	if assetType != "package" && !isInProject(output) {
+		path, cerr := runnerTransitions.CacheWorkflow(kueConfig, name, i.strOpt(options, "owner"))
+		if cerr != nil {
+			r.Error = fmt.Errorf("cache workflow %q: %w", name, cerr)
+			return
+		}
+		r.Success = true
+		r.Response = fmt.Sprintf("cached %s -> %s\nrun it with:  kue run %s", name, path, name)
+		return
+	}
 
 	// Workflows are user-scoped on the registry, so the workflow branch needs
 	// a login; anonymous installs go straight to the (public) package path.
@@ -107,18 +127,33 @@ func (i *installTransitions) InstallCommand(command, config map[string]interface
 //
 //goland:noinspection GoUnusedParameter
 func (i *installTransitions) InstallBulkCommand(command, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
-	options, helpText, helped := i.parseFlags(config["usage"].(string), flagSet, flags)
-	if helped {
+	options := GetFlags(flags)
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(i.GetSession(), config, flags)
 		return
 	}
 
 	pattern := i.firstPositional(command, config, options)
 	if pattern == "" {
-		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow get <name>)")
+		r.Error = fmt.Errorf("workflow name is required (usage: kue wsl get <name>)")
 		return
 	}
+
+	// No project here — just fetch + verify + cache the exact workflow into
+	// ~/.kue for `kue run <name>`; don't list, don't touch go.mod.
+	output := i.strOpt(options, "output")
+	if strings.ToLower(strings.TrimSpace(i.strOpt(options, "type"))) != "package" && !isInProject(output) {
+		path, cerr := runnerTransitions.CacheWorkflow(kueConfig, pattern, i.strOpt(options, "owner"))
+		if cerr != nil {
+			r.Error = fmt.Errorf("cache workflow %q: %w", pattern, cerr)
+			return
+		}
+		r.Success = true
+		r.Response = fmt.Sprintf("cached %s -> %s\nrun it with:  kue run %s", pattern, path, pattern)
+		return
+	}
+
 	// Anonymous users cannot list user-scoped workflows — go straight to an
 	// exact-name install (public package path).
 	var records []string
@@ -139,7 +174,9 @@ func (i *installTransitions) InstallBulkCommand(command, config map[string]inter
 		}
 	}
 
-	results := make([]domain.FlowStepResult, 0, len(records))
+	var sb strings.Builder
+	var firstErr error
+	ok, failed := 0, 0
 	for _, record := range records {
 		cmd := maps.Clone(command)
 		cFlags := maps.Clone(flags)
@@ -148,31 +185,41 @@ func (i *installTransitions) InstallBulkCommand(command, config map[string]inter
 		cmd["parts"].([]string)[0] = command["main_command"].(string)
 		cmd["parts"].([]string)[1] = record
 		rs := i.InstallCommand(cmd, config, kueConfig, flagSet, cFlags)
-		results = append(results, rs)
+		if rs.Error != nil {
+			failed++
+			if firstErr == nil {
+				firstErr = rs.Error
+			}
+			if len(records) > 1 {
+				sb.WriteString(fmt.Sprintf("- %s FAILED: %v\n", record, rs.Error))
+			}
+			continue
+		}
+		ok++
+		if s, isStr := rs.Response.(string); isStr && strings.TrimSpace(s) != "" {
+			sb.WriteString(s)
+			if !strings.HasSuffix(s, "\n") {
+				sb.WriteString("\n")
+			}
+		}
 	}
 
+	if ok == 0 && firstErr != nil {
+		r.Error = firstErr
+		return
+	}
 	r.Success = true
-	r.Response = results
+	if len(records) > 1 {
+		r.Response = fmt.Sprintf("%d installed, %d failed (of %d)\n%s", ok, failed, len(records), sb.String())
+	} else {
+		r.Response = sb.String()
+	}
 	return
 }
 
 // ---------------------------------------------------------------------------
 // Internals
 // ---------------------------------------------------------------------------
-
-func (i *installTransitions) parseFlags(usage string, flagSet *flag.FlagSet, flags map[string]interface{}) (options map[string]interface{}, helpText string, helped bool) {
-	options = GetFlags(flags)
-	if options != nil {
-		if _, ok := options["help"].(bool); ok {
-			var buf bytes.Buffer
-			flagSet.SetOutput(&buf)
-			flagSet.Usage()
-			helpText = buf.String() + "\n" + usage + "\n"
-			helped = true
-		}
-	}
-	return
-}
 
 // ---------------------------------------------------------------------------
 // Workflow install
@@ -189,31 +236,38 @@ func (i *installTransitions) installWorkflowFromBody(name, body, output string, 
 
 	workflowsRoot := filepath.Join(output, "workflows")
 	wsl := filepath.Join(workflowsRoot, filepath.FromSlash(name)+".wsl")
-	if err = i.writeWorkflowFile(wsl, content, force); err != nil {
+	rootStatus, err := i.writeWorkflowFile(wsl, content, force)
+	if err != nil {
 		return "", err
 	}
 
-	importedPaths := make([]string, 0, len(imports))
+	type importedFile struct {
+		path   string
+		status string
+	}
+	importedPaths := make([]importedFile, 0, len(imports))
 	for impName, impContent := range imports {
 		if strings.TrimSpace(impName) == "" || strings.TrimSpace(impContent) == "" {
 			continue
 		}
 		path := filepath.Join(workflowsRoot, filepath.FromSlash(impName)+".wsl")
-		if err = i.writeWorkflowFile(path, impContent, force); err != nil {
-			return "", err
+		st, werr := i.writeWorkflowFile(path, impContent, force)
+		if werr != nil {
+			return "", werr
 		}
-		importedPaths = append(importedPaths, path)
+		importedPaths = append(importedPaths, importedFile{path, st})
 	}
 
 	addedMods, skippedMods, modErrs := i.addGoModuleRequires(output, deps)
 
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("Installed workflow %q to %s\n", name, wsl))
+	verb := map[string]string{"created": "Installed", "updated": "Updated", "unchanged": "Already up to date:"}[rootStatus]
+	sb.WriteString(fmt.Sprintf("%s workflow %q -> %s\n", verb, name, wsl))
 	if len(importedPaths) > 0 {
-		sb.WriteString("Imports written:\n")
-		sort.Strings(importedPaths)
+		sb.WriteString("Imports:\n")
+		sort.Slice(importedPaths, func(a, b int) bool { return importedPaths[a].path < importedPaths[b].path })
 		for _, p := range importedPaths {
-			sb.WriteString("  - " + p + "\n")
+			sb.WriteString(fmt.Sprintf("  - %s (%s)\n", p.path, p.status))
 		}
 	}
 	i.writeDependencyReport(&sb, addedMods, skippedMods, modErrs)
@@ -221,22 +275,28 @@ func (i *installTransitions) installWorkflowFromBody(name, body, output string, 
 	return sb.String(), nil
 }
 
-func (i *installTransitions) writeWorkflowFile(path, content string, force bool) error {
-	if !force {
-		if _, err := os.Stat(path); err == nil {
-			return fmt.Errorf("file already exists: %s (use --force to overwrite)", path)
-		}
-	}
-	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
-		return fmt.Errorf("failed to create directory %s: %w", filepath.Dir(path), err)
-	}
+// writeWorkflowFile writes content to path, refreshing an existing file in
+// place (`kue get` is meant to be idempotent). It returns "created",
+// "updated", or "unchanged". `force` only matters as a hint for callers/tests;
+// a fetch always wins over a stale local copy.
+func (i *installTransitions) writeWorkflowFile(path, content string, force bool) (string, error) {
 	if !strings.HasSuffix(content, "\n") {
 		content += "\n"
 	}
-	if err := os.WriteFile(path, []byte(content), 0644); err != nil {
-		return fmt.Errorf("failed to write %s: %w", path, err)
+	status := "created"
+	if existing, err := os.ReadFile(path); err == nil {
+		if string(existing) == content {
+			return "unchanged", nil
+		}
+		status = "updated"
 	}
-	return nil
+	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+		return "", fmt.Errorf("failed to create directory %s: %w", filepath.Dir(path), err)
+	}
+	if err := os.WriteFile(path, []byte(content), 0644); err != nil {
+		return "", fmt.Errorf("failed to write %s: %w", path, err)
+	}
+	return status, nil
 }
 
 // parseWorkflowResponse pulls the workflow content, imports map, and
@@ -478,6 +538,22 @@ func (i *installTransitions) writeFollowupHint(sb *strings.Builder, addedAny boo
 // ---------------------------------------------------------------------------
 // Flag/argument helpers
 // ---------------------------------------------------------------------------
+
+// isInProject reports whether dir (or cwd for ".") is inside a Kuetix project
+// worth wiring dependencies into — i.e. it has a go.mod or an application.json.
+func isInProject(dir string) bool {
+	if strings.TrimSpace(dir) == "" || dir == "." {
+		if wd, err := os.Getwd(); err == nil {
+			dir = wd
+		}
+	}
+	for _, name := range []string{"go.mod", "application.json"} {
+		if _, err := os.Stat(filepath.Join(dir, name)); err == nil {
+			return true
+		}
+	}
+	return false
+}
 
 func (i *installTransitions) firstPositional(command, config map[string]interface{}, options map[string]interface{}) string {
 	if n, ok := options["name"].(string); ok && strings.TrimSpace(n) != "" {

@@ -1,6 +1,34 @@
 # kue
 
-A Kuetix cli application.
+The Kuetix CLI. It composes workflows into projects, talks to the
+pkg.kuetix.com registry, and — because the full Kuetix standard library
+(`std-core`, `std-cli`, `std-auth`, `std-http`, `std-ai`) is linked into the
+binary — **runs workflows directly**.
+
+## Running workflows
+
+```bash
+kue run ./flows/report.wsl arg1=value   # run a local .wsl / .swsl file
+kue run acme/nightly-close              # download from the registry, verify
+                                        # its SHA-256, cache it, then run
+kue run .                               # auto-detected: build + run a project
+kue run acme/nightly-close --check      # validate + report runnability only
+kue run ./flows/report.wsl --json       # machine-readable result
+
+kue modules                             # packages compiled into this binary
+kue transitions --module std-http       # every action a workflow can call here
+kue i acme/util-lib                     # cache a registry workflow for `kue run`
+```
+
+Aliases: `kue r` = `run`, `kue m` = `modules`, `kue t` = `transitions`,
+`kue i` = `install`.
+
+Registry workflows are fetched from `api.kuetix.com` (override with
+`--host` or `KUE_HOST`), their content hash is verified against the server,
+and they are cached under `~/.kue/cache/workflows/`. Before executing, `kue`
+parses the workflow through the engine and checks that every action it calls
+is provided by one of the linked-in packages (`kue modules`); a missing
+module aborts the run unless `--force` is given.
 
 ## Getting Started
 
@@ -71,6 +99,22 @@ kue test
 - **modules/** - Custom modules
 - **runtime/** - Configuration and logs
 - **tests/** - Test files
+
+## Shell completion
+
+`kue completion <shell>` prints a completion script to stdout (bash and zsh):
+
+```bash
+# bash — current shell
+source <(kue completion bash)
+# bash — persistent
+kue completion bash > /etc/bash_completion.d/kue
+
+# zsh — drop onto $fpath, then restart the shell
+kue completion zsh > "${fpath[1]}/_kue"
+```
+
+Run `kue completion` (no shell) for the full install instructions.
 
 ## Development
 

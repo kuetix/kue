@@ -1,7 +1,6 @@
 package transitions
 
 import (
-	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -34,18 +33,11 @@ func NewCreateTransition() interfaces.ServiceTransitions { return &createTransit
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) CreateCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -156,18 +148,11 @@ func (s *createTransitions) CreateCommand(command string, config map[string]inte
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddModuleCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -234,18 +219,11 @@ func (s *createTransitions) AddModuleCommand(command string, config map[string]i
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddWorkflowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -310,18 +288,11 @@ func (s *createTransitions) AddWorkflowCommand(command string, config map[string
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddFeatureCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -384,18 +355,11 @@ func (s *createTransitions) AddFeatureCommand(command string, config map[string]
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddSolutionCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -458,18 +422,11 @@ func (s *createTransitions) AddSolutionCommand(command string, config map[string
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddPackageCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -545,18 +502,11 @@ func (s *createTransitions) AddPackageCommand(command string, config map[string]
 
 //goland:noinspection GoUnusedParameter
 func (s *createTransitions) AddTransitionCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 
@@ -685,18 +635,11 @@ func addTransitionCore(moduleCamel, methodName, description string) string {
 
 	return fmt.Sprintf(`%s//goland:noinspection GoUnusedParameter
 func (%s *%s) %s(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(s.GetSession(), config, flags)
 		return
 	}
 

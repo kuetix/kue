@@ -1,7 +1,6 @@
 package transitions
 
 import (
-	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -36,18 +35,11 @@ func NewProjectTransition() interfaces.ServiceTransitions { return &projectTrans
 
 //goland:noinspection GoUnusedParameter
 func (p *projectTransitions) RunCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(p.GetSession(), config, flags)
 		return
 	}
 
@@ -93,23 +85,44 @@ func (p *projectTransitions) RunCommand(command string, config map[string]interf
 	return
 }
 
+// IsProjectDir reports whether dir contains an application.json manifest.
+// Exported for the `kue run` dispatcher in modules/runner, which auto-detects
+// project directories vs. workflow files vs. registry names.
+func IsProjectDir(dir string) bool { return isProjectDir(dir) }
+
+// RunProjectDir builds and runs the project rooted at dir (cwd when dir is
+// ""), mirroring `kue run`'s project behavior. Returns the combined program
+// output. Exported for the modules/runner dispatcher.
+func RunProjectDir(dir string) (string, error) {
+	projectDir, err := resolveProjectDir(dir)
+	if err != nil {
+		return "", err
+	}
+	appType, err := readAppType(projectDir)
+	if err != nil {
+		return "", err
+	}
+	switch appType {
+	case "package":
+		return runPackage(projectDir)
+	case "cli", "api", "consumer", "service":
+		return runApp(projectDir, appType, "")
+	default:
+		return "", fmt.Errorf("unsupported application type: %s", appType)
+	}
+}
+
 // ---------------------------------------------------------------------------
 // UpdateCommand — reinitialise the engine environment and regenerate caches
 // ---------------------------------------------------------------------------
 
 //goland:noinspection GoUnusedParameter
 func (p *projectTransitions) UpdateCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult) {
-	helpText := config["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(p.GetSession(), config, flags)
 		return
 	}
 
@@ -142,18 +155,11 @@ func (p *projectTransitions) UpdateCommand(command string, config map[string]int
 
 //goland:noinspection GoUnusedParameter
 func (p *projectTransitions) ShowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(p.GetSession(), config, flags)
 		return
 	}
 
@@ -184,19 +190,12 @@ func (p *projectTransitions) ShowCommand(command string, config map[string]inter
 // ---------------------------------------------------------------------------
 
 //goland:noinspection GoUnusedParameter
-func (p *projectTransitions) WorkflowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
-	cfg := config
-	helpText := cfg["usage"].(string) + "\n"
+func (p *projectTransitions) WorkflowCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult) {
 	options := GetFlags(flags)
 
-	if options["help"].(bool) {
-		var buf bytes.Buffer
-		flagSet := config["flagSet"].(*flag.FlagSet)
-		flagSet.SetOutput(&buf)
-		flagSet.Usage()
-		helpText += buf.String()
+	if b, _ := options["help"].(bool); b {
 		r.Success = true
-		r.Response = helpText
+		r.Response = RenderHelp(p.GetSession(), config, flags)
 		return
 	}
 
@@ -207,8 +206,19 @@ func (p *projectTransitions) WorkflowCommand(command string, config map[string]i
 	if n, ok := options["name"].(string); ok && strings.TrimSpace(n) != "" {
 		workflowName = n
 	}
+	// `kue inspect <name>` — <name> is parsed by the CLI as the command
+	// "inspect.<name>" with empty args; recover it from the requested command.
 	if strings.TrimSpace(workflowName) == "" {
-		r.Error = fmt.Errorf("workflow name is required (usage: kue workflow <name>)")
+		full, _ := command["command"].(string)
+		main, _ := command["main_command"].(string)
+		if main != "" && strings.HasPrefix(full, main+".") {
+			if t := strings.TrimSpace(strings.TrimPrefix(full, main+".")); t != "" && t != "*" {
+				workflowName = t
+			}
+		}
+	}
+	if strings.TrimSpace(workflowName) == "" {
+		r.Error = fmt.Errorf("workflow name is required (usage: kue inspect <name>)")
 		return
 	}
 
@@ -223,6 +233,18 @@ func (p *projectTransitions) WorkflowCommand(command string, config map[string]i
 		r.Error = fmt.Errorf("failed to get working directory: %w", err)
 		return
 	}
+
+	// Resolve the workflow to on-disk source: an explicit file path, then the
+	// local project (./workflows), then the ~/.kue install cache — so
+	// `kue inspect <name>` works on anything `kue get` has fetched, offline.
+	srcPath, srcKind, cw := resolveWorkflowSource(workflowName, cwd)
+	if srcPath == "" {
+		r.Error = fmt.Errorf(
+			"workflow %q not found — not in ./workflows and not in the ~/.kue cache; fetch it first with `kue get %s`",
+			workflowName, workflowName)
+		return
+	}
+
 	prevWD := eng.WorkingDir
 	prevWP := eng.WorkflowPath
 	eng.WorkingDir = cwd
@@ -232,24 +254,58 @@ func (p *projectTransitions) WorkflowCommand(command string, config map[string]i
 		eng.WorkflowPath = prevWP
 	}()
 
-	actions, err := eng.GetWorkflowActions(workflowName)
+	// GetWorkflowActions takes a project-relative name (WorkflowPath=workflows)
+	// or an absolute path — feed it the resolved path unless it's a project
+	// workflow addressed by name.
+	lookup := workflowName
+	if srcKind != "project" {
+		lookup = srcPath
+	}
+	actions, err := eng.GetWorkflowActions(lookup)
 	if err != nil {
 		r.Error = fmt.Errorf("failed to read workflow %q: %w", workflowName, err)
 		return
 	}
 
-	pretty := options["pretty"].(bool)
-	asJSON := options["json"].(bool) || pretty
+	content, _ := os.ReadFile(srcPath)
+	deps := cachedDependencies(cw)
+	showSource, _ := options["source"].(bool)
+
+	pretty, _ := options["pretty"].(bool)
+	asJSON := false
+	if b, _ := options["json"].(bool); b || pretty {
+		asJSON = true
+	}
 	if asJSON {
+		out := map[string]interface{}{
+			"name":        workflowName,
+			"source":      displayPath(srcPath),
+			"source_kind": srcKind,
+			"actions":     actions,
+		}
+		if showSource {
+			out["content"] = string(content)
+		}
+		if srcKind == "cache" {
+			out["registry"] = map[string]interface{}{
+				"owner":      cw.Owner,
+				"version":    cw.Version,
+				"hash":       metaString(cw.Meta, "hash"),
+				"fetched_at": metaString(cw.Meta, "fetched_at"),
+			}
+		}
+		if len(deps) > 0 {
+			out["dependencies"] = deps
+		}
 		var data []byte
 		var jerr error
 		if pretty {
-			data, jerr = json.MarshalIndent(actions, "", "  ")
+			data, jerr = json.MarshalIndent(out, "", "  ")
 		} else {
-			data, jerr = json.Marshal(actions)
+			data, jerr = json.Marshal(out)
 		}
 		if jerr != nil {
-			r.Error = fmt.Errorf("failed to marshal actions: %w", jerr)
+			r.Error = fmt.Errorf("failed to marshal: %w", jerr)
 			return
 		}
 		r.Success = true
@@ -259,46 +315,207 @@ func (p *projectTransitions) WorkflowCommand(command string, config map[string]i
 
 	var sb strings.Builder
 	sb.WriteString(fmt.Sprintf("Workflow: %s\n", workflowName))
-	if len(actions) == 0 {
-		sb.WriteString("  (no actions found)\n")
-		r.Success = true
-		r.Response = sb.String()
-		return
+	sb.WriteString(fmt.Sprintf("  source:   %s  (%s)\n", displayPath(srcPath), sourceLabel(srcKind)))
+	if srcKind == "cache" {
+		line := fmt.Sprintf("  registry: owner=%s version=%d", cw.Owner, cw.Version)
+		if h := metaString(cw.Meta, "hash"); h != "" {
+			line += "  hash=" + shortHash(h)
+		}
+		if f := metaString(cw.Meta, "fetched_at"); f != "" {
+			line += "  fetched " + f
+		}
+		sb.WriteString(line + "\n")
 	}
 
-	currentWF := ""
-	for _, a := range actions {
-		if a.Workflow != currentWF {
-			currentWF = a.Workflow
-			sb.WriteString(fmt.Sprintf("\n  workflow %s:\n", currentWF))
-		}
-		action := a.Name
-		if a.Module != "" {
-			action = a.Module + "." + a.Name
-		}
-		sb.WriteString(fmt.Sprintf("    [%s] %s", a.State, action))
-		if a.As != "" {
-			sb.WriteString(" as " + a.As)
-		}
-		if a.Terminal != "" {
-			sb.WriteString(fmt.Sprintf(" (end %s)", a.Terminal))
-		}
-		sb.WriteString("\n")
-		for _, arg := range a.Args {
-			if arg.Name != "" {
-				sb.WriteString(fmt.Sprintf("      - %s: %s\n", arg.Name, arg.Value))
-			} else {
-				sb.WriteString(fmt.Sprintf("      - %s\n", arg.Value))
+	if len(deps) > 0 {
+		sb.WriteString(fmt.Sprintf("\n  dependencies (%d):\n", len(deps)))
+		for _, d := range deps {
+			ref := d.Namespace
+			if d.Class != "" {
+				ref += "/" + d.Class
+			}
+			line := "    - " + ref
+			if d.GoModule != "" {
+				line += "  " + d.GoModule
+			}
+			if d.Version != "" {
+				line += " " + d.Version
+			}
+			sb.WriteString(line + "\n")
+			if d.IsLocal {
+				sb.WriteString("        local (replace directive) — not a published package\n")
+			} else if pkg := packageNameFromModule(d.GoModule); pkg != "" {
+				sb.WriteString("        registry package: " + pkg + "   (kue package get " + pkg + ")\n")
 			}
 		}
-		if len(a.Params) > 0 {
-			sb.WriteString(fmt.Sprintf("      params: %s\n", strings.Join(a.Params, ", ")))
+	}
+
+	if len(actions) == 0 {
+		sb.WriteString("\n  (no actions found)\n")
+	} else {
+		currentWF := ""
+		for _, a := range actions {
+			if a.Workflow != currentWF {
+				currentWF = a.Workflow
+				sb.WriteString(fmt.Sprintf("\n  workflow %s:\n", currentWF))
+			}
+			action := a.Name
+			if a.Module != "" {
+				action = a.Module + "." + a.Name
+			}
+			sb.WriteString(fmt.Sprintf("    [%s] %s", a.State, action))
+			if a.As != "" {
+				sb.WriteString(" as " + a.As)
+			}
+			if a.Terminal != "" {
+				sb.WriteString(fmt.Sprintf(" (end %s)", a.Terminal))
+			}
+			sb.WriteString("\n")
+			for _, arg := range a.Args {
+				if arg.Name != "" {
+					sb.WriteString(fmt.Sprintf("      - %s: %s\n", arg.Name, arg.Value))
+				} else {
+					sb.WriteString(fmt.Sprintf("      - %s\n", arg.Value))
+				}
+			}
+			if len(a.Params) > 0 {
+				sb.WriteString(fmt.Sprintf("      params: %s\n", strings.Join(a.Params, ", ")))
+			}
 		}
+	}
+
+	if showSource && len(content) > 0 {
+		sb.WriteString("\n  --- source (" + filepath.Base(srcPath) + ") ---\n")
+		for _, ln := range strings.Split(strings.TrimRight(string(content), "\n"), "\n") {
+			sb.WriteString("  " + ln + "\n")
+		}
+	} else if len(content) > 0 {
+		sb.WriteString("\n  (pass --source / -S to print the WSL text)\n")
 	}
 
 	r.Success = true
 	r.Response = sb.String()
 	return
+}
+
+// packageNameFromModule mirrors the registry's harvested-package naming: the Go
+// module path with the VCS host segment dropped and "/" replaced by "-"
+// (github.com/kuetix/std-core -> kuetix-std-core). Returns "" for a
+// non-module-path input.
+func packageNameFromModule(mod string) string {
+	mod = strings.TrimSpace(mod)
+	if mod == "" {
+		return ""
+	}
+	parts := strings.Split(mod, "/")
+	if len(parts) > 1 && strings.Contains(parts[0], ".") {
+		parts = parts[1:] // drop the host (github.com, gitlab.com, …)
+	}
+	return strings.Join(parts, "-")
+}
+
+// depInfo is one dependency entry from a cached workflow's .meta.json.
+type depInfo struct {
+	GoModule  string `json:"go_module"`
+	Namespace string `json:"namespace"`
+	Class     string `json:"class"`
+	Version   string `json:"version"`
+	IsLocal   bool   `json:"is_local"`
+}
+
+// resolveWorkflowSource locates a workflow's source file. kind is "file"
+// (explicit path), "project" (./workflows/<name>), or "cache" (~/.kue); the
+// CachedWorkflow is populated only for "cache".
+func resolveWorkflowSource(name, cwd string) (path, kind string, cw shared.CachedWorkflow) {
+	ext := strings.ToLower(filepath.Ext(name))
+	if ext == ".wsl" || ext == ".swsl" {
+		if abs, err := filepath.Abs(name); err == nil {
+			if _, e := os.Stat(abs); e == nil {
+				return abs, "file", shared.CachedWorkflow{}
+			}
+		}
+	}
+	for _, e := range []string{".wsl", ".swsl"} {
+		cand := filepath.Join(cwd, "workflows", filepath.FromSlash(strings.TrimSuffix(name, ext))+e)
+		if _, err := os.Stat(cand); err == nil {
+			return cand, "project", shared.CachedWorkflow{}
+		}
+	}
+	if c, ok := shared.FindCachedWorkflow(name); ok {
+		return c.Path, "cache", c
+	}
+	return "", "", shared.CachedWorkflow{}
+}
+
+func cachedDependencies(cw shared.CachedWorkflow) []depInfo {
+	if cw.Meta == nil {
+		return nil
+	}
+	raw, ok := cw.Meta["dependencies"].([]interface{})
+	if !ok {
+		return nil
+	}
+	out := make([]depInfo, 0, len(raw))
+	for _, it := range raw {
+		m, ok := it.(map[string]interface{})
+		if !ok {
+			continue
+		}
+		d := depInfo{
+			GoModule:  strFromAny(m["go_module"]),
+			Namespace: strFromAny(m["namespace"]),
+			Class:     strFromAny(m["class"]),
+			Version:   strFromAny(m["version"]),
+		}
+		if b, ok := m["is_local"].(bool); ok {
+			d.IsLocal = b
+		}
+		if d.GoModule == "" && d.Namespace == "" {
+			continue
+		}
+		out = append(out, d)
+	}
+	return out
+}
+
+func strFromAny(v interface{}) string {
+	if s, ok := v.(string); ok {
+		return strings.TrimSpace(s)
+	}
+	return ""
+}
+
+func metaString(m map[string]interface{}, key string) string {
+	if m == nil {
+		return ""
+	}
+	return strFromAny(m[key])
+}
+
+func shortHash(h string) string {
+	if len(h) > 12 {
+		return h[:12]
+	}
+	return h
+}
+
+func sourceLabel(kind string) string {
+	switch kind {
+	case "project":
+		return "local project workflow"
+	case "cache":
+		return "from the ~/.kue registry cache"
+	default:
+		return "local file"
+	}
+}
+
+// displayPath shortens an absolute path under the user's home to ~/… .
+func displayPath(p string) string {
+	if home, err := os.UserHomeDir(); err == nil && home != "" && strings.HasPrefix(p, home+string(filepath.Separator)) {
+		return "~" + p[len(home):]
+	}
+	return p
 }
 
 // ---------------------------------------------------------------------------

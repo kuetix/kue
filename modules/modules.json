@@ -694,6 +694,44 @@
         }
       },
       {
+        "value": "WhoamiCommand",
+        "label": "WhoamiCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "WhoamiCommand(command, config, flagSet, kueConfig, flags) r",
+        "types": "WhoamiCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/auth/transitions/auth.go",
+          "module_path": "modules",
+          "namespace": "auth",
+          "class": "auth",
+          "name": "WhoamiCommand",
+          "receiver_type": "*authTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "shared.KueConfig",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flagSet",
+            "kueConfig",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
         "value": "ProfileGetCommand",
         "label": "ProfileGetCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "ProfileGetCommand(command, config, flagSet, kueConfig, flags) r",
@@ -806,6 +844,44 @@
             "r"
           ]
         }
+      },
+      {
+        "value": "WhoamiCommand",
+        "label": "WhoamiCommand(command string, config map[string]interface{}, flagSet *flag.FlagSet, kueConfig shared.KueConfig, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "WhoamiCommand(command, config, flagSet, kueConfig, flags) r",
+        "types": "WhoamiCommand(string, map[string]interface{}, *flag.FlagSet, shared.KueConfig, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/auth/transitions/auth.go",
+          "module_path": "modules",
+          "namespace": "auth",
+          "class": "auth",
+          "name": "WhoamiCommand",
+          "receiver_type": "*authTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "shared.KueConfig",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flagSet",
+            "kueConfig",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
       }
     ]
   },
@@ -820,8 +896,8 @@
     "methods": [
       {
         "value": "Resolve",
-        "label": "Resolve(options map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "Resolve(options) r",
+        "label": "Resolve(flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Resolve(flags) r",
         "types": "Resolve(map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 1 input(s) and 1 output(s)",
         "method": {
@@ -841,7 +917,7 @@
             "domain.FlowStepResult"
           ],
           "arg_names": [
-            "options"
+            "flags"
           ],
           "return_names": [
             "r"
@@ -850,8 +926,8 @@
       },
       {
         "value": "Resolve",
-        "label": "Resolve(options map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "Resolve(options) r",
+        "label": "Resolve(flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Resolve(flags) r",
         "types": "Resolve(map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 1 input(s) and 1 output(s)",
         "method": {
@@ -871,7 +947,7 @@
             "domain.FlowStepResult"
           ],
           "arg_names": [
-            "options"
+            "flags"
           ],
           "return_names": [
             "r"
@@ -1692,6 +1768,44 @@
         }
       },
       {
+        "value": "PackageInfoCommand",
+        "label": "PackageInfoCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "PackageInfoCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "PackageInfoCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/pkg/transitions/pkg.go",
+          "module_path": "modules",
+          "namespace": "pkg",
+          "class": "pkg",
+          "name": "PackageInfoCommand",
+          "receiver_type": "*pkgTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "shared.KueConfig",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "kueConfig",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
         "value": "PackageListCommand",
         "label": "PackageListCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "PackageListCommand(command, config, kueConfig, flagSet, flags) r",
@@ -1941,6 +2055,44 @@
           "arg_names": [
             "command",
             "config",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "PackageInfoCommand",
+        "label": "PackageInfoCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "PackageInfoCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "PackageInfoCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/pkg/transitions/pkg.go",
+          "module_path": "modules",
+          "namespace": "pkg",
+          "class": "pkg",
+          "name": "PackageInfoCommand",
+          "receiver_type": "*pkgTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "shared.KueConfig",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "kueConfig",
             "flagSet",
             "flags"
           ],
@@ -2328,9 +2480,9 @@
       },
       {
         "value": "WorkflowCommand",
-        "label": "WorkflowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "label": "WorkflowCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "WorkflowCommand(command, config, flags) r",
-        "types": "WorkflowCommand(string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "types": "WorkflowCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 3 input(s) and 1 output(s)",
         "method": {
           "go_module": "github.com/kuetix/kue",
@@ -2343,7 +2495,7 @@
           "num_in": 3,
           "num_out": 1,
           "arg_types": [
-            "string",
+            "map[string]interface{}",
             "map[string]interface{}",
             "map[string]interface{}"
           ],
@@ -2466,9 +2618,9 @@
       },
       {
         "value": "WorkflowCommand",
-        "label": "WorkflowCommand(command string, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "label": "WorkflowCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "WorkflowCommand(command, config, flags) r",
-        "types": "WorkflowCommand(string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "types": "WorkflowCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
         "description": "Function with 3 input(s) and 1 output(s)",
         "method": {
           "go_module": "github.com/kuetix/kue",
@@ -2481,7 +2633,230 @@
           "num_in": 3,
           "num_out": 1,
           "arg_types": [
-            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "runner/runner": {
+    "info": {
+      "go_module": "github.com/kuetix/kue",
+      "namespace": "runner",
+      "class": "runner",
+      "label": "Runner Module",
+      "description": "Handles runner operations for runner service"
+    },
+    "methods": [
+      {
+        "value": "ModulesCommand",
+        "label": "ModulesCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ModulesCommand(command, config, flags) r",
+        "types": "ModulesCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "ModulesCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RunCommand",
+        "label": "RunCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RunCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "RunCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "RunCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "shared.KueConfig",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "kueConfig",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ModulesCommand",
+        "label": "ModulesCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ModulesCommand(command, config, flags) r",
+        "types": "ModulesCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "ModulesCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "TransitionsCommand",
+        "label": "TransitionsCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "TransitionsCommand(command, config, flags) r",
+        "types": "TransitionsCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "TransitionsCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RunCommand",
+        "label": "RunCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RunCommand(command, config, kueConfig, flagSet, flags) r",
+        "types": "RunCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "RunCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "shared.KueConfig",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "kueConfig",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "TransitionsCommand",
+        "label": "TransitionsCommand(command map[string]interface{}, config map[string]interface{}, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "TransitionsCommand(command, config, flags) r",
+        "types": "TransitionsCommand(map[string]interface{}, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/kue",
+          "file_path": "modules/runner/transitions/runner.go",
+          "module_path": "modules",
+          "namespace": "runner",
+          "class": "runner",
+          "name": "TransitionsCommand",
+          "receiver_type": "*runnerTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
             "map[string]interface{}",
             "map[string]interface{}"
           ],
@@ -2527,82 +2902,6 @@
           "num_out": 1,
           "arg_types": [
             "map[string]interface{}",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "SearchPackageCommand",
-        "label": "SearchPackageCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "SearchPackageCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "SearchPackageCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/search/transitions/search.go",
-          "module_path": "modules",
-          "namespace": "search",
-          "class": "search",
-          "name": "SearchPackageCommand",
-          "receiver_type": "*searchTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "SearchPackageCommand",
-        "label": "SearchPackageCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "SearchPackageCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "SearchPackageCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/search/transitions/search.go",
-          "module_path": "modules",
-          "namespace": "search",
-          "class": "search",
-          "name": "SearchPackageCommand",
-          "receiver_type": "*searchTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
             "map[string]interface{}",
             "shared.KueConfig",
             "*flag.FlagSet",
@@ -2994,82 +3293,6 @@
         }
       },
       {
-        "value": "GetBulkCommand",
-        "label": "GetBulkCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "GetBulkCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "GetBulkCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "GetBulkCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "map[string]interface{}",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "GetCommand",
-        "label": "GetCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "GetCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "GetCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "GetCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "map[string]interface{}",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
         "value": "ListCommand",
         "label": "ListCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "ListCommand(command, config, kueConfig, flagSet, flags) r",
@@ -3108,82 +3331,6 @@
         }
       },
       {
-        "value": "UploadCommand",
-        "label": "UploadCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "UploadCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "UploadCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "UploadCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "UpdateCommand",
-        "label": "UpdateCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "UpdateCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "UpdateCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "UpdateCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
         "value": "UploadAllCommand",
         "label": "UploadAllCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "UploadAllCommand(command, config, kueConfig, flagSet, flags) r",
@@ -3201,82 +3348,6 @@
           "num_out": 1,
           "arg_types": [
             "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "GetCommand",
-        "label": "GetCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "GetCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "GetCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "GetCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "map[string]interface{}",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "GetBulkCommand",
-        "label": "GetBulkCommand(command map[string]interface{}, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "GetBulkCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "GetBulkCommand(map[string]interface{}, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "GetBulkCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "map[string]interface{}",
             "map[string]interface{}",
             "shared.KueConfig",
             "*flag.FlagSet",
@@ -3450,44 +3521,6 @@
         }
       },
       {
-        "value": "UpdateCommand",
-        "label": "UpdateCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "UpdateCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "UpdateCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "UpdateCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
         "value": "UploadAllCommand",
         "label": "UploadAllCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
         "names": "UploadAllCommand(command, config, kueConfig, flagSet, flags) r",
@@ -3500,44 +3533,6 @@
           "namespace": "workflow",
           "class": "workflow",
           "name": "UploadAllCommand",
-          "receiver_type": "*workflowTransitions",
-          "num_in": 5,
-          "num_out": 1,
-          "arg_types": [
-            "string",
-            "map[string]interface{}",
-            "shared.KueConfig",
-            "*flag.FlagSet",
-            "map[string]interface{}"
-          ],
-          "return_types": [
-            "domain.FlowStepResult"
-          ],
-          "arg_names": [
-            "command",
-            "config",
-            "kueConfig",
-            "flagSet",
-            "flags"
-          ],
-          "return_names": [
-            "r"
-          ]
-        }
-      },
-      {
-        "value": "UploadCommand",
-        "label": "UploadCommand(command string, config map[string]interface{}, kueConfig shared.KueConfig, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
-        "names": "UploadCommand(command, config, kueConfig, flagSet, flags) r",
-        "types": "UploadCommand(string, map[string]interface{}, shared.KueConfig, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
-        "description": "Function with 5 input(s) and 1 output(s)",
-        "method": {
-          "go_module": "github.com/kuetix/kue",
-          "file_path": "modules/workflow/transitions/workflow.go",
-          "module_path": "modules",
-          "namespace": "workflow",
-          "class": "workflow",
-          "name": "UploadCommand",
           "receiver_type": "*workflowTransitions",
           "num_in": 5,
           "num_out": 1,

@@ -1,9 +1,27 @@
-Build and run a Kuetix Engine project
+Execute a workflow
 
 Usage:
-  kue run [options]
+  kue run <target> [key=value ...] [options]
+  kue r   <target> [key=value ...] [options]
+
+<target> is one of:
+  - a local .wsl / .swsl file            kue run ./flows/report.wsl
+  - a published registry workflow        kue run acme/nightly-close
+  - a project directory (auto-detected)  kue run .
+
+Registry workflows are downloaded from api.kuetix.com, their SHA-256 is
+verified against the server, and they are cached under ~/.kue/cache/workflows.
+Before executing, kue validates the workflow through the engine and checks
+that every action it calls is compiled into this kue binary (see `kue modules`).
 
 Options:
-  --name, -n        Project name (used as binary name)
-  --app-type, -a    Application type: cli, api, consumer, service, package
-  --output, -o      Project directory (default: current directory)
+  --name, -n       Target (alternative to the positional arg)
+  --owner, -O      Registry owner id, to disambiguate a workflow name
+  --json, -j       Machine-readable result
+  --check, -C      Validate + report runnability only; do not execute
+  --force, -f      Execute even if some action modules are missing
+  --no-cache, -N   Bypass the local workflow cache
+  --host, -H       API host (default: api.kuetix.com)
+  --config, -c     Path to config file
+
+Extra `key=value` arguments after the target are passed to the workflow.

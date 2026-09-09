@@ -1,0 +1,10 @@
+List workflows owned by the authenticated user (GET /workflow)
+
+Usage:
+  kue list [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file
+
+Also available as `kue wsl list`.

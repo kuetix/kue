@@ -1,0 +1,12 @@
+Show the currently authenticated Kuetix identity
+
+Usage:
+  kue whoami [options]
+
+Options:
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file
+  --json, -j      Machine-readable output
+
+Prints "Not logged in" when no credentials are stored. Otherwise fetches
+GET /profile and shows the username / email, API host and config path.

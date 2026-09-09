@@ -1,0 +1,31 @@
+Fetch a workflow (and its packages) from the registry into the project
+
+Usage:
+  kue get <name> [options]
+  kue get 'api_server/*' [options]
+
+Also available as `kue wsl get`.
+
+`kue get <name>`:
+  - downloads the workflow's .wsl source (and any workflows it imports) into
+    ./workflows/<name>.wsl
+  - adds every Go module the workflow's actions need to go.mod (skipping ones
+    already required)
+  - is idempotent: an existing file is refreshed in place — unchanged if the
+    source matches, updated if it changed
+
+Outside a Kuetix project (no go.mod / application.json) it instead verifies and
+caches the workflow under ~/.kue so `kue run <name>` and `kue inspect <name>`
+can use it offline.
+
+Options:
+  --name, -n      Workflow (or package) name or glob (alternative to positional)
+  --type, -t      Force asset type: workflow or package (auto-detected if empty)
+  --owner, -O     Registry owner id (disambiguates a workflow name)
+  --output, -o    Project directory (default: .)
+  --force, -f     Overwrite local edits without prompting
+  --host, -H      API host (default: api.kuetix.com)
+  --config, -c    Path to config file
+
+After new deps are added:
+  go mod tidy && go mod vendor

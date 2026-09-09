@@ -1,0 +1,29 @@
+Search the workflow registry
+
+Usage:
+  kue wsl <query> [options]
+  kue wsl --search <query> [options]
+
+Examples:
+  kue wsl auth
+  kue wsl cli/project -n 20
+  kue wsl --search get          # force search when the query is a command name
+
+Hits the public registry (GET /workflows/search) — no login required. An
+anonymous caller sees public workflows; a logged-in caller additionally sees
+their own private ones. Matching covers the workflow name, its action
+references, dependencies, and source text.
+
+A bare `kue wsl <query>` searches unless <query> exactly names a command
+(get, upload, list, delete, status, inspect) — those are dispatched instead.
+Use `--search`/`-s <query>` to always search (needed for those words, and
+clearer in scripts/CI).
+
+The management commands are top-level: `kue get`, `kue inspect`, `kue status`,
+`kue upload`, `kue list`, `kue delete` (also spellable as `kue wsl <name>`).
+
+Options:
+  -s, --search <query>   Search for <query> even if it names a command
+  -n, --limit <number>   Maximum number of results (default: 10)
+  -H, --host             API host (default: api.kuetix.com)
+  -c, --config           Path to config file

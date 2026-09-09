@@ -26,10 +26,10 @@ func main() {
 
 	fmt.Printf("Modules package initialized. Version: %s, BuildTime: %s\n", Version, BuildTime)
 	for name, funcs := range container.DependencyInjection {
-		fmt.Printf("DependencyInjectionContainer - %s: %v\n", name, funcs)
+		fmt.Printf("DependencyInjectionContainer - %s: %p\n", name, funcs)
 	}
 	for name, funcs := range container.FactoryContainer {
-		fmt.Printf("FactoryContainer - %s: %v\n", name, funcs)
+		fmt.Printf("FactoryContainer - %s: %p\n", name, funcs)
 	}
 	for fc1name, transitions := range boot.MetaFunctionCache {
 		for fc2name, services := range transitions {
