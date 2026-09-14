@@ -1,0 +1,12 @@
+package modules
+
+import (
+	di "github.com/kuetix/container"
+)
+
+func init() {
+	di.Boot()
+}
+
+func Enable() {
+}

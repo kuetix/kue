@@ -20,6 +20,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
@@ -105,6 +106,23 @@ func (rt *runnerTransitions) RunCommand(command map[string]interface{}, config m
 		}
 		r.Success = true
 		r.Response = out
+		return
+	}
+
+	// 1.5. Single transition — `kue run <ns>/<class>.<Method> key=value ...`
+	// executes one linked-in action directly. kue synthesizes a tiny wrapper
+	// workflow around the action and runs that; the trailing key=value pairs
+	// become the action's named arguments.
+	if looksLikeActionRef(target) {
+		rd, ok := resolveTransition(target)
+		if !ok {
+			r.Error = fmt.Errorf(
+				"no transition %q is linked into this kue build — run `kue transitions` to list what is runnable",
+				target,
+			)
+			return
+		}
+		r = rt.runSingleTransition(rd, extraArgs, checkOnly, force, asJSON)
 		return
 	}
 
@@ -222,6 +240,290 @@ func (rt *runnerTransitions) workflowActions(wfPath string) ([]workflow.Workflow
 
 	name := strings.TrimSuffix(filepath.Base(wfPath), filepath.Ext(wfPath))
 	return eng.GetWorkflowActions(name)
+}
+
+// ---------------------------------------------------------------------------
+// kue run <ns>/<class>.<Method> key=value ... — run a single transition
+// ---------------------------------------------------------------------------
+
+// resolvedTransition is one action method found in this kue binary's metadata
+// cache, together with its declared parameter list.
+type resolvedTransition struct {
+	Ref      string
+	GoModule string
+	ArgNames []string
+	ArgTypes []string
+}
+
+// actionRefRe matches a WSL action reference: lowercase, slash-separated
+// namespace segments then `.Method` (an exported Go identifier, so it starts
+// with an uppercase letter). This is deliberately narrower than a registry
+// workflow name (`org/name`, no dot) so the two never collide.
+var actionRefRe = regexp.MustCompile(`^[a-z_][a-z0-9_-]*(?:/[a-z_][a-z0-9_-]*)+\.[A-Z]\w*$`)
+
+func looksLikeActionRef(s string) bool {
+	return !isWorkflowFile(s) && actionRefRe.MatchString(strings.TrimSpace(s))
+}
+
+// resolveTransition looks ref up in the engine's metadata cache, matching the
+// same `<ns>/<class>.<Method>` string `kue transitions` prints.
+func resolveTransition(ref string) (*resolvedTransition, bool) {
+	ensureRegistered()
+	for ns, classes := range boot.MetaFunctionCache {
+		for cls, methods := range classes {
+			for _, m := range methods {
+				if ns+"/"+cls+"."+m.Name == ref {
+					return &resolvedTransition{
+						Ref:      ref,
+						GoModule: m.GoModule,
+						ArgNames: append([]string(nil), m.ArgNames...),
+						ArgTypes: append([]string(nil), m.ArgTypes...),
+					}, true
+				}
+			}
+		}
+	}
+	return nil, false
+}
+
+// kvArg is one key=value argument, with its value both as the raw token and
+// rendered as a WSL literal.
+type kvArg struct {
+	key string
+	raw string
+	wsl string
+}
+
+// runSingleTransition executes rd by wrapping it in a generated one-state
+// workflow. kv holds the trailing key=value tokens.
+func (rt *runnerTransitions) runSingleTransition(rd *resolvedTransition, kv []string, checkOnly, force, asJSON bool) (r domain.FlowStepResult) {
+	args, unknown, perr := transitionArgs(kv, rd.ArgNames)
+	if perr != nil {
+		r.Error = perr
+		return
+	}
+	if len(unknown) > 0 {
+		r.Error = fmt.Errorf(
+			"unknown argument(s) for %s: %s\n  accepted: %s",
+			rd.Ref, strings.Join(unknown, ", "),
+			strings.Join(argSignature(rd.ArgNames, rd.ArgTypes), ", "),
+		)
+		return
+	}
+
+	sig := fmt.Sprintf("%s(%s)", rd.Ref, strings.Join(argSignature(rd.ArgNames, rd.ArgTypes), ", "))
+
+	// The method is in the metadata cache, but only a registered DI factory can
+	// actually be invoked. Mirror the workflow path's runnability guard.
+	mod := transitionModule(rd.Ref)
+	runnable := di.CanResolve(defines.TransitionPrefix + mod)
+
+	if checkOnly {
+		if asJSON {
+			b, _ := json.MarshalIndent(map[string]interface{}{
+				"target":    rd.Ref,
+				"kind":      "transition",
+				"runnable":  runnable,
+				"go_module": rd.GoModule,
+				"signature": sig,
+				"arguments": kvMap(args),
+			}, "", "  ")
+			r.Success, r.Response = true, string(b)
+			return
+		}
+		var sb strings.Builder
+		fmt.Fprintf(&sb, "Transition: %s\n  module:    %s\n  signature: %s\n", rd.Ref, rd.GoModule, sig)
+		if len(args) > 0 {
+			sb.WriteString("  arguments:\n")
+			for _, a := range args {
+				fmt.Fprintf(&sb, "    %s = %s\n", a.key, a.wsl)
+			}
+		}
+		if runnable {
+			sb.WriteString("\nRunnable: yes — linked into this kue build.\n")
+		} else {
+			fmt.Fprintf(&sb, "\nRunnable: NO — %q is compiled in but not registered as a transition factory in this kue build.\n", mod)
+		}
+		r.Success, r.Response = true, sb.String()
+		return
+	}
+
+	if !runnable && !force {
+		r.Error = fmt.Errorf(
+			"cannot run %s: %q is not registered as a transition factory in this kue build\n"+
+				"  run `kue modules` to see what is available, or re-run with --force to try anyway",
+			rd.Ref, mod,
+		)
+		return
+	}
+
+	wfPath, cleanup, werr := writeTransitionWorkflow(rd, args)
+	if werr != nil {
+		r.Error = werr
+		return
+	}
+	defer cleanup()
+
+	res := rt.execWorkflow(wfPath, nil)
+	if asJSON {
+		b, _ := json.MarshalIndent(res, "", "  ")
+		r.Success, r.Response = res.Success, string(b)
+	} else {
+		r.Success, r.Response = res.Success, humanResult(res)
+	}
+	if !res.Success && res.Error != "" {
+		r.Error = fmt.Errorf("%s", res.Error)
+	}
+	return
+}
+
+// transitionArgs parses key=value tokens into ordered WSL action arguments.
+// accepted is the transition's declared parameter list; a key outside it is
+// returned in `unknown`. An empty `accepted` (metadata without arg names)
+// accepts any key.
+func transitionArgs(kv, accepted []string) (args []kvArg, unknown []string, err error) {
+	allow := map[string]bool{}
+	for _, a := range accepted {
+		allow[a] = true
+	}
+	seen := map[string]bool{}
+	for _, tok := range kv {
+		tok = strings.TrimSpace(tok)
+		if tok == "" {
+			continue
+		}
+		eq := strings.Index(tok, "=")
+		if eq < 0 {
+			return nil, nil, fmt.Errorf("argument %q is not key=value", tok)
+		}
+		key := strings.TrimSpace(tok[:eq])
+		val := strings.TrimSpace(tok[eq+1:])
+		if key == "" {
+			return nil, nil, fmt.Errorf("argument %q has an empty key", tok)
+		}
+		if seen[key] {
+			return nil, nil, fmt.Errorf("argument %q given more than once", key)
+		}
+		seen[key] = true
+		if len(allow) > 0 && !allow[key] {
+			unknown = append(unknown, key)
+			continue
+		}
+		args = append(args, kvArg{key: key, raw: val, wsl: wslArgLiteral(val)})
+	}
+	return args, unknown, nil
+}
+
+// wslArgLiteral renders a raw key=value value as a WSL literal: ints, floats,
+// booleans and array/object literals pass through so the engine parses them as
+// their real type; an already-quoted string is kept; anything else is wrapped
+// in double quotes.
+func wslArgLiteral(v string) string {
+	if v == "" {
+		return `""`
+	}
+	if v == "true" || v == "false" {
+		return v
+	}
+	if _, e := strconv.ParseInt(v, 10, 64); e == nil {
+		return v
+	}
+	if _, e := strconv.ParseFloat(v, 64); e == nil {
+		return v
+	}
+	if (strings.HasPrefix(v, "[") && strings.HasSuffix(v, "]")) ||
+		(strings.HasPrefix(v, "{") && strings.HasSuffix(v, "}")) {
+		return v
+	}
+	if len(v) >= 2 && v[0] == '"' && v[len(v)-1] == '"' {
+		return v
+	}
+	return `"` + strings.ReplaceAll(v, `"`, `\"`) + `"`
+}
+
+// transitionModule returns the `<ns>/<class>` half of an action reference.
+func transitionModule(ref string) string {
+	if i := strings.LastIndex(ref, "."); i > 0 {
+		return ref[:i]
+	}
+	return ref
+}
+
+func argSignature(names, types []string) []string {
+	out := make([]string, 0, len(names))
+	for i, n := range names {
+		t := ""
+		if i < len(types) {
+			t = types[i]
+		}
+		out = append(out, strings.TrimSpace(n+" "+t))
+	}
+	return out
+}
+
+func kvMap(args []kvArg) map[string]string {
+	m := make(map[string]string, len(args))
+	for _, a := range args {
+		m[a.key] = a.raw
+	}
+	return m
+}
+
+// writeTransitionWorkflow generates a one-state wrapper workflow that calls rd
+// with args, writes it under ~/.kue/cache/run/workflows, and returns its path
+// plus a cleanup func.
+func writeTransitionWorkflow(rd *resolvedTransition, args []kvArg) (string, func(), error) {
+	noop := func() {}
+	dir := filepath.Join(kue.HomeDir, kue.CacheDir, "run", "workflows")
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return "", noop, err
+	}
+	f, err := os.CreateTemp(dir, "transition-*.wsl")
+	if err != nil {
+		return "", noop, err
+	}
+	name := strings.TrimSuffix(filepath.Base(f.Name()), ".wsl")
+
+	var call strings.Builder
+	call.WriteString("action " + rd.Ref + "(")
+	for i, a := range args {
+		if i > 0 {
+			call.WriteString(", ")
+		}
+		call.WriteString(a.key + ": " + a.wsl)
+	}
+	call.WriteString(") as Result")
+
+	src := fmt.Sprintf(`module %s
+
+workflow %s {
+  start: Run
+
+  state Run {
+    %s
+    on success -> _
+    on fail -> Failed
+  }
+
+  state Done {
+    action services/common/response.Response(value: $Result.response??Result??@??"transition completed", statusCode: 200) as Out
+    end ok
+  }
+
+  state Failed {
+    action services/common/response.Response(value: $Result.response??Result??@??"transition reported failure", statusCode: 422) as Err
+    end fail
+  }
+}
+`, name, name, call.String())
+
+	if _, err := f.WriteString(src); err != nil {
+		_ = f.Close()
+		return "", noop, err
+	}
+	_ = f.Close()
+	path := f.Name()
+	return path, func() { _ = os.Remove(path) }, nil
 }
 
 // ---------------------------------------------------------------------------

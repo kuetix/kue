@@ -1,0 +1,738 @@
+{
+  "mysql/database": {
+    "info": {
+      "go_module": "github.com/kuetix/std-mysql",
+      "namespace": "mysql",
+      "class": "database",
+      "label": "Database Module",
+      "description": "Handles database operations for mysql service"
+    },
+    "methods": [
+      {
+        "value": "Ping",
+        "label": "Ping() (r domain.FlowStepResult)",
+        "names": "Ping() r",
+        "types": "Ping() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Ping",
+        "label": "Ping() (r domain.FlowStepResult)",
+        "names": "Ping() r",
+        "types": "Ping() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "mysql/exec": {
+    "info": {
+      "go_module": "github.com/kuetix/std-mysql",
+      "namespace": "mysql",
+      "class": "exec",
+      "label": "Exec Module",
+      "description": "Handles exec operations for mysql service"
+    },
+    "methods": [
+      {
+        "value": "Exec",
+        "label": "Exec(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Exec(sqlText, args) r",
+        "types": "Exec(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/exec.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "exec",
+          "name": "Exec",
+          "receiver_type": "*execTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exec",
+        "label": "Exec(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Exec(sqlText, args) r",
+        "types": "Exec(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/exec.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "exec",
+          "name": "Exec",
+          "receiver_type": "*execTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "mysql/query": {
+    "info": {
+      "go_module": "github.com/kuetix/std-mysql",
+      "namespace": "mysql",
+      "class": "query",
+      "label": "Query Module",
+      "description": "Handles query operations for mysql service"
+    },
+    "methods": [
+      {
+        "value": "Query",
+        "label": "Query(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Query(sqlText, args) r",
+        "types": "Query(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/query.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "query",
+          "name": "Query",
+          "receiver_type": "*queryTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "QueryRow",
+        "label": "QueryRow(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "QueryRow(sqlText, args) r",
+        "types": "QueryRow(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/query.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "query",
+          "name": "QueryRow",
+          "receiver_type": "*queryTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Query",
+        "label": "Query(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Query(sqlText, args) r",
+        "types": "Query(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/query.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "query",
+          "name": "Query",
+          "receiver_type": "*queryTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "QueryRow",
+        "label": "QueryRow(sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "QueryRow(sqlText, args) r",
+        "types": "QueryRow(string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/query.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "query",
+          "name": "QueryRow",
+          "receiver_type": "*queryTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "mysql/tx": {
+    "info": {
+      "go_module": "github.com/kuetix/std-mysql",
+      "namespace": "mysql",
+      "class": "tx",
+      "label": "Tx Module",
+      "description": "Handles tx operations for mysql service"
+    },
+    "methods": [
+      {
+        "value": "Begin",
+        "label": "Begin() (r domain.FlowStepResult)",
+        "names": "Begin() r",
+        "types": "Begin() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Begin",
+          "receiver_type": "*txTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Commit",
+        "label": "Commit(txId string) (r domain.FlowStepResult)",
+        "names": "Commit(txId) r",
+        "types": "Commit(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Commit",
+          "receiver_type": "*txTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exec",
+        "label": "Exec(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Exec(txId, sqlText, args) r",
+        "types": "Exec(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Exec",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecMany",
+        "label": "ExecMany(txId string, sqlText string, prefixArgs []interface{}, rows []interface{}) (r domain.FlowStepResult)",
+        "names": "ExecMany(txId, sqlText, prefixArgs, rows) r",
+        "types": "ExecMany(string, string, []interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "ExecMany",
+          "receiver_type": "*txTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "prefixArgs",
+            "rows"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Begin",
+        "label": "Begin() (r domain.FlowStepResult)",
+        "names": "Begin() r",
+        "types": "Begin() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Begin",
+          "receiver_type": "*txTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exec",
+        "label": "Exec(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Exec(txId, sqlText, args) r",
+        "types": "Exec(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Exec",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecMany",
+        "label": "ExecMany(txId string, sqlText string, prefixArgs []interface{}, rows []interface{}) (r domain.FlowStepResult)",
+        "names": "ExecMany(txId, sqlText, prefixArgs, rows) r",
+        "types": "ExecMany(string, string, []interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "ExecMany",
+          "receiver_type": "*txTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "prefixArgs",
+            "rows"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Query",
+        "label": "Query(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Query(txId, sqlText, args) r",
+        "types": "Query(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Query",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "QueryRow",
+        "label": "QueryRow(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "QueryRow(txId, sqlText, args) r",
+        "types": "QueryRow(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "QueryRow",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Commit",
+        "label": "Commit(txId string) (r domain.FlowStepResult)",
+        "names": "Commit(txId) r",
+        "types": "Commit(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Commit",
+          "receiver_type": "*txTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Rollback",
+        "label": "Rollback(txId string) (r domain.FlowStepResult)",
+        "names": "Rollback(txId) r",
+        "types": "Rollback(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Rollback",
+          "receiver_type": "*txTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Query",
+        "label": "Query(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "Query(txId, sqlText, args) r",
+        "types": "Query(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Query",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "QueryRow",
+        "label": "QueryRow(txId string, sqlText string, args []interface{}) (r domain.FlowStepResult)",
+        "names": "QueryRow(txId, sqlText, args) r",
+        "types": "QueryRow(string, string, []interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "QueryRow",
+          "receiver_type": "*txTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId",
+            "sqlText",
+            "args"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Rollback",
+        "label": "Rollback(txId string) (r domain.FlowStepResult)",
+        "names": "Rollback(txId) r",
+        "types": "Rollback(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-mysql",
+          "file_path": "modules/mysql/transitions/tx.go",
+          "module_path": "modules",
+          "namespace": "mysql",
+          "class": "tx",
+          "name": "Rollback",
+          "receiver_type": "*txTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "txId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

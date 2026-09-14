@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: CI gate (tag commit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+
+      # Same checks as .github/workflows/ci.yml — a release build should
+      # never ship a tag that hasn't passed the same gate as every push.
+      # No `go mod verify` / `go mod vendor` here: this checkout only has
+      # kuetix/kue, not the ../engine, ../packages/* siblings those commands
+      # need to walk the module graph — see ci.yml's "go" job for the full
+      # explanation. go build -mod=vendor below still catches a stale
+      # *ordinary* dependency via Go's built-in vendor-consistency check.
+      - name: gofmt
+        run: |
+          out=$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l)
+          if [ -n "$out" ]; then
+            echo "::error::gofmt needed on:"; echo "$out"; exit 1
+          fi
+
+      - name: Verify generated module list is in sync
+        run: |
+          go run -mod=vendor ./cmd/gen-modules
+          git diff --exit-code -- modules/modules.go modules/MODULES.md
+
+      - name: go vet
+        run: go vet -mod=vendor ./...
+
+      - name: go build
+        run: go build -mod=vendor ./...
+
+      - name: go test (unit + integration)
+        run: go test -mod=vendor -race -count=1 ./...
+
+      - name: go test (e2e)
+        run: go test -mod=vendor -tags e2e -count=1 ./tests/e2e/...
+
+      # Extra safety net right before a real tag publishes: prove the
+      # installer works end-to-end against a built binary (see
+      # tests/install/install_test.sh). The actual cross-platform build is
+      # proven for real by the release job below.
+      - name: Test scripts/install.sh
+        run: bash tests/install/install_test.sh
+
+  release:
+    name: Build & publish release
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # goreleaser needs full history for the changelog
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -167,6 +167,90 @@ func TestBestResponse(t *testing.T) {
 	}
 }
 
+func TestLooksLikeActionRef(t *testing.T) {
+	for _, s := range []string{
+		"decision/cond.Number",
+		"jsondb/collection.Len",
+		"services/common/response.Response",
+	} {
+		if !looksLikeActionRef(s) {
+			t.Errorf("%q should look like an action ref", s)
+		}
+	}
+	for _, s := range []string{
+		"acme/nightly-close", // registry name — no dot
+		"acme/thing.v2",      // method not exported (lowercase)
+		"./flows/report.wsl", // workflow file
+		"report.swsl",
+		"single",
+		"a.b", // no slash
+	} {
+		if looksLikeActionRef(s) {
+			t.Errorf("%q should NOT look like an action ref", s)
+		}
+	}
+}
+
+func TestWSLArgLiteral(t *testing.T) {
+	cases := map[string]string{
+		"":                 `""`,
+		"42":               "42",
+		"-7":               "-7",
+		"3.14":             "3.14",
+		"true":             "true",
+		"false":            "false",
+		"hello world":      `"hello world"`,
+		`["a","b"]`:        `["a","b"]`,
+		`{"k":1}`:          `{"k":1}`,
+		`"already quoted"`: `"already quoted"`,
+		`say "hi"`:         `"say \"hi\""`,
+	}
+	for in, want := range cases {
+		if got := wslArgLiteral(in); got != want {
+			t.Errorf("wslArgLiteral(%q) = %q, want %q", in, got, want)
+		}
+	}
+}
+
+func TestTransitionArgs(t *testing.T) {
+	accepted := []string{"value", "op", "threshold"}
+
+	args, unknown, err := transitionArgs([]string{"value=5", "op=gt", "threshold=3"}, accepted)
+	if err != nil || len(unknown) != 0 || len(args) != 3 {
+		t.Fatalf("clean parse: args=%#v unknown=%#v err=%v", args, unknown, err)
+	}
+	if args[0].key != "value" || args[0].wsl != "5" || args[1].wsl != `"gt"` {
+		t.Fatalf("rendered args wrong: %#v", args)
+	}
+
+	_, unknown, err = transitionArgs([]string{"value=5", "bogus=1"}, accepted)
+	if err != nil || len(unknown) != 1 || unknown[0] != "bogus" {
+		t.Fatalf("unknown key: unknown=%#v err=%v", unknown, err)
+	}
+
+	if _, _, err := transitionArgs([]string{"novalue"}, accepted); err == nil {
+		t.Fatal("expected error for non key=value token")
+	}
+	if _, _, err := transitionArgs([]string{"value=1", "value=2"}, accepted); err == nil {
+		t.Fatal("expected error for duplicate key")
+	}
+
+	// Empty accepted list accepts anything.
+	args, unknown, err = transitionArgs([]string{"whatever=x"}, nil)
+	if err != nil || len(unknown) != 0 || len(args) != 1 {
+		t.Fatalf("open arg list: args=%#v unknown=%#v err=%v", args, unknown, err)
+	}
+}
+
+func TestTransitionModule(t *testing.T) {
+	if got := transitionModule("services/common/response.Response"); got != "services/common/response" {
+		t.Errorf("got %q", got)
+	}
+	if got := transitionModule("decision/cond.Number"); got != "decision/cond" {
+		t.Errorf("got %q", got)
+	}
+}
+
 func TestHumanResult(t *testing.T) {
 	s := humanResult(runResult{Success: true, StatusCode: 200, DurationMs: 5, Response: "hi"})
 	if !strings.Contains(s, "OK (5ms) [200]") || !strings.Contains(s, "hi") {

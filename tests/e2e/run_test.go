@@ -63,3 +63,49 @@ func TestRunProjectDir(t *testing.T) {
 		t.Fatalf("expected project-dir check message:\n%s", res.Combined())
 	}
 }
+
+func TestRunSingleTransition(t *testing.T) {
+	// `kue run <ns>/<class>.<Method> key=value ...` runs one linked-in action.
+	res := testutil.RunCLI(t, "", nil, "run",
+		"decision/cond.Number", "value=5", "op=gt", "threshold=3", "upper=10")
+	if res.ExitCode != 0 {
+		t.Fatalf("exit %d\n%s", res.ExitCode, res.Combined())
+	}
+	if !strings.Contains(res.Combined(), "OK") || !strings.Contains(res.Combined(), `"match": true`) {
+		t.Fatalf("unexpected output:\n%s", res.Combined())
+	}
+}
+
+func TestRunSingleTransitionCheck(t *testing.T) {
+	res := testutil.RunCLI(t, "", nil, "run",
+		"decision/cond.Number", "value=5", "--check")
+	if res.ExitCode != 0 {
+		t.Fatalf("exit %d\n%s", res.ExitCode, res.Combined())
+	}
+	out := res.Combined()
+	if !strings.Contains(out, "Transition: decision/cond.Number") ||
+		!strings.Contains(out, "Runnable: yes") {
+		t.Fatalf("unexpected --check output:\n%s", out)
+	}
+}
+
+func TestRunSingleTransitionUnknownArg(t *testing.T) {
+	res := testutil.RunCLI(t, "", nil, "run",
+		"decision/cond.Number", "value=5", "nope=1")
+	if res.ExitCode == 0 {
+		t.Fatalf("unknown arg should fail\n%s", res.Combined())
+	}
+	if !strings.Contains(res.Combined(), "unknown argument") {
+		t.Fatalf("expected unknown-argument error:\n%s", res.Combined())
+	}
+}
+
+func TestRunUnknownTransition(t *testing.T) {
+	res := testutil.RunCLI(t, "", nil, "run", "no/such.Transition", "a=1")
+	if res.ExitCode == 0 {
+		t.Fatalf("unknown transition should fail\n%s", res.Combined())
+	}
+	if !strings.Contains(res.Combined(), "no transition") {
+		t.Fatalf("expected no-transition error:\n%s", res.Combined())
+	}
+}

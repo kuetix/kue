@@ -1,0 +1,1327 @@
+{
+  "ai/agent": {
+    "info": {
+      "go_module": "github.com/kuetix/std-ai",
+      "namespace": "ai",
+      "class": "agent",
+      "label": "Agent Module",
+      "description": "Handles agent operations for ai service"
+    },
+    "methods": [
+      {
+        "value": "AppendTurn",
+        "label": "AppendTurn(turns []interface{}, iteration int, kind string, data interface{}) (r domain.FlowStepResult)",
+        "names": "AppendTurn(turns, iteration, kind, data) r",
+        "types": "AppendTurn([]interface{}, int, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "AppendTurn",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "[]interface{}",
+            "int",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "turns",
+            "iteration",
+            "kind",
+            "data"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "BuildPrompt",
+        "label": "BuildPrompt(goal string, systemPrompt string, tools map[string]interface{}, turns []interface{}) (r domain.FlowStepResult)",
+        "names": "BuildPrompt(goal, systemPrompt, tools, turns) r",
+        "types": "BuildPrompt(string, string, map[string]interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "BuildPrompt",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "goal",
+            "systemPrompt",
+            "tools",
+            "turns"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Decide",
+        "label": "Decide(goal string, provider string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, tools map[string]interface{}, turns []interface{}, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Decide(goal, provider, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, tools, turns, headers) r",
+        "types": "Decide(string, string, string, string, string, string, float64, int, map[string]interface{}, []interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 11 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "Decide",
+          "receiver_type": "*agentTransitions",
+          "num_in": 11,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}",
+            "[]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "goal",
+            "provider",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "tools",
+            "turns",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteExternalTool",
+        "label": "ExecuteExternalTool(tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteExternalTool(tool, tools, input) r",
+        "types": "ExecuteExternalTool(string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteExternalTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteTool",
+        "label": "ExecuteTool(p *engWorkflow.WorkerSessionContext, tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteTool(p, tool, tools, input) r",
+        "types": "ExecuteTool(*engWorkflow.WorkerSessionContext, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteWorkflowTool",
+        "label": "ExecuteWorkflowTool(p *engWorkflow.WorkerSessionContext, tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteWorkflowTool(p, tool, tools, input) r",
+        "types": "ExecuteWorkflowTool(*engWorkflow.WorkerSessionContext, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteWorkflowTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "BuildPrompt",
+        "label": "BuildPrompt(goal string, systemPrompt string, tools map[string]interface{}, turns []interface{}) (r domain.FlowStepResult)",
+        "names": "BuildPrompt(goal, systemPrompt, tools, turns) r",
+        "types": "BuildPrompt(string, string, map[string]interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "BuildPrompt",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "goal",
+            "systemPrompt",
+            "tools",
+            "turns"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ParseDecision",
+        "label": "ParseDecision(raw string, tools map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ParseDecision(raw, tools) r",
+        "types": "ParseDecision(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ParseDecision",
+          "receiver_type": "*agentTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "raw",
+            "tools"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Decide",
+        "label": "Decide(goal string, provider string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, tools map[string]interface{}, turns []interface{}, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Decide(goal, provider, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, tools, turns, headers) r",
+        "types": "Decide(string, string, string, string, string, string, float64, int, map[string]interface{}, []interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 11 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "Decide",
+          "receiver_type": "*agentTransitions",
+          "num_in": 11,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}",
+            "[]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "goal",
+            "provider",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "tools",
+            "turns",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteWorkflowTool",
+        "label": "ExecuteWorkflowTool(p *engWorkflow.WorkerSessionContext, tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteWorkflowTool(p, tool, tools, input) r",
+        "types": "ExecuteWorkflowTool(*engWorkflow.WorkerSessionContext, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteWorkflowTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteExternalTool",
+        "label": "ExecuteExternalTool(tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteExternalTool(tool, tools, input) r",
+        "types": "ExecuteExternalTool(string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteExternalTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ExecuteTool",
+        "label": "ExecuteTool(p *engWorkflow.WorkerSessionContext, tool string, tools map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ExecuteTool(p, tool, tools, input) r",
+        "types": "ExecuteTool(*engWorkflow.WorkerSessionContext, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ExecuteTool",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "tool",
+            "tools",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "AppendTurn",
+        "label": "AppendTurn(turns []interface{}, iteration int, kind string, data interface{}) (r domain.FlowStepResult)",
+        "names": "AppendTurn(turns, iteration, kind, data) r",
+        "types": "AppendTurn([]interface{}, int, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "AppendTurn",
+          "receiver_type": "*agentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "[]interface{}",
+            "int",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "turns",
+            "iteration",
+            "kind",
+            "data"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Run",
+        "label": "Run(p *engWorkflow.WorkerSessionContext, goal string, provider string, model string, apiKey string, baseURL string, systemPrompt string, maxIterations int, temperature float64, maxTokens int, tools map[string]interface{}, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Run(p, goal, provider, model, apiKey, baseURL, systemPrompt, maxIterations, temperature, maxTokens, tools, headers) r",
+        "types": "Run(*engWorkflow.WorkerSessionContext, string, string, string, string, string, string, int, float64, int, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 12 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "Run",
+          "receiver_type": "*agentTransitions",
+          "num_in": 12,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "int",
+            "float64",
+            "int",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "goal",
+            "provider",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "maxIterations",
+            "temperature",
+            "maxTokens",
+            "tools",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ParseDecision",
+        "label": "ParseDecision(raw string, tools map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "ParseDecision(raw, tools) r",
+        "types": "ParseDecision(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "ParseDecision",
+          "receiver_type": "*agentTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "raw",
+            "tools"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Run",
+        "label": "Run(p *engWorkflow.WorkerSessionContext, goal string, provider string, model string, apiKey string, baseURL string, systemPrompt string, maxIterations int, temperature float64, maxTokens int, tools map[string]interface{}, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Run(p, goal, provider, model, apiKey, baseURL, systemPrompt, maxIterations, temperature, maxTokens, tools, headers) r",
+        "types": "Run(*engWorkflow.WorkerSessionContext, string, string, string, string, string, string, int, float64, int, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 12 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/agent.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "agent",
+          "name": "Run",
+          "receiver_type": "*agentTransitions",
+          "num_in": 12,
+          "num_out": 1,
+          "arg_types": [
+            "*engWorkflow.WorkerSessionContext",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "int",
+            "float64",
+            "int",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "goal",
+            "provider",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "maxIterations",
+            "temperature",
+            "maxTokens",
+            "tools",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "ai/external": {
+    "info": {
+      "go_module": "github.com/kuetix/std-ai",
+      "namespace": "ai",
+      "class": "external",
+      "label": "External Module",
+      "description": "Handles external operations for ai service"
+    },
+    "methods": [
+      {
+        "value": "Execute",
+        "label": "Execute(adapter string, target string, options map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Execute(adapter, target, options, input) r",
+        "types": "Execute(string, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "Execute",
+          "receiver_type": "*externalTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "adapter",
+            "target",
+            "options",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HTTP",
+        "label": "HTTP(method string, requestURL string, headers map[string]interface{}, query map[string]interface{}, body interface{}, timeoutSeconds int) (r domain.FlowStepResult)",
+        "names": "HTTP(method, requestURL, headers, query, body, timeoutSeconds) r",
+        "types": "HTTP(string, string, map[string]interface{}, map[string]interface{}, interface{}, int) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "HTTP",
+          "receiver_type": "*externalTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "method",
+            "requestURL",
+            "headers",
+            "query",
+            "body",
+            "timeoutSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "MCP",
+        "label": "MCP(transport string, target string, tool string, headers map[string]interface{}, input map[string]interface{}, timeoutSeconds int, command string, args []interface{}, env []interface{}) (r domain.FlowStepResult)",
+        "names": "MCP(transport, target, tool, headers, input, timeoutSeconds, command, args, env) r",
+        "types": "MCP(string, string, string, map[string]interface{}, map[string]interface{}, int, string, []interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 9 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "MCP",
+          "receiver_type": "*externalTransitions",
+          "num_in": 9,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "int",
+            "string",
+            "[]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "transport",
+            "target",
+            "tool",
+            "headers",
+            "input",
+            "timeoutSeconds",
+            "command",
+            "args",
+            "env"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HTTP",
+        "label": "HTTP(method string, requestURL string, headers map[string]interface{}, query map[string]interface{}, body interface{}, timeoutSeconds int) (r domain.FlowStepResult)",
+        "names": "HTTP(method, requestURL, headers, query, body, timeoutSeconds) r",
+        "types": "HTTP(string, string, map[string]interface{}, map[string]interface{}, interface{}, int) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "HTTP",
+          "receiver_type": "*externalTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "method",
+            "requestURL",
+            "headers",
+            "query",
+            "body",
+            "timeoutSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "MCP",
+        "label": "MCP(transport string, target string, tool string, headers map[string]interface{}, input map[string]interface{}, timeoutSeconds int, command string, args []interface{}, env []interface{}) (r domain.FlowStepResult)",
+        "names": "MCP(transport, target, tool, headers, input, timeoutSeconds, command, args, env) r",
+        "types": "MCP(string, string, string, map[string]interface{}, map[string]interface{}, int, string, []interface{}, []interface{}) domain.FlowStepResult",
+        "description": "Function with 9 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "MCP",
+          "receiver_type": "*externalTransitions",
+          "num_in": 9,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "int",
+            "string",
+            "[]interface{}",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "transport",
+            "target",
+            "tool",
+            "headers",
+            "input",
+            "timeoutSeconds",
+            "command",
+            "args",
+            "env"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Execute",
+        "label": "Execute(adapter string, target string, options map[string]interface{}, input map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Execute(adapter, target, options, input) r",
+        "types": "Execute(string, string, map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/external.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "external",
+          "name": "Execute",
+          "receiver_type": "*externalTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "adapter",
+            "target",
+            "options",
+            "input"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "ai/prompt": {
+    "info": {
+      "go_module": "github.com/kuetix/std-ai",
+      "namespace": "ai",
+      "class": "prompt",
+      "label": "Prompt Module",
+      "description": "Handles prompt operations for ai service"
+    },
+    "methods": [
+      {
+        "value": "Anthropic",
+        "label": "Anthropic(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Anthropic(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Anthropic(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Anthropic",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Gemini",
+        "label": "Gemini(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Gemini(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Gemini(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Gemini",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Resolve",
+        "label": "Resolve(provider string, model string, baseURL string) (r domain.FlowStepResult)",
+        "names": "Resolve(provider, model, baseURL) r",
+        "types": "Resolve(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Resolve",
+          "receiver_type": "*promptTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "model",
+            "baseURL"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "OpenAI",
+        "label": "OpenAI(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "OpenAI(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "OpenAI(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "OpenAI",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Anthropic",
+        "label": "Anthropic(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Anthropic(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Anthropic(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Anthropic",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Gemini",
+        "label": "Gemini(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Gemini(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Gemini(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Gemini",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Prompt",
+        "label": "Prompt(provider string, prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Prompt(provider, prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Prompt(string, string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 9 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Prompt",
+          "receiver_type": "*promptTransitions",
+          "num_in": 9,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "OpenAI",
+        "label": "OpenAI(prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "OpenAI(prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "OpenAI(string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 8 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "OpenAI",
+          "receiver_type": "*promptTransitions",
+          "num_in": 8,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Prompt",
+        "label": "Prompt(provider string, prompt string, model string, apiKey string, baseURL string, systemPrompt string, temperature float64, maxTokens int, headers map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Prompt(provider, prompt, model, apiKey, baseURL, systemPrompt, temperature, maxTokens, headers) r",
+        "types": "Prompt(string, string, string, string, string, string, float64, int, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 9 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Prompt",
+          "receiver_type": "*promptTransitions",
+          "num_in": 9,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "float64",
+            "int",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "prompt",
+            "model",
+            "apiKey",
+            "baseURL",
+            "systemPrompt",
+            "temperature",
+            "maxTokens",
+            "headers"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Resolve",
+        "label": "Resolve(provider string, model string, baseURL string) (r domain.FlowStepResult)",
+        "names": "Resolve(provider, model, baseURL) r",
+        "types": "Resolve(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-ai",
+          "file_path": "modules/ai/transitions/prompt.go",
+          "module_path": "modules",
+          "namespace": "ai",
+          "class": "prompt",
+          "name": "Resolve",
+          "receiver_type": "*promptTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "model",
+            "baseURL"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

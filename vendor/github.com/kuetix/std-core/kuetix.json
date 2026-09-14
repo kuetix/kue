@@ -1,0 +1,12 @@
+{
+  "name": "kuetix/core",
+  "type": "package",
+  "version": "0.1.0",
+  "description": "Kuetix engine package: core",
+  "author": "anar@kuetix.com",
+  "license": "MIT",
+  "dependencies": {},
+  "engine": "v0.1.4",
+  "publisher": "",
+  "keywords": ["kuetix", "kuetix/core","core", "package", "module"]
+}

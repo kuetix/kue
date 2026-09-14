@@ -8,7 +8,7 @@ LDFLAGS := -X 'main.Version=$(VERSION)' -X 'main.BuildTime=$(BUILD_TIME)'
 
 GO ?= go
 
-.PHONY: all cli clean test test-race test-integration test-e2e test-all test-trace cover fmt-check vet ci install uninstall tag
+.PHONY: all cli clean test test-race test-integration test-e2e test-all test-trace cover fmt-check vet ci install uninstall tag generate-modules check-modules test-install test-release build-snapshot vendor
 
 help: ## Display this help message
 	@echo "Available targets:"
@@ -39,7 +39,15 @@ test-integration: ## Run integration tests, verbose — narrates every workflow,
 test-e2e: ## Run e2e tests, verbose — narrates every `kue` invocation, exit code & output
 	$(GO) test -tags e2e -count=1 -v $(RUNFLAG) ./tests/e2e/...
 
-test-all: test test-e2e ## Run every test layer
+test-install: ## Test scripts/install.sh end-to-end against a local fake release server
+	bash tests/install/install_test.sh
+
+build-snapshot: ## Cross-compile every release target locally without publishing (needs goreleaser)
+	goreleaser build --snapshot --clean
+
+test-release: check-modules build-snapshot test-install ## Test the whole release pipeline: module list, cross-platform build, installer
+
+test-all: test test-e2e test-release ## Run every test layer, including the release pipeline
 
 test-trace: ## Run integration + e2e verbose, one test binary at a time (best for debugging)
 	$(GO) test -count=1 -v $(RUNFLAG) ./tests/integration/...
@@ -56,7 +64,24 @@ fmt-check: ## Fail if any tracked .go file needs gofmt
 vet: ## Run go vet
 	$(GO) vet ./...
 
-ci: fmt-check vet build ## Run the full CI gate locally (quiet; -v output only on failure)
+vendor: ## Regenerate vendor/ from source (workspace-local: needs ../engine, ../packages/* checked out as siblings)
+	$(GO) mod verify
+	$(GO) mod vendor
+	@echo "vendor/ regenerated — review 'git status -- vendor go.mod go.sum' and commit if changed."
+	@echo "NOTE: this walks the full module graph, so it needs ../engine and ../packages/*"
+	@echo "checked out next to this repo (the full kuetix workspace) -- it will NOT work"
+	@echo "from a standalone clone of just kuetix/kue, and CI does not run it for that"
+	@echo "reason. See the comment on the 'go' job in .github/workflows/ci.yml."
+
+generate-modules: ## Regenerate modules/modules.go + modules/MODULES.md from modules/modules.yaml
+	$(GO) run ./cmd/gen-modules
+
+check-modules: ## Fail if modules/modules.go or MODULES.md are out of sync with modules.yaml
+	$(GO) run ./cmd/gen-modules
+	@git diff --exit-code -- modules/modules.go modules/MODULES.md || \
+		(echo "modules/modules.go or MODULES.md is out of sync with modules.yaml — run 'make generate-modules' and commit the result" && exit 1)
+
+ci: fmt-check vet check-modules build ## Run the full CI gate locally (quiet; -v output only on failure)
 	$(GO) test -race -count=1 ./...
 	$(GO) test -tags e2e -count=1 ./tests/e2e/...
 

@@ -38,17 +38,33 @@ jobs:
           cache: true
 
       # kue resolves the engine + std packages through ../ replace directives
-      # and commits a vendor/ tree (some of those siblings are unpublished), so
-      # every go command below runs in vendor mode and needs no network.
-      - name: Verify vendor tree is in sync
-        run: go mod verify && go mod vendor && git diff --exit-code -- vendor go.mod go.sum
-
+      # pointing outside this repo, and commits a vendor/ tree so every go
+      # command below runs in vendor mode and needs no network *or* those
+      # sibling checkouts (this runner only has kuetix/kue, not the whole
+      # monorepo). We deliberately do NOT run `go mod verify` / `go mod
+      # vendor` here: both walk the full module graph and need the replace
+      # targets physically on disk regardless of -mod=vendor, so they fail
+      # on exactly this kind of single-repo checkout. `go build -mod=vendor`
+      # below still catches a vendor/go.mod mismatch for every *ordinary*
+      # (non-replaced) dependency via Go's built-in vendor-consistency check
+      # — no module graph needed for that. Regenerating vendor/ from source
+      # after touching go.mod or a sibling's code is a workspace-local
+      # maintainer step: `make vendor`, run from inside the full kuetix
+      # checkout where the siblings exist.
       - name: gofmt
         run: |
           out=$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l)
           if [ -n "$out" ]; then
             echo "::error::gofmt needed on:"; echo "$out"; exit 1
           fi
+
+      # modules/modules.go and modules/MODULES.md are generated from
+      # modules/modules.yaml (see cmd/gen-modules) — same sync-check shape as
+      # the vendor tree above.
+      - name: Verify generated module list is in sync
+        run: |
+          go run -mod=vendor ./cmd/gen-modules
+          git diff --exit-code -- modules/modules.go modules/MODULES.md
 
       - name: go vet
         run: go vet -mod=vendor ./...
@@ -61,3 +77,34 @@ jobs:
 
       - name: go test (e2e)
         run: go test -mod=vendor -tags e2e -count=1 ./tests/e2e/...
+
+  release-pipeline:
+    name: Test the release pipeline (cross-compile + installer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+
+      # Builds every .goreleaser.yaml target (linux/darwin/windows x
+      # amd64/arm64) without publishing — catches a cross-compile break on
+      # every push instead of only when a v* tag is pushed for real.
+      - name: goreleaser build --snapshot (all platforms)
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: build --snapshot --clean
+        env:
+          GOFLAGS: -mod=vendor
+
+      # End-to-end test of scripts/install.sh (the public curl | sh
+      # installer) against a local fake release server — see
+      # tests/install/install_test.sh for what it covers.
+      - name: Test scripts/install.sh
+        run: bash tests/install/install_test.sh
