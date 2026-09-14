@@ -3,15 +3,14 @@ version: 2
 project_name: kue
 
 # kue resolves the engine + std packages through ../ replace directives and
-# commits a vendor/ tree (some of those siblings aren't published anywhere
-# else), so every build here runs in vendor mode and needs no network or
-# sibling checkouts — see .github/workflows/ci.yml for the same convention.
+# commits a vendor/ tree, so every build here runs in vendor mode and needs
+# no network or sibling checkouts — see .github/workflows/ci.yml for the same
+# convention. Deliberately no `before.hooks: [go mod verify]`: that command
+# (unlike a -mod=vendor build) walks the full module graph and needs the
+# ../engine, ../packages/* replace targets physically on disk, which a
+# single-repo checkout of kuetix/kue doesn't have.
 env:
   - GOFLAGS=-mod=vendor
-
-before:
-  hooks:
-    - go mod verify
 
 builds:
   - id: kue

@@ -27,9 +27,11 @@ jobs:
 
       # Same checks as .github/workflows/ci.yml — a release build should
       # never ship a tag that hasn't passed the same gate as every push.
-      - name: Verify vendor tree is in sync
-        run: go mod verify && go mod vendor && git diff --exit-code -- vendor go.mod go.sum
-
+      # No `go mod verify` / `go mod vendor` here: this checkout only has
+      # kuetix/kue, not the ../engine, ../packages/* siblings those commands
+      # need to walk the module graph — see ci.yml's "go" job for the full
+      # explanation. go build -mod=vendor below still catches a stale
+      # *ordinary* dependency via Go's built-in vendor-consistency check.
       - name: gofmt
         run: |
           out=$(git ls-files '*.go' | grep -v '^vendor/' | xargs gofmt -l)

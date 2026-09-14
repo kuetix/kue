@@ -8,7 +8,7 @@ LDFLAGS := -X 'main.Version=$(VERSION)' -X 'main.BuildTime=$(BUILD_TIME)'
 
 GO ?= go
 
-.PHONY: all cli clean test test-race test-integration test-e2e test-all test-trace cover fmt-check vet ci install uninstall tag generate-modules check-modules test-install test-release build-snapshot
+.PHONY: all cli clean test test-race test-integration test-e2e test-all test-trace cover fmt-check vet ci install uninstall tag generate-modules check-modules test-install test-release build-snapshot vendor
 
 help: ## Display this help message
 	@echo "Available targets:"
@@ -63,6 +63,15 @@ fmt-check: ## Fail if any tracked .go file needs gofmt
 
 vet: ## Run go vet
 	$(GO) vet ./...
+
+vendor: ## Regenerate vendor/ from source (workspace-local: needs ../engine, ../packages/* checked out as siblings)
+	$(GO) mod verify
+	$(GO) mod vendor
+	@echo "vendor/ regenerated — review 'git status -- vendor go.mod go.sum' and commit if changed."
+	@echo "NOTE: this walks the full module graph, so it needs ../engine and ../packages/*"
+	@echo "checked out next to this repo (the full kuetix workspace) -- it will NOT work"
+	@echo "from a standalone clone of just kuetix/kue, and CI does not run it for that"
+	@echo "reason. See the comment on the 'go' job in .github/workflows/ci.yml."
 
 generate-modules: ## Regenerate modules/modules.go + modules/MODULES.md from modules/modules.yaml
 	$(GO) run ./cmd/gen-modules
