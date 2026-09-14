@@ -1,0 +1,1506 @@
+{
+  "push/audience": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "audience",
+      "label": "Audience Module",
+      "description": "Handles audience operations for push service"
+    },
+    "methods": [
+      {
+        "value": "ResolveMissed",
+        "label": "ResolveMissed(channelId string, senderId string, deliveredUserIds interface{}, sendType string, forcedUserIds interface{}) (r domain.FlowStepResult)",
+        "names": "ResolveMissed(channelId, senderId, deliveredUserIds, sendType, forcedUserIds) r",
+        "types": "ResolveMissed(string, string, interface{}, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/audience.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "audience",
+          "name": "ResolveMissed",
+          "receiver_type": "*audienceTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "interface{}",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "senderId",
+            "deliveredUserIds",
+            "sendType",
+            "forcedUserIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResolveMissed",
+        "label": "ResolveMissed(channelId string, senderId string, deliveredUserIds interface{}, sendType string, forcedUserIds interface{}) (r domain.FlowStepResult)",
+        "names": "ResolveMissed(channelId, senderId, deliveredUserIds, sendType, forcedUserIds) r",
+        "types": "ResolveMissed(string, string, interface{}, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/audience.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "audience",
+          "name": "ResolveMissed",
+          "receiver_type": "*audienceTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "interface{}",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "senderId",
+            "deliveredUserIds",
+            "sendType",
+            "forcedUserIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/bulk": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "bulk",
+      "label": "Bulk Module",
+      "description": "Handles bulk operations for push service"
+    },
+    "methods": [
+      {
+        "value": "AppendPending",
+        "label": "AppendPending(channelId string, messageId string, sendType string, senderId string, missedUserIds interface{}) (r domain.FlowStepResult)",
+        "names": "AppendPending(channelId, messageId, sendType, senderId, missedUserIds) r",
+        "types": "AppendPending(string, string, string, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "AppendPending",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "messageId",
+            "sendType",
+            "senderId",
+            "missedUserIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "DropPendingRecipient",
+        "label": "DropPendingRecipient(channelId string, userId string) (r domain.FlowStepResult)",
+        "names": "DropPendingRecipient(channelId, userId) r",
+        "types": "DropPendingRecipient(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "DropPendingRecipient",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "FlushDue",
+        "label": "FlushDue() (r domain.FlowStepResult)",
+        "names": "FlushDue() r",
+        "types": "FlushDue() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "FlushDue",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "MarkBurst",
+        "label": "MarkBurst(channelId string) (r domain.FlowStepResult)",
+        "names": "MarkBurst(channelId) r",
+        "types": "MarkBurst(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "MarkBurst",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "MarkBurst",
+        "label": "MarkBurst(channelId string) (r domain.FlowStepResult)",
+        "names": "MarkBurst(channelId) r",
+        "types": "MarkBurst(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "MarkBurst",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "AppendPending",
+        "label": "AppendPending(channelId string, messageId string, sendType string, senderId string, missedUserIds interface{}) (r domain.FlowStepResult)",
+        "names": "AppendPending(channelId, messageId, sendType, senderId, missedUserIds) r",
+        "types": "AppendPending(string, string, string, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "AppendPending",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "messageId",
+            "sendType",
+            "senderId",
+            "missedUserIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "DropPendingRecipient",
+        "label": "DropPendingRecipient(channelId string, userId string) (r domain.FlowStepResult)",
+        "names": "DropPendingRecipient(channelId, userId) r",
+        "types": "DropPendingRecipient(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "DropPendingRecipient",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId",
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "PendingStats",
+        "label": "PendingStats(channelId string) (r domain.FlowStepResult)",
+        "names": "PendingStats(channelId) r",
+        "types": "PendingStats(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "PendingStats",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "FlushDue",
+        "label": "FlushDue() (r domain.FlowStepResult)",
+        "names": "FlushDue() r",
+        "types": "FlushDue() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "FlushDue",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "PendingStats",
+        "label": "PendingStats(channelId string) (r domain.FlowStepResult)",
+        "names": "PendingStats(channelId) r",
+        "types": "PendingStats(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/bulk.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "bulk",
+          "name": "PendingStats",
+          "receiver_type": "*bulkTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "channelId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/facts": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "facts",
+      "label": "Facts Module",
+      "description": "Handles facts operations for push service"
+    },
+    "methods": [
+      {
+        "value": "Build",
+        "label": "Build(sendType string, missedCount interface{}, hasBurst interface{}, oldestPendingAgeSec interface{}) (r domain.FlowStepResult)",
+        "names": "Build(sendType, missedCount, hasBurst, oldestPendingAgeSec) r",
+        "types": "Build(string, interface{}, interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/facts.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "facts",
+          "name": "Build",
+          "receiver_type": "*factsTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "interface{}",
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sendType",
+            "missedCount",
+            "hasBurst",
+            "oldestPendingAgeSec"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Build",
+        "label": "Build(sendType string, missedCount interface{}, hasBurst interface{}, oldestPendingAgeSec interface{}) (r domain.FlowStepResult)",
+        "names": "Build(sendType, missedCount, hasBurst, oldestPendingAgeSec) r",
+        "types": "Build(string, interface{}, interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/facts.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "facts",
+          "name": "Build",
+          "receiver_type": "*factsTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "interface{}",
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "sendType",
+            "missedCount",
+            "hasBurst",
+            "oldestPendingAgeSec"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/prefs": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "prefs",
+      "label": "Prefs Module",
+      "description": "Handles prefs operations for push service"
+    },
+    "methods": [
+      {
+        "value": "AllowsType",
+        "label": "AllowsType(userId string, sendType string) (r domain.FlowStepResult)",
+        "names": "AllowsType(userId, sendType) r",
+        "types": "AllowsType(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "AllowsType",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "sendType"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(userId string) (r domain.FlowStepResult)",
+        "names": "Get(userId) r",
+        "types": "Get(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "Get",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(userId string) (r domain.FlowStepResult)",
+        "names": "Get(userId) r",
+        "types": "Get(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "Get",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(userId string, enabled string, messages string, signals string, reports string, email string, preview string) (r domain.FlowStepResult)",
+        "names": "Set(userId, enabled, messages, signals, reports, email, preview) r",
+        "types": "Set(string, string, string, string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "Set",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "enabled",
+            "messages",
+            "signals",
+            "reports",
+            "email",
+            "preview"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "AllowsType",
+        "label": "AllowsType(userId string, sendType string) (r domain.FlowStepResult)",
+        "names": "AllowsType(userId, sendType) r",
+        "types": "AllowsType(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "AllowsType",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "sendType"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(userId string, enabled string, messages string, signals string, reports string, email string, preview string) (r domain.FlowStepResult)",
+        "names": "Set(userId, enabled, messages, signals, reports, email, preview) r",
+        "types": "Set(string, string, string, string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/prefs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "prefs",
+          "name": "Set",
+          "receiver_type": "*prefsTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "enabled",
+            "messages",
+            "signals",
+            "reports",
+            "email",
+            "preview"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/queue": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "queue",
+      "label": "Queue Module",
+      "description": "Handles queue operations for push service"
+    },
+    "methods": [
+      {
+        "value": "EnqueueMissed",
+        "label": "EnqueueMissed(missedChannelId string, missedMessageId string, missedType string, missedSenderId string, missedDeliveredIds interface{}, missedGroupNo string) (r domain.FlowStepResult)",
+        "names": "EnqueueMissed(missedChannelId, missedMessageId, missedType, missedSenderId, missedDeliveredIds, missedGroupNo) r",
+        "types": "EnqueueMissed(string, string, string, string, interface{}, string) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueMissed",
+          "receiver_type": "*queueTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "missedChannelId",
+            "missedMessageId",
+            "missedType",
+            "missedSenderId",
+            "missedDeliveredIds",
+            "missedGroupNo"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "EnqueueMissedFromRoom",
+        "label": "EnqueueMissedFromRoom(missedRoomKey string, missedMessageId string, missedType string, missedSenderId string, missedDeliveredIds interface{}) (r domain.FlowStepResult)",
+        "names": "EnqueueMissedFromRoom(missedRoomKey, missedMessageId, missedType, missedSenderId, missedDeliveredIds) r",
+        "types": "EnqueueMissedFromRoom(string, string, string, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueMissedFromRoom",
+          "receiver_type": "*queueTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "missedRoomKey",
+            "missedMessageId",
+            "missedType",
+            "missedSenderId",
+            "missedDeliveredIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "EnqueueTest",
+        "label": "EnqueueTest(testUserId string, testChannelId string, testType string, testMessageId string) (r domain.FlowStepResult)",
+        "names": "EnqueueTest(testUserId, testChannelId, testType, testMessageId) r",
+        "types": "EnqueueTest(string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueTest",
+          "receiver_type": "*queueTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "testUserId",
+            "testChannelId",
+            "testType",
+            "testMessageId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "EnqueueMissed",
+        "label": "EnqueueMissed(missedChannelId string, missedMessageId string, missedType string, missedSenderId string, missedDeliveredIds interface{}, missedGroupNo string) (r domain.FlowStepResult)",
+        "names": "EnqueueMissed(missedChannelId, missedMessageId, missedType, missedSenderId, missedDeliveredIds, missedGroupNo) r",
+        "types": "EnqueueMissed(string, string, string, string, interface{}, string) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueMissed",
+          "receiver_type": "*queueTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "missedChannelId",
+            "missedMessageId",
+            "missedType",
+            "missedSenderId",
+            "missedDeliveredIds",
+            "missedGroupNo"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "EnqueueTest",
+        "label": "EnqueueTest(testUserId string, testChannelId string, testType string, testMessageId string) (r domain.FlowStepResult)",
+        "names": "EnqueueTest(testUserId, testChannelId, testType, testMessageId) r",
+        "types": "EnqueueTest(string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueTest",
+          "receiver_type": "*queueTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "testUserId",
+            "testChannelId",
+            "testType",
+            "testMessageId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "EnqueueMissedFromRoom",
+        "label": "EnqueueMissedFromRoom(missedRoomKey string, missedMessageId string, missedType string, missedSenderId string, missedDeliveredIds interface{}) (r domain.FlowStepResult)",
+        "names": "EnqueueMissedFromRoom(missedRoomKey, missedMessageId, missedType, missedSenderId, missedDeliveredIds) r",
+        "types": "EnqueueMissedFromRoom(string, string, string, string, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/queue.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "queue",
+          "name": "EnqueueMissedFromRoom",
+          "receiver_type": "*queueTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "missedRoomKey",
+            "missedMessageId",
+            "missedType",
+            "missedSenderId",
+            "missedDeliveredIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/runtime": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "runtime",
+      "label": "Runtime Module",
+      "description": "Handles runtime operations for push service"
+    },
+    "methods": [
+      {
+        "value": "RunMissedConsumer",
+        "label": "RunMissedConsumer(consumer string) (r domain.FlowStepResult)",
+        "names": "RunMissedConsumer(consumer) r",
+        "types": "RunMissedConsumer(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/runtime.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "runtime",
+          "name": "RunMissedConsumer",
+          "receiver_type": "*runtimeTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "consumer"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RunScheduler",
+        "label": "RunScheduler() (r domain.FlowStepResult)",
+        "names": "RunScheduler() r",
+        "types": "RunScheduler() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/runtime.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "runtime",
+          "name": "RunScheduler",
+          "receiver_type": "*runtimeTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RunMissedConsumer",
+        "label": "RunMissedConsumer(consumer string) (r domain.FlowStepResult)",
+        "names": "RunMissedConsumer(consumer) r",
+        "types": "RunMissedConsumer(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/runtime.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "runtime",
+          "name": "RunMissedConsumer",
+          "receiver_type": "*runtimeTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "consumer"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RunScheduler",
+        "label": "RunScheduler() (r domain.FlowStepResult)",
+        "names": "RunScheduler() r",
+        "types": "RunScheduler() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/runtime.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "runtime",
+          "name": "RunScheduler",
+          "receiver_type": "*runtimeTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/send": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "send",
+      "label": "Send Module",
+      "description": "Handles send operations for push service"
+    },
+    "methods": [
+      {
+        "value": "SendToUsers",
+        "label": "SendToUsers(userIds interface{}, channelId string, sendType string, count interface{}, content interface{}) (r domain.FlowStepResult)",
+        "names": "SendToUsers(userIds, channelId, sendType, count, content) r",
+        "types": "SendToUsers(interface{}, string, string, interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/send.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "send",
+          "name": "SendToUsers",
+          "receiver_type": "*sendTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "string",
+            "string",
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds",
+            "channelId",
+            "sendType",
+            "count",
+            "content"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SendTest",
+        "label": "SendTest(userIds interface{}, count interface{}) (r domain.FlowStepResult)",
+        "names": "SendTest(userIds, count) r",
+        "types": "SendTest(interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/send.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "send",
+          "name": "SendTest",
+          "receiver_type": "*sendTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds",
+            "count"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SendTest",
+        "label": "SendTest(userIds interface{}, count interface{}) (r domain.FlowStepResult)",
+        "names": "SendTest(userIds, count) r",
+        "types": "SendTest(interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/send.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "send",
+          "name": "SendTest",
+          "receiver_type": "*sendTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds",
+            "count"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SendToUsers",
+        "label": "SendToUsers(userIds interface{}, channelId string, sendType string, count interface{}, content interface{}) (r domain.FlowStepResult)",
+        "names": "SendToUsers(userIds, channelId, sendType, count, content) r",
+        "types": "SendToUsers(interface{}, string, string, interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/send.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "send",
+          "name": "SendToUsers",
+          "receiver_type": "*sendTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "string",
+            "string",
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds",
+            "channelId",
+            "sendType",
+            "count",
+            "content"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "push/subs": {
+    "info": {
+      "go_module": "github.com/kuetix/std-push",
+      "namespace": "push",
+      "class": "subs",
+      "label": "Subs Module",
+      "description": "Handles subs operations for push service"
+    },
+    "methods": [
+      {
+        "value": "ListForUsers",
+        "label": "ListForUsers(userIds interface{}) (r domain.FlowStepResult)",
+        "names": "ListForUsers(userIds) r",
+        "types": "ListForUsers(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "ListForUsers",
+          "receiver_type": "*subsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ListSafe",
+        "label": "ListSafe(userId string) (r domain.FlowStepResult)",
+        "names": "ListSafe(userId) r",
+        "types": "ListSafe(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "ListSafe",
+          "receiver_type": "*subsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Store",
+        "label": "Store(userId string, platform string, endpoint string, p256dh string, auth string, token string, ua string) (r domain.FlowStepResult)",
+        "names": "Store(userId, platform, endpoint, p256dh, auth, token, ua) r",
+        "types": "Store(string, string, string, string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "Store",
+          "receiver_type": "*subsTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "platform",
+            "endpoint",
+            "p256dh",
+            "auth",
+            "token",
+            "ua"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Remove",
+        "label": "Remove(userId string, key string) (r domain.FlowStepResult)",
+        "names": "Remove(userId, key) r",
+        "types": "Remove(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "Remove",
+          "receiver_type": "*subsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ListForUsers",
+        "label": "ListForUsers(userIds interface{}) (r domain.FlowStepResult)",
+        "names": "ListForUsers(userIds) r",
+        "types": "ListForUsers(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "ListForUsers",
+          "receiver_type": "*subsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userIds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ListSafe",
+        "label": "ListSafe(userId string) (r domain.FlowStepResult)",
+        "names": "ListSafe(userId) r",
+        "types": "ListSafe(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "ListSafe",
+          "receiver_type": "*subsTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Remove",
+        "label": "Remove(userId string, key string) (r domain.FlowStepResult)",
+        "names": "Remove(userId, key) r",
+        "types": "Remove(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "Remove",
+          "receiver_type": "*subsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Store",
+        "label": "Store(userId string, platform string, endpoint string, p256dh string, auth string, token string, ua string) (r domain.FlowStepResult)",
+        "names": "Store(userId, platform, endpoint, p256dh, auth, token, ua) r",
+        "types": "Store(string, string, string, string, string, string, string) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-push",
+          "file_path": "modules/push/transitions/subs.go",
+          "module_path": "modules",
+          "namespace": "push",
+          "class": "subs",
+          "name": "Store",
+          "receiver_type": "*subsTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "userId",
+            "platform",
+            "endpoint",
+            "p256dh",
+            "auth",
+            "token",
+            "ua"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

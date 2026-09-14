@@ -1,0 +1,2914 @@
+{
+  "converse/speak": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "converse",
+      "class": "speak",
+      "label": "Speak Module",
+      "description": "Handles speak operations for converse service"
+    },
+    "methods": [
+      {
+        "value": "Say",
+        "label": "Say(on string, v *ast.Ellipsis) (r domain.FlowStepResult)",
+        "names": "Say(on, v) r",
+        "types": "Say(string, *ast.Ellipsis) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/converse/transitions/speak.go",
+          "module_path": "modules",
+          "namespace": "converse",
+          "class": "speak",
+          "name": "Say",
+          "receiver_type": "*speakTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "*ast.Ellipsis"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "on",
+            "v"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Say",
+        "label": "Say(on string, v *ast.Ellipsis) (r domain.FlowStepResult)",
+        "names": "Say(on, v) r",
+        "types": "Say(string, *ast.Ellipsis) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/converse/transitions/speak.go",
+          "module_path": "modules",
+          "namespace": "converse",
+          "class": "speak",
+          "name": "Say",
+          "receiver_type": "*speakTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "*ast.Ellipsis"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "on",
+            "v"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/assert": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "assert",
+      "label": "Assert Module",
+      "description": "Handles assert operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Bool",
+        "label": "Bool(value bool) (r domain.FlowStepResult)",
+        "names": "Bool(value) r",
+        "types": "Bool(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Bool",
+          "receiver_type": "*assertTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Equals",
+        "label": "Equals(value string, other string) (r domain.FlowStepResult)",
+        "names": "Equals(value, other) r",
+        "types": "Equals(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Equals",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "other"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Integer",
+        "label": "Integer(value int, op string) (r domain.FlowStepResult)",
+        "names": "Integer(value, op) r",
+        "types": "Integer(int, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Integer",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsPathExists",
+        "label": "IsPathExists(value map[string]interface{}, path []string) (r domain.FlowStepResult)",
+        "names": "IsPathExists(value, path) r",
+        "types": "IsPathExists(map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "IsPathExists",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "path"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Bool",
+        "label": "Bool(value bool) (r domain.FlowStepResult)",
+        "names": "Bool(value) r",
+        "types": "Bool(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Bool",
+          "receiver_type": "*assertTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Integer",
+        "label": "Integer(value int, op string) (r domain.FlowStepResult)",
+        "names": "Integer(value, op) r",
+        "types": "Integer(int, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Integer",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "String",
+        "label": "String(value string, op string) (r domain.FlowStepResult)",
+        "names": "String(value, op) r",
+        "types": "String(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "String",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Switch",
+        "label": "Switch(value string) (r domain.FlowStepResult)",
+        "names": "Switch(value) r",
+        "types": "Switch(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Switch",
+          "receiver_type": "*assertTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsPathExists",
+        "label": "IsPathExists(value map[string]interface{}, path []string) (r domain.FlowStepResult)",
+        "names": "IsPathExists(value, path) r",
+        "types": "IsPathExists(map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "IsPathExists",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "path"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Equals",
+        "label": "Equals(value string, other string) (r domain.FlowStepResult)",
+        "names": "Equals(value, other) r",
+        "types": "Equals(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Equals",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "other"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "NotEmpty",
+        "label": "NotEmpty(value string, negative any) (r domain.FlowStepResult)",
+        "names": "NotEmpty(value, negative) r",
+        "types": "NotEmpty(string, any) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "NotEmpty",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "negative"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "NotEmpty",
+        "label": "NotEmpty(value string, negative any) (r domain.FlowStepResult)",
+        "names": "NotEmpty(value, negative) r",
+        "types": "NotEmpty(string, any) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "NotEmpty",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "negative"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "String",
+        "label": "String(value string, op string) (r domain.FlowStepResult)",
+        "names": "String(value, op) r",
+        "types": "String(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "String",
+          "receiver_type": "*assertTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Switch",
+        "label": "Switch(value string) (r domain.FlowStepResult)",
+        "names": "Switch(value) r",
+        "types": "Switch(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/assert.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "assert",
+          "name": "Switch",
+          "receiver_type": "*assertTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/context": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "context",
+      "label": "Context Module",
+      "description": "Handles context operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "SetContextValue",
+        "label": "SetContextValue(name string, value interface{}) (r domain.FlowStepResult)",
+        "names": "SetContextValue(name, value) r",
+        "types": "SetContextValue(string, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/context.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "context",
+          "name": "SetContextValue",
+          "receiver_type": "*contextTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetContextValue",
+        "label": "SetContextValue(name string, value interface{}) (r domain.FlowStepResult)",
+        "names": "SetContextValue(name, value) r",
+        "types": "SetContextValue(string, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/context.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "context",
+          "name": "SetContextValue",
+          "receiver_type": "*contextTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/datetimeAt": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "datetimeAt",
+      "label": "Datetimeat Module",
+      "description": "Handles datetimeAt operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Update",
+        "label": "Update(entity interface{}) (r domain.FlowStepResult)",
+        "names": "Update(entity) r",
+        "types": "Update(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/datetimeAt.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "datetimeAt",
+          "name": "Update",
+          "receiver_type": "*datetimeAtTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "entity"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Update",
+        "label": "Update(entity interface{}) (r domain.FlowStepResult)",
+        "names": "Update(entity) r",
+        "types": "Update(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/datetimeAt.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "datetimeAt",
+          "name": "Update",
+          "receiver_type": "*datetimeAtTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "entity"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/debug": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "debug",
+      "label": "Debug Module",
+      "description": "Handles debug operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Log",
+        "label": "Log() (r domain.FlowStepResult)",
+        "names": "Log() r",
+        "types": "Log() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/debug.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "debug",
+          "name": "Log",
+          "receiver_type": "*debugTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Query",
+        "label": "Query() (r domain.FlowStepResult)",
+        "names": "Query() r",
+        "types": "Query() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/debug.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "debug",
+          "name": "Query",
+          "receiver_type": "*debugTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Log",
+        "label": "Log() (r domain.FlowStepResult)",
+        "names": "Log() r",
+        "types": "Log() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/debug.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "debug",
+          "name": "Log",
+          "receiver_type": "*debugTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Query",
+        "label": "Query() (r domain.FlowStepResult)",
+        "names": "Query() r",
+        "types": "Query() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/debug.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "debug",
+          "name": "Query",
+          "receiver_type": "*debugTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/entity": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "entity",
+      "label": "Entity Module",
+      "description": "Handles entity operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Entity",
+        "label": "Entity(name string, returnTo string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Entity(name, returnTo, value) r",
+        "types": "Entity(string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/entity.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "entity",
+          "name": "Entity",
+          "receiver_type": "*entityTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "returnTo",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Merge",
+        "label": "Merge(merge map[string]interface{}, exclude map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Merge(merge, exclude) r",
+        "types": "Merge(map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/entity.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "entity",
+          "name": "Merge",
+          "receiver_type": "*entityTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "merge",
+            "exclude"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Merge",
+        "label": "Merge(merge map[string]interface{}, exclude map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Merge(merge, exclude) r",
+        "types": "Merge(map[string]interface{}, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/entity.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "entity",
+          "name": "Merge",
+          "receiver_type": "*entityTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "map[string]interface{}",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "merge",
+            "exclude"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Entity",
+        "label": "Entity(name string, returnTo string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Entity(name, returnTo, value) r",
+        "types": "Entity(string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/entity.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "entity",
+          "name": "Entity",
+          "receiver_type": "*entityTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "returnTo",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/errors": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "errors",
+      "label": "Errors Module",
+      "description": "Handles errors operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "CleanupErrors",
+        "label": "CleanupErrors() (r domain.FlowStepResult)",
+        "names": "CleanupErrors() r",
+        "types": "CleanupErrors() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "CleanupErrors",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CriticalFailure",
+        "label": "CriticalFailure(notify string, escalate bool) (r domain.FlowStepResult)",
+        "names": "CriticalFailure(notify, escalate) r",
+        "types": "CriticalFailure(string, bool) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "CriticalFailure",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "notify",
+            "escalate"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LogError",
+        "label": "LogError(level string, notify string) (r domain.FlowStepResult)",
+        "names": "LogError(level, notify) r",
+        "types": "LogError(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "LogError",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "level",
+            "notify"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "OnAnyError",
+        "label": "OnAnyError(msg string, statusCode int) (r domain.FlowStepResult)",
+        "names": "OnAnyError(msg, statusCode) r",
+        "types": "OnAnyError(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "OnAnyError",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "msg",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LogError",
+        "label": "LogError(level string, notify string) (r domain.FlowStepResult)",
+        "names": "LogError(level, notify) r",
+        "types": "LogError(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "LogError",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "level",
+            "notify"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RetryWithBackoff",
+        "label": "RetryWithBackoff(maxRetries int, backoffMs int) (r domain.FlowStepResult)",
+        "names": "RetryWithBackoff(maxRetries, backoffMs) r",
+        "types": "RetryWithBackoff(int, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "RetryWithBackoff",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "maxRetries",
+            "backoffMs"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CriticalFailure",
+        "label": "CriticalFailure(notify string, escalate bool) (r domain.FlowStepResult)",
+        "names": "CriticalFailure(notify, escalate) r",
+        "types": "CriticalFailure(string, bool) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "CriticalFailure",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "notify",
+            "escalate"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CleanupErrors",
+        "label": "CleanupErrors() (r domain.FlowStepResult)",
+        "names": "CleanupErrors() r",
+        "types": "CleanupErrors() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "CleanupErrors",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "OnAnyError",
+        "label": "OnAnyError(msg string, statusCode int) (r domain.FlowStepResult)",
+        "names": "OnAnyError(msg, statusCode) r",
+        "types": "OnAnyError(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "OnAnyError",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "msg",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RetryWithBackoff",
+        "label": "RetryWithBackoff(maxRetries int, backoffMs int) (r domain.FlowStepResult)",
+        "names": "RetryWithBackoff(maxRetries, backoffMs) r",
+        "types": "RetryWithBackoff(int, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/errors.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "errors",
+          "name": "RetryWithBackoff",
+          "receiver_type": "*errorsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "maxRetries",
+            "backoffMs"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/log": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "log",
+      "label": "Log Module",
+      "description": "Handles log operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Log",
+        "label": "Log(v *ast.Ellipsis) (r domain.FlowStepResult)",
+        "names": "Log(v) r",
+        "types": "Log(*ast.Ellipsis) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/log.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "log",
+          "name": "Log",
+          "receiver_type": "*logTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "*ast.Ellipsis"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "v"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Log",
+        "label": "Log(v *ast.Ellipsis) (r domain.FlowStepResult)",
+        "names": "Log(v) r",
+        "types": "Log(*ast.Ellipsis) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/log.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "log",
+          "name": "Log",
+          "receiver_type": "*logTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "*ast.Ellipsis"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "v"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/orchestration": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "orchestration",
+      "label": "Orchestration Module",
+      "description": "Handles orchestration operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "RunWorkflow",
+        "label": "RunWorkflow(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunWorkflow(p, name) (response, err)",
+        "types": "RunWorkflow(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunWorkflow",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunFeature",
+        "label": "RunFeature(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunFeature(p, name) (response, err)",
+        "types": "RunFeature(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunFeature",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunSolution",
+        "label": "RunSolution(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunSolution(p, name) (response, err)",
+        "types": "RunSolution(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunSolution",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunWorkflowChain",
+        "label": "RunWorkflowChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunWorkflowChain(p, names) (responses, err)",
+        "types": "RunWorkflowChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunWorkflowChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunFeatureChain",
+        "label": "RunFeatureChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunFeatureChain(p, names) (responses, err)",
+        "types": "RunFeatureChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunFeatureChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunSolutionChain",
+        "label": "RunSolutionChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunSolutionChain(p, names) (responses, err)",
+        "types": "RunSolutionChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunSolutionChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunFeature",
+        "label": "RunFeature(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunFeature(p, name) (response, err)",
+        "types": "RunFeature(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunFeature",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunFeatureChain",
+        "label": "RunFeatureChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunFeatureChain(p, names) (responses, err)",
+        "types": "RunFeatureChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunFeatureChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunSolution",
+        "label": "RunSolution(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunSolution(p, name) (response, err)",
+        "types": "RunSolution(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunSolution",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunSolutionChain",
+        "label": "RunSolutionChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunSolutionChain(p, names) (responses, err)",
+        "types": "RunSolutionChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunSolutionChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunWorkflow",
+        "label": "RunWorkflow(p *workflow.WorkerSessionContext, name string) (response map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunWorkflow(p, name) (response, err)",
+        "types": "RunWorkflow(*workflow.WorkerSessionContext, string) (map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunWorkflow",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "name"
+          ],
+          "return_names": [
+            "response",
+            "err"
+          ]
+        }
+      },
+      {
+        "value": "RunWorkflowChain",
+        "label": "RunWorkflowChain(p *workflow.WorkerSessionContext, names []string) (responses []map[string]*workflow.WorkerResponse, err error)",
+        "names": "RunWorkflowChain(p, names) (responses, err)",
+        "types": "RunWorkflowChain(*workflow.WorkerSessionContext, []string) ([]map[string]*workflow.WorkerResponse, error)",
+        "description": "Function with 2 input(s) and 2 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/orchestration.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "orchestration",
+          "name": "RunWorkflowChain",
+          "receiver_type": "*orchestrationTransitions",
+          "num_in": 2,
+          "num_out": 2,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "[]string"
+          ],
+          "return_types": [
+            "[]map[string]*workflow.WorkerResponse",
+            "error"
+          ],
+          "arg_names": [
+            "p",
+            "names"
+          ],
+          "return_names": [
+            "responses",
+            "err"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/pagination": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "pagination",
+      "label": "Pagination Module",
+      "description": "Handles pagination operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "BuildPaginationMeta",
+        "label": "BuildPaginationMeta(offset int, limit int, total interface{}) (r domain.FlowStepResult)",
+        "names": "BuildPaginationMeta(offset, limit, total) r",
+        "types": "BuildPaginationMeta(int, int, interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "BuildPaginationMeta",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "int",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "offset",
+            "limit",
+            "total"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CurrentPageTotal",
+        "label": "CurrentPageTotal(pagination *domain.Pagination, entities []interface{}) (r domain.FlowStepResult)",
+        "names": "CurrentPageTotal(pagination, entities) r",
+        "types": "CurrentPageTotal(*domain.Pagination, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "CurrentPageTotal",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*domain.Pagination",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "pagination",
+            "entities"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "PaginationTotal",
+        "label": "PaginationTotal(pagination *domain.Pagination, total int) (r domain.FlowStepResult)",
+        "names": "PaginationTotal(pagination, total) r",
+        "types": "PaginationTotal(*domain.Pagination, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "PaginationTotal",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*domain.Pagination",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "pagination",
+            "total"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CurrentPageTotal",
+        "label": "CurrentPageTotal(pagination *domain.Pagination, entities []interface{}) (r domain.FlowStepResult)",
+        "names": "CurrentPageTotal(pagination, entities) r",
+        "types": "CurrentPageTotal(*domain.Pagination, []interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "CurrentPageTotal",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*domain.Pagination",
+            "[]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "pagination",
+            "entities"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResolvePageParams",
+        "label": "ResolvePageParams(offsetParam string, limitParam string) (r domain.FlowStepResult)",
+        "names": "ResolvePageParams(offsetParam, limitParam) r",
+        "types": "ResolvePageParams(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "ResolvePageParams",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "offsetParam",
+            "limitParam"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "BuildPaginationMeta",
+        "label": "BuildPaginationMeta(offset int, limit int, total interface{}) (r domain.FlowStepResult)",
+        "names": "BuildPaginationMeta(offset, limit, total) r",
+        "types": "BuildPaginationMeta(int, int, interface{}) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "BuildPaginationMeta",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "int",
+            "int",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "offset",
+            "limit",
+            "total"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "PaginationTotal",
+        "label": "PaginationTotal(pagination *domain.Pagination, total int) (r domain.FlowStepResult)",
+        "names": "PaginationTotal(pagination, total) r",
+        "types": "PaginationTotal(*domain.Pagination, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "PaginationTotal",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*domain.Pagination",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "pagination",
+            "total"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResolvePageParams",
+        "label": "ResolvePageParams(offsetParam string, limitParam string) (r domain.FlowStepResult)",
+        "names": "ResolvePageParams(offsetParam, limitParam) r",
+        "types": "ResolvePageParams(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/pagination.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "pagination",
+          "name": "ResolvePageParams",
+          "receiver_type": "*paginationTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "offsetParam",
+            "limitParam"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/response": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "response",
+      "label": "Response Module",
+      "description": "Handles response operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "End",
+        "label": "End() (r domain.FlowStepResult)",
+        "names": "End() r",
+        "types": "End() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "End",
+          "receiver_type": "*responseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "False",
+        "label": "False(statusCode int) (r domain.FlowStepResult)",
+        "names": "False(statusCode) r",
+        "types": "False(int) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "False",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "End",
+        "label": "End() (r domain.FlowStepResult)",
+        "names": "End() r",
+        "types": "End() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "End",
+          "receiver_type": "*responseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseSuccess",
+        "label": "ResponseSuccess(isSuccess bool) (r domain.FlowStepResult)",
+        "names": "ResponseSuccess(isSuccess) r",
+        "types": "ResponseSuccess(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseSuccess",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "isSuccess"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseLastSuccess",
+        "label": "ResponseLastSuccess() (r domain.FlowStepResult)",
+        "names": "ResponseLastSuccess() r",
+        "types": "ResponseLastSuccess() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseLastSuccess",
+          "receiver_type": "*responseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "True",
+        "label": "True(statusCode int) (r domain.FlowStepResult)",
+        "names": "True(statusCode) r",
+        "types": "True(int) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "True",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "False",
+        "label": "False(statusCode int) (r domain.FlowStepResult)",
+        "names": "False(statusCode) r",
+        "types": "False(int) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "False",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetValue",
+        "label": "SetValue(name string, value string) (r domain.FlowStepResult)",
+        "names": "SetValue(name, value) r",
+        "types": "SetValue(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "SetValue",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Response",
+        "label": "Response(value any, statusCode int) (r domain.FlowStepResult)",
+        "names": "Response(value, statusCode) r",
+        "types": "Response(any, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "Response",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "any",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseError",
+        "label": "ResponseError(message string, code int) (r domain.FlowStepResult)",
+        "names": "ResponseError(message, code) r",
+        "types": "ResponseError(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseError",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "message",
+            "code"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseEntity",
+        "label": "ResponseEntity(property interface{}, statusCode int) (r domain.FlowStepResult)",
+        "names": "ResponseEntity(property, statusCode) r",
+        "types": "ResponseEntity(interface{}, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseEntity",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "property",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseEntities",
+        "label": "ResponseEntities(entities interface{}, statusCode int) (r domain.FlowStepResult)",
+        "names": "ResponseEntities(entities, statusCode) r",
+        "types": "ResponseEntities(interface{}, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseEntities",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "entities",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Response",
+        "label": "Response(value any, statusCode int) (r domain.FlowStepResult)",
+        "names": "Response(value, statusCode) r",
+        "types": "Response(any, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "Response",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "any",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseEntities",
+        "label": "ResponseEntities(entities interface{}, statusCode int) (r domain.FlowStepResult)",
+        "names": "ResponseEntities(entities, statusCode) r",
+        "types": "ResponseEntities(interface{}, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseEntities",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "entities",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseEntity",
+        "label": "ResponseEntity(property interface{}, statusCode int) (r domain.FlowStepResult)",
+        "names": "ResponseEntity(property, statusCode) r",
+        "types": "ResponseEntity(interface{}, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseEntity",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "property",
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseError",
+        "label": "ResponseError(message string, code int) (r domain.FlowStepResult)",
+        "names": "ResponseError(message, code) r",
+        "types": "ResponseError(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseError",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "message",
+            "code"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseLastSuccess",
+        "label": "ResponseLastSuccess() (r domain.FlowStepResult)",
+        "names": "ResponseLastSuccess() r",
+        "types": "ResponseLastSuccess() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseLastSuccess",
+          "receiver_type": "*responseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ResponseSuccess",
+        "label": "ResponseSuccess(isSuccess bool) (r domain.FlowStepResult)",
+        "names": "ResponseSuccess(isSuccess) r",
+        "types": "ResponseSuccess(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "ResponseSuccess",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "isSuccess"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetValue",
+        "label": "SetValue(name string, value string) (r domain.FlowStepResult)",
+        "names": "SetValue(name, value) r",
+        "types": "SetValue(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "SetValue",
+          "receiver_type": "*responseTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "name",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "True",
+        "label": "True(statusCode int) (r domain.FlowStepResult)",
+        "names": "True(statusCode) r",
+        "types": "True(int) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/response.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "response",
+          "name": "True",
+          "receiver_type": "*responseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "statusCode"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "services/common/workflow": {
+    "info": {
+      "go_module": "github.com/kuetix/std-core",
+      "namespace": "services/common",
+      "class": "workflow",
+      "label": "Workflow Module",
+      "description": "Handles workflow operations for services/common service"
+    },
+    "methods": [
+      {
+        "value": "Execute",
+        "label": "Execute() (r domain.FlowStepResult)",
+        "names": "Execute() r",
+        "types": "Execute() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Execute",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Finish",
+        "label": "Finish() (r domain.FlowStepResult)",
+        "names": "Finish() r",
+        "types": "Finish() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Finish",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsContinue",
+        "label": "IsContinue(isQuit bool) (r domain.FlowStepResult)",
+        "names": "IsContinue(isQuit) r",
+        "types": "IsContinue(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "IsContinue",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "isQuit"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Prepare",
+        "label": "Prepare() (r domain.FlowStepResult)",
+        "names": "Prepare() r",
+        "types": "Prepare() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Prepare",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Execute",
+        "label": "Execute() (r domain.FlowStepResult)",
+        "names": "Execute() r",
+        "types": "Execute() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Execute",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Finish",
+        "label": "Finish() (r domain.FlowStepResult)",
+        "names": "Finish() r",
+        "types": "Finish() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Finish",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsContinue",
+        "label": "IsContinue(isQuit bool) (r domain.FlowStepResult)",
+        "names": "IsContinue(isQuit) r",
+        "types": "IsContinue(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "IsContinue",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "isQuit"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Quit",
+        "label": "Quit(value string) (r domain.FlowStepResult)",
+        "names": "Quit(value) r",
+        "types": "Quit(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Quit",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Prepare",
+        "label": "Prepare() (r domain.FlowStepResult)",
+        "names": "Prepare() r",
+        "types": "Prepare() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Prepare",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Quit",
+        "label": "Quit(value string) (r domain.FlowStepResult)",
+        "names": "Quit(value) r",
+        "types": "Quit(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-core",
+          "file_path": "modules/services/common/transitions/workflow.go",
+          "module_path": "modules",
+          "namespace": "services/common",
+          "class": "workflow",
+          "name": "Quit",
+          "receiver_type": "*workflowTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

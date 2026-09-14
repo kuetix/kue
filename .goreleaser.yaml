@@ -1,0 +1,69 @@
+version: 2
+
+project_name: kue
+
+# kue resolves the engine + std packages through ../ replace directives and
+# commits a vendor/ tree (some of those siblings aren't published anywhere
+# else), so every build here runs in vendor mode and needs no network or
+# sibling checkouts — see .github/workflows/ci.yml for the same convention.
+env:
+  - GOFLAGS=-mod=vendor
+
+before:
+  hooks:
+    - go mod verify
+
+builds:
+  - id: kue
+    main: ./cmd/cli
+    binary: kue
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    # main.Version / main.BuildTime, same vars the Makefile injects for a
+    # local `make build`.
+    ldflags:
+      - -s -w
+      - -X 'main.Version={{.Version}}'
+      - -X 'main.BuildTime={{.Date}}'
+
+archives:
+  - id: kue
+    ids: [kue]
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files:
+      - README.md
+      - LICENSE
+      - modules/MODULES.md
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+
+release:
+  header: |
+    Bundled modules (see [MODULES.md](https://github.com/kuetix/kue/blob/main/modules/MODULES.md)):
+    ai, auth, cli, core, decision, http, jsondb, mysql, push, redis, social-oauth
+
+    Install:
+    ```
+    curl -fsSL https://raw.githubusercontent.com/kuetix/kue/main/scripts/install.sh | sh
+    ```

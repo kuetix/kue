@@ -7,6 +7,9 @@
 bin/
 runtime/bin/
 
+# GoReleaser output (goreleaser build/release --snapshot, make build-snapshot)
+/dist/
+
 # Test binary, built with 'go test -c'
 *.test
 
@@ -42,7 +45,6 @@ runtime/log/
 # Local testing / scratch
 /tmp/
 .playwright-mcp/
-vendor/
 
 # OS
 .DS_Store

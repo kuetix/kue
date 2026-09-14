@@ -1,0 +1,912 @@
+{
+  "decision/cond": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "cond",
+      "label": "Cond Module",
+      "description": "Handles cond operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Bool",
+        "label": "Bool(value bool) (r domain.FlowStepResult)",
+        "names": "Bool(value) r",
+        "types": "Bool(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Bool",
+          "receiver_type": "*condTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Expr",
+        "label": "Expr(expression string, facts map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Expr(expression, facts) r",
+        "types": "Expr(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Expr",
+          "receiver_type": "*condTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "expression",
+            "facts"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "In",
+        "label": "In(value string, set []interface{}, negate bool) (r domain.FlowStepResult)",
+        "names": "In(value, set, negate) r",
+        "types": "In(string, []interface{}, bool) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "In",
+          "receiver_type": "*condTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "set",
+            "negate"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Number",
+        "label": "Number(value float64, op string, threshold float64, upper float64) (r domain.FlowStepResult)",
+        "names": "Number(value, op, threshold, upper) r",
+        "types": "Number(float64, string, float64, float64) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Number",
+          "receiver_type": "*condTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "float64",
+            "string",
+            "float64",
+            "float64"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op",
+            "threshold",
+            "upper"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Text",
+        "label": "Text(value string, op string, other string) (r domain.FlowStepResult)",
+        "names": "Text(value, op, other) r",
+        "types": "Text(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Text",
+          "receiver_type": "*condTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op",
+            "other"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "In",
+        "label": "In(value string, set []interface{}, negate bool) (r domain.FlowStepResult)",
+        "names": "In(value, set, negate) r",
+        "types": "In(string, []interface{}, bool) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "In",
+          "receiver_type": "*condTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "[]interface{}",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "set",
+            "negate"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Bool",
+        "label": "Bool(value bool) (r domain.FlowStepResult)",
+        "names": "Bool(value) r",
+        "types": "Bool(bool) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Bool",
+          "receiver_type": "*condTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Expr",
+        "label": "Expr(expression string, facts map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Expr(expression, facts) r",
+        "types": "Expr(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Expr",
+          "receiver_type": "*condTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "expression",
+            "facts"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Number",
+        "label": "Number(value float64, op string, threshold float64, upper float64) (r domain.FlowStepResult)",
+        "names": "Number(value, op, threshold, upper) r",
+        "types": "Number(float64, string, float64, float64) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Number",
+          "receiver_type": "*condTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "float64",
+            "string",
+            "float64",
+            "float64"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op",
+            "threshold",
+            "upper"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Text",
+        "label": "Text(value string, op string, other string) (r domain.FlowStepResult)",
+        "names": "Text(value, op, other) r",
+        "types": "Text(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/cond.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "cond",
+          "name": "Text",
+          "receiver_type": "*condTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value",
+            "op",
+            "other"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "decision/engine": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "engine",
+      "label": "Engine Module",
+      "description": "Handles engine operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Decide",
+        "label": "Decide(p *workflow.WorkerSessionContext, ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Decide(p, ruleset) r",
+        "types": "Decide(*workflow.WorkerSessionContext, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/engine.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "engine",
+          "name": "Decide",
+          "receiver_type": "*engineTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Explain",
+        "label": "Explain(trace []interface{}, outcome string) (r domain.FlowStepResult)",
+        "names": "Explain(trace, outcome) r",
+        "types": "Explain([]interface{}, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/engine.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "engine",
+          "name": "Explain",
+          "receiver_type": "*engineTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "[]interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "trace",
+            "outcome"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Decide",
+        "label": "Decide(p *workflow.WorkerSessionContext, ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Decide(p, ruleset) r",
+        "types": "Decide(*workflow.WorkerSessionContext, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/engine.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "engine",
+          "name": "Decide",
+          "receiver_type": "*engineTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Explain",
+        "label": "Explain(trace []interface{}, outcome string) (r domain.FlowStepResult)",
+        "names": "Explain(trace, outcome) r",
+        "types": "Explain([]interface{}, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/engine.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "engine",
+          "name": "Explain",
+          "receiver_type": "*engineTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "[]interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "trace",
+            "outcome"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "decision/facts": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "facts",
+      "label": "Facts Module",
+      "description": "Handles facts operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Prepare",
+        "label": "Prepare(ruleset interface{}, facts interface{}) (r domain.FlowStepResult)",
+        "names": "Prepare(ruleset, facts) r",
+        "types": "Prepare(interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/facts.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "facts",
+          "name": "Prepare",
+          "receiver_type": "*factsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset",
+            "facts"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Prepare",
+        "label": "Prepare(ruleset interface{}, facts interface{}) (r domain.FlowStepResult)",
+        "names": "Prepare(ruleset, facts) r",
+        "types": "Prepare(interface{}, interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/facts.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "facts",
+          "name": "Prepare",
+          "receiver_type": "*factsTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset",
+            "facts"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "decision/outcome": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "outcome",
+      "label": "Outcome Module",
+      "description": "Handles outcome operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Resolve",
+        "label": "Resolve(ruleset interface{}, outcome string) (r domain.FlowStepResult)",
+        "names": "Resolve(ruleset, outcome) r",
+        "types": "Resolve(interface{}, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/outcome.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "outcome",
+          "name": "Resolve",
+          "receiver_type": "*outcomeTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset",
+            "outcome"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Resolve",
+        "label": "Resolve(ruleset interface{}, outcome string) (r domain.FlowStepResult)",
+        "names": "Resolve(ruleset, outcome) r",
+        "types": "Resolve(interface{}, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/outcome.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "outcome",
+          "name": "Resolve",
+          "receiver_type": "*outcomeTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset",
+            "outcome"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "decision/rule": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "rule",
+      "label": "Rule Module",
+      "description": "Handles rule operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Fire",
+        "label": "Fire(p *workflow.WorkerSessionContext, id string, outcome string, reason string) (r domain.FlowStepResult)",
+        "names": "Fire(p, id, outcome, reason) r",
+        "types": "Fire(*workflow.WorkerSessionContext, string, string, string) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/rule.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "rule",
+          "name": "Fire",
+          "receiver_type": "*ruleTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "id",
+            "outcome",
+            "reason"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Fire",
+        "label": "Fire(p *workflow.WorkerSessionContext, id string, outcome string, reason string) (r domain.FlowStepResult)",
+        "names": "Fire(p, id, outcome, reason) r",
+        "types": "Fire(*workflow.WorkerSessionContext, string, string, string) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/rule.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "rule",
+          "name": "Fire",
+          "receiver_type": "*ruleTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "id",
+            "outcome",
+            "reason"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Skip",
+        "label": "Skip(p *workflow.WorkerSessionContext, id string) (r domain.FlowStepResult)",
+        "names": "Skip(p, id) r",
+        "types": "Skip(*workflow.WorkerSessionContext, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/rule.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "rule",
+          "name": "Skip",
+          "receiver_type": "*ruleTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Skip",
+        "label": "Skip(p *workflow.WorkerSessionContext, id string) (r domain.FlowStepResult)",
+        "names": "Skip(p, id) r",
+        "types": "Skip(*workflow.WorkerSessionContext, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/rule.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "rule",
+          "name": "Skip",
+          "receiver_type": "*ruleTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "*workflow.WorkerSessionContext",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "p",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "decision/ruleset": {
+    "info": {
+      "go_module": "github.com/kuetix/std-decision",
+      "namespace": "decision",
+      "class": "ruleset",
+      "label": "Ruleset Module",
+      "description": "Handles ruleset operations for decision service"
+    },
+    "methods": [
+      {
+        "value": "Load",
+        "label": "Load(ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Load(ruleset) r",
+        "types": "Load(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/ruleset.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "ruleset",
+          "name": "Load",
+          "receiver_type": "*rulesetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Load",
+        "label": "Load(ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Load(ruleset) r",
+        "types": "Load(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/ruleset.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "ruleset",
+          "name": "Load",
+          "receiver_type": "*rulesetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Validate",
+        "label": "Validate(ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Validate(ruleset) r",
+        "types": "Validate(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/ruleset.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "ruleset",
+          "name": "Validate",
+          "receiver_type": "*rulesetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Validate",
+        "label": "Validate(ruleset interface{}) (r domain.FlowStepResult)",
+        "names": "Validate(ruleset) r",
+        "types": "Validate(interface{}) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-decision",
+          "file_path": "modules/decision/transitions/ruleset.go",
+          "module_path": "modules",
+          "namespace": "decision",
+          "class": "ruleset",
+          "name": "Validate",
+          "receiver_type": "*rulesetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "ruleset"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+# The std library bundled into the kue binary.
+#
+# This is the single editable source of truth: `modules/modules.go` (the
+# actual Go wiring the compiler sees) and `modules/MODULES.md` (the
+# human-readable table docs/release-notes/the landing page read from) are
+# both generated from this file. Edit here, then regenerate:
+#
+#   make generate-modules       # or: go run ./cmd/gen-modules
+#
+# Fields:
+#   name          short id, also the release-notes/landing-page label
+#   go_module     the Go module path (also what `kue modules` groups by)
+#   import_path   package to import (omit for a module with no Enable() of
+#                 its own, e.g. one bundled transitively by another)
+#   alias         Go import alias used in the generated file
+#   bundled_via   set instead of import_path/alias when this module rides in
+#                 on another one's Enable() call rather than having its own
+#   enabled       false skips this module's import + Enable() call on the
+#                 next regenerate. NOTE: this does not remove it from
+#                 go.mod/vendor or shrink the binary via build tags — it
+#                 only stops it from being wired up. Full exclusion is a
+#                 possible future step, not implemented here.
+#   description   one line, used in MODULES.md and release notes
+#   note          optional aside, emitted as a trailing comment in
+#                 modules.go next to this module's Enable() call
+modules:
+  - name: cli
+    go_module: github.com/kuetix/std-cli
+    import_path: github.com/kuetix/std-cli/modules
+    alias: StdCliModule
+    enabled: true
+    description: CLI scaffolding, help text, and project-composition workflows
+    note: also pulls in std-core (services/common/*)
+
+  - name: core
+    go_module: github.com/kuetix/std-core
+    bundled_via: cli
+    enabled: true
+    description: Common services (services/common/*)
+
+  - name: auth
+    go_module: github.com/kuetix/std-auth
+    import_path: github.com/kuetix/std-auth/modules
+    alias: StdAuthModule
+    enabled: true
+    description: Password hashing, JWTs, and auth workflow transitions
+
+  - name: http
+    go_module: github.com/kuetix/std-http
+    import_path: github.com/kuetix/std-http/modules
+    alias: StdHttpModule
+    enabled: true
+    description: Outbound HTTP call transitions
+
+  - name: ai
+    go_module: github.com/kuetix/std-ai
+    import_path: github.com/kuetix/std-ai/modules
+    alias: StdAiModule
+    enabled: true
+    description: AI agent, prompt, and external-tool transitions
+
+  - name: redis
+    go_module: github.com/kuetix/std-redis
+    import_path: github.com/kuetix/std-redis/modules
+    alias: StdRedisModule
+    enabled: true
+    description: Redis-backed store transitions
+
+  - name: jsondb
+    go_module: github.com/kuetix/std-jsondb
+    import_path: github.com/kuetix/std-jsondb/modules
+    alias: StdJsondbModule
+    enabled: true
+    description: File-backed JSON document store transitions
+
+  - name: mysql
+    go_module: github.com/kuetix/std-mysql
+    import_path: github.com/kuetix/std-mysql/modules
+    alias: StdMysqlModule
+    enabled: true
+    description: MySQL-backed store transitions
+
+  - name: decision
+    go_module: github.com/kuetix/std-decision
+    import_path: github.com/kuetix/std-decision/modules
+    alias: StdDecisionModule
+    enabled: true
+    description: Rule and condition evaluation transitions
+
+  - name: push
+    go_module: github.com/kuetix/std-push
+    import_path: github.com/kuetix/std-push/modules
+    alias: StdPushModule
+    enabled: true
+    description: Push notification delivery transitions
+    note: builds on std-core + std-decision
+
+  - name: social-oauth
+    go_module: github.com/kuetix/social-oauth
+    import_path: github.com/kuetix/social-oauth/modules
+    alias: SocialOauthModule
+    enabled: true
+    description: Social sign-in (OAuth authorization code) transitions

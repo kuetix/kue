@@ -19,6 +19,7 @@ require (
 	github.com/kuetix/std-push v0.1.0
 	github.com/kuetix/std-redis v0.0.0-20260909213817-ab959ec8390b
 	github.com/schollz/progressbar/v3 v3.19.1
+	go.yaml.in/yaml/v3 v3.0.5
 	golang.org/x/term v0.46.0
 	golang.org/x/text v0.42.0
 )
@@ -52,7 +53,6 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
-	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/sys v0.48.0 // indirect
 	gopkg.in/ini.v1 v1.67.3 // indirect

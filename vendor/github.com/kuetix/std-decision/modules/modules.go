@@ -1,0 +1,14 @@
+package modules
+
+import (
+	di "github.com/kuetix/container"
+	StdCoreModule "github.com/kuetix/std-core/modules"
+)
+
+func init() {
+	di.Boot()
+}
+
+func Enable() {
+	StdCoreModule.Enable()
+}

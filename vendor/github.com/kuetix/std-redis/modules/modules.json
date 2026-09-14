@@ -1,0 +1,2410 @@
+{
+  "redis/database": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "database",
+      "label": "Database Module",
+      "description": "Handles database operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "Ping",
+        "label": "Ping() (r domain.FlowStepResult)",
+        "names": "Ping() r",
+        "types": "Ping() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Ping",
+        "label": "Ping() (r domain.FlowStepResult)",
+        "names": "Ping() r",
+        "types": "Ping() domain.FlowStepResult",
+        "description": "Function with 0 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 0,
+          "num_out": 1,
+          "arg_types": null,
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": null,
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/hash": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "hash",
+      "label": "Hash Module",
+      "description": "Handles hash operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "HDel",
+        "label": "HDel(key string, field string) (r domain.FlowStepResult)",
+        "names": "HDel(key, field) r",
+        "types": "HDel(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HDel",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HExists",
+        "label": "HExists(key string, field string) (r domain.FlowStepResult)",
+        "names": "HExists(key, field) r",
+        "types": "HExists(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HExists",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HGet",
+        "label": "HGet(key string, field string) (r domain.FlowStepResult)",
+        "names": "HGet(key, field) r",
+        "types": "HGet(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HGet",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HGetAll",
+        "label": "HGetAll(key string) (r domain.FlowStepResult)",
+        "names": "HGetAll(key) r",
+        "types": "HGetAll(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HGetAll",
+          "receiver_type": "*hashTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HSet",
+        "label": "HSet(key string, field string, value string) (r domain.FlowStepResult)",
+        "names": "HSet(key, field, value) r",
+        "types": "HSet(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HSet",
+          "receiver_type": "*hashTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HSet",
+        "label": "HSet(key string, field string, value string) (r domain.FlowStepResult)",
+        "names": "HSet(key, field, value) r",
+        "types": "HSet(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HSet",
+          "receiver_type": "*hashTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HGet",
+        "label": "HGet(key string, field string) (r domain.FlowStepResult)",
+        "names": "HGet(key, field) r",
+        "types": "HGet(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HGet",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HGetAll",
+        "label": "HGetAll(key string) (r domain.FlowStepResult)",
+        "names": "HGetAll(key) r",
+        "types": "HGetAll(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HGetAll",
+          "receiver_type": "*hashTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HDel",
+        "label": "HDel(key string, field string) (r domain.FlowStepResult)",
+        "names": "HDel(key, field) r",
+        "types": "HDel(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HDel",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "HExists",
+        "label": "HExists(key string, field string) (r domain.FlowStepResult)",
+        "names": "HExists(key, field) r",
+        "types": "HExists(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/hash.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "hash",
+          "name": "HExists",
+          "receiver_type": "*hashTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "field"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/json": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "json",
+      "label": "Json Module",
+      "description": "Handles json operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "JSONDel",
+        "label": "JSONDel(key string) (r domain.FlowStepResult)",
+        "names": "JSONDel(key) r",
+        "types": "JSONDel(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONDel",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONGet",
+        "label": "JSONGet(key string) (r domain.FlowStepResult)",
+        "names": "JSONGet(key) r",
+        "types": "JSONGet(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONGet",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONSet",
+        "label": "JSONSet(key string, value any) (r domain.FlowStepResult)",
+        "names": "JSONSet(key, value) r",
+        "types": "JSONSet(string, any) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONSet",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONSetPath",
+        "label": "JSONSetPath(key string, path string, value any) (r domain.FlowStepResult)",
+        "names": "JSONSetPath(key, path, value) r",
+        "types": "JSONSetPath(string, string, any) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONSetPath",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "path",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONSet",
+        "label": "JSONSet(key string, value any) (r domain.FlowStepResult)",
+        "names": "JSONSet(key, value) r",
+        "types": "JSONSet(string, any) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONSet",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONGet",
+        "label": "JSONGet(key string) (r domain.FlowStepResult)",
+        "names": "JSONGet(key) r",
+        "types": "JSONGet(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONGet",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONSetPath",
+        "label": "JSONSetPath(key string, path string, value any) (r domain.FlowStepResult)",
+        "names": "JSONSetPath(key, path, value) r",
+        "types": "JSONSetPath(string, string, any) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONSetPath",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "path",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "JSONDel",
+        "label": "JSONDel(key string) (r domain.FlowStepResult)",
+        "names": "JSONDel(key) r",
+        "types": "JSONDel(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/json.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "json",
+          "name": "JSONDel",
+          "receiver_type": "*jsonTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/keys": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "keys",
+      "label": "Keys Module",
+      "description": "Handles keys operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "Build",
+        "label": "Build(prefix string, id string) (r domain.FlowStepResult)",
+        "names": "Build(prefix, id) r",
+        "types": "Build(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/keys.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "keys",
+          "name": "Build",
+          "receiver_type": "*keysTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prefix",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Build",
+        "label": "Build(prefix string, id string) (r domain.FlowStepResult)",
+        "names": "Build(prefix, id) r",
+        "types": "Build(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/keys.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "keys",
+          "name": "Build",
+          "receiver_type": "*keysTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prefix",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/list": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "list",
+      "label": "List Module",
+      "description": "Handles list operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "LLen",
+        "label": "LLen(key string) (r domain.FlowStepResult)",
+        "names": "LLen(key) r",
+        "types": "LLen(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LLen",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LPop",
+        "label": "LPop(key string) (r domain.FlowStepResult)",
+        "names": "LPop(key) r",
+        "types": "LPop(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LPop",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LPush",
+        "label": "LPush(key string, value string) (r domain.FlowStepResult)",
+        "names": "LPush(key, value) r",
+        "types": "LPush(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LPush",
+          "receiver_type": "*listTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LRange",
+        "label": "LRange(key string, start int, stop int) (r domain.FlowStepResult)",
+        "names": "LRange(key, start, stop) r",
+        "types": "LRange(string, int, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LRange",
+          "receiver_type": "*listTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "start",
+            "stop"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LPush",
+        "label": "LPush(key string, value string) (r domain.FlowStepResult)",
+        "names": "LPush(key, value) r",
+        "types": "LPush(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LPush",
+          "receiver_type": "*listTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RPush",
+        "label": "RPush(key string, value string) (r domain.FlowStepResult)",
+        "names": "RPush(key, value) r",
+        "types": "RPush(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "RPush",
+          "receiver_type": "*listTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LPop",
+        "label": "LPop(key string) (r domain.FlowStepResult)",
+        "names": "LPop(key) r",
+        "types": "LPop(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LPop",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RPop",
+        "label": "RPop(key string) (r domain.FlowStepResult)",
+        "names": "RPop(key) r",
+        "types": "RPop(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "RPop",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LRange",
+        "label": "LRange(key string, start int, stop int) (r domain.FlowStepResult)",
+        "names": "LRange(key, start, stop) r",
+        "types": "LRange(string, int, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LRange",
+          "receiver_type": "*listTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "start",
+            "stop"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LLen",
+        "label": "LLen(key string) (r domain.FlowStepResult)",
+        "names": "LLen(key) r",
+        "types": "LLen(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "LLen",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RPop",
+        "label": "RPop(key string) (r domain.FlowStepResult)",
+        "names": "RPop(key) r",
+        "types": "RPop(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "RPop",
+          "receiver_type": "*listTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RPush",
+        "label": "RPush(key string, value string) (r domain.FlowStepResult)",
+        "names": "RPush(key, value) r",
+        "types": "RPush(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/list.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "list",
+          "name": "RPush",
+          "receiver_type": "*listTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/set": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "set",
+      "label": "Set Module",
+      "description": "Handles set operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "SAdd",
+        "label": "SAdd(key string, member string) (r domain.FlowStepResult)",
+        "names": "SAdd(key, member) r",
+        "types": "SAdd(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SAdd",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SRem",
+        "label": "SRem(key string, member string) (r domain.FlowStepResult)",
+        "names": "SRem(key, member) r",
+        "types": "SRem(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SRem",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SMembers",
+        "label": "SMembers(key string) (r domain.FlowStepResult)",
+        "names": "SMembers(key) r",
+        "types": "SMembers(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SMembers",
+          "receiver_type": "*setTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SIsMember",
+        "label": "SIsMember(key string, member string) (r domain.FlowStepResult)",
+        "names": "SIsMember(key, member) r",
+        "types": "SIsMember(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SIsMember",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SCard",
+        "label": "SCard(key string) (r domain.FlowStepResult)",
+        "names": "SCard(key) r",
+        "types": "SCard(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SCard",
+          "receiver_type": "*setTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SAdd",
+        "label": "SAdd(key string, member string) (r domain.FlowStepResult)",
+        "names": "SAdd(key, member) r",
+        "types": "SAdd(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SAdd",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SCard",
+        "label": "SCard(key string) (r domain.FlowStepResult)",
+        "names": "SCard(key) r",
+        "types": "SCard(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SCard",
+          "receiver_type": "*setTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SIsMember",
+        "label": "SIsMember(key string, member string) (r domain.FlowStepResult)",
+        "names": "SIsMember(key, member) r",
+        "types": "SIsMember(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SIsMember",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SMembers",
+        "label": "SMembers(key string) (r domain.FlowStepResult)",
+        "names": "SMembers(key) r",
+        "types": "SMembers(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SMembers",
+          "receiver_type": "*setTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SRem",
+        "label": "SRem(key string, member string) (r domain.FlowStepResult)",
+        "names": "SRem(key, member) r",
+        "types": "SRem(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/set.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "set",
+          "name": "SRem",
+          "receiver_type": "*setTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/sortedset": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "sortedset",
+      "label": "Sortedset Module",
+      "description": "Handles sortedset operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "LexPrefixBounds",
+        "label": "LexPrefixBounds(prefix string) (r domain.FlowStepResult)",
+        "names": "LexPrefixBounds(prefix) r",
+        "types": "LexPrefixBounds(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "LexPrefixBounds",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prefix"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZAdd",
+        "label": "ZAdd(key string, member string, score float64) (r domain.FlowStepResult)",
+        "names": "ZAdd(key, member, score) r",
+        "types": "ZAdd(string, string, float64) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZAdd",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "float64"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member",
+            "score"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRem",
+        "label": "ZRem(key string, member string) (r domain.FlowStepResult)",
+        "names": "ZRem(key, member) r",
+        "types": "ZRem(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRem",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZScore",
+        "label": "ZScore(key string, member string) (r domain.FlowStepResult)",
+        "names": "ZScore(key, member) r",
+        "types": "ZScore(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZScore",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRange",
+        "label": "ZRange(key string, start int, stop int) (r domain.FlowStepResult)",
+        "names": "ZRange(key, start, stop) r",
+        "types": "ZRange(string, int, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRange",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "start",
+            "stop"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRangeByLex",
+        "label": "ZRangeByLex(key string, min string, max string) (r domain.FlowStepResult)",
+        "names": "ZRangeByLex(key, min, max) r",
+        "types": "ZRangeByLex(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRangeByLex",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "min",
+            "max"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "LexPrefixBounds",
+        "label": "LexPrefixBounds(prefix string) (r domain.FlowStepResult)",
+        "names": "LexPrefixBounds(prefix) r",
+        "types": "LexPrefixBounds(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "LexPrefixBounds",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "prefix"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZAdd",
+        "label": "ZAdd(key string, member string, score float64) (r domain.FlowStepResult)",
+        "names": "ZAdd(key, member, score) r",
+        "types": "ZAdd(string, string, float64) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZAdd",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "float64"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member",
+            "score"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRange",
+        "label": "ZRange(key string, start int, stop int) (r domain.FlowStepResult)",
+        "names": "ZRange(key, start, stop) r",
+        "types": "ZRange(string, int, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRange",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "start",
+            "stop"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRangeByLex",
+        "label": "ZRangeByLex(key string, min string, max string) (r domain.FlowStepResult)",
+        "names": "ZRangeByLex(key, min, max) r",
+        "types": "ZRangeByLex(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRangeByLex",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "min",
+            "max"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZRem",
+        "label": "ZRem(key string, member string) (r domain.FlowStepResult)",
+        "names": "ZRem(key, member) r",
+        "types": "ZRem(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZRem",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "ZScore",
+        "label": "ZScore(key string, member string) (r domain.FlowStepResult)",
+        "names": "ZScore(key, member) r",
+        "types": "ZScore(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/sortedset.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "sortedset",
+          "name": "ZScore",
+          "receiver_type": "*sortedsetTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "member"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "redis/string": {
+    "info": {
+      "go_module": "github.com/kuetix/std-redis",
+      "namespace": "redis",
+      "class": "string",
+      "label": "String Module",
+      "description": "Handles string operations for redis service"
+    },
+    "methods": [
+      {
+        "value": "Decr",
+        "label": "Decr(key string) (r domain.FlowStepResult)",
+        "names": "Decr(key) r",
+        "types": "Decr(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Decr",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Del",
+        "label": "Del(key string) (r domain.FlowStepResult)",
+        "names": "Del(key) r",
+        "types": "Del(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Del",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exists",
+        "label": "Exists(key string) (r domain.FlowStepResult)",
+        "names": "Exists(key) r",
+        "types": "Exists(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Exists",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Expire",
+        "label": "Expire(key string, ttlSeconds int) (r domain.FlowStepResult)",
+        "names": "Expire(key, ttlSeconds) r",
+        "types": "Expire(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Expire",
+          "receiver_type": "*stringTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "ttlSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(key string) (r domain.FlowStepResult)",
+        "names": "Get(key) r",
+        "types": "Get(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Get",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetDel",
+        "label": "GetDel(key string) (r domain.FlowStepResult)",
+        "names": "GetDel(key) r",
+        "types": "GetDel(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "GetDel",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Incr",
+        "label": "Incr(key string) (r domain.FlowStepResult)",
+        "names": "Incr(key) r",
+        "types": "Incr(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Incr",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(key string, value string, ttlSeconds int) (r domain.FlowStepResult)",
+        "names": "Set(key, value, ttlSeconds) r",
+        "types": "Set(string, string, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Set",
+          "receiver_type": "*stringTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value",
+            "ttlSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(key string) (r domain.FlowStepResult)",
+        "names": "Get(key) r",
+        "types": "Get(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Get",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetDel",
+        "label": "GetDel(key string) (r domain.FlowStepResult)",
+        "names": "GetDel(key) r",
+        "types": "GetDel(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "GetDel",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Del",
+        "label": "Del(key string) (r domain.FlowStepResult)",
+        "names": "Del(key) r",
+        "types": "Del(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Del",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exists",
+        "label": "Exists(key string) (r domain.FlowStepResult)",
+        "names": "Exists(key) r",
+        "types": "Exists(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Exists",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Incr",
+        "label": "Incr(key string) (r domain.FlowStepResult)",
+        "names": "Incr(key) r",
+        "types": "Incr(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Incr",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Decr",
+        "label": "Decr(key string) (r domain.FlowStepResult)",
+        "names": "Decr(key) r",
+        "types": "Decr(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Decr",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Expire",
+        "label": "Expire(key string, ttlSeconds int) (r domain.FlowStepResult)",
+        "names": "Expire(key, ttlSeconds) r",
+        "types": "Expire(string, int) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Expire",
+          "receiver_type": "*stringTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "ttlSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "TTL",
+        "label": "TTL(key string) (r domain.FlowStepResult)",
+        "names": "TTL(key) r",
+        "types": "TTL(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "TTL",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(key string, value string, ttlSeconds int) (r domain.FlowStepResult)",
+        "names": "Set(key, value, ttlSeconds) r",
+        "types": "Set(string, string, int) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "Set",
+          "receiver_type": "*stringTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "int"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key",
+            "value",
+            "ttlSeconds"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "TTL",
+        "label": "TTL(key string) (r domain.FlowStepResult)",
+        "names": "TTL(key) r",
+        "types": "TTL(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-redis",
+          "file_path": "modules/redis/transitions/string.go",
+          "module_path": "modules",
+          "namespace": "redis",
+          "class": "string",
+          "name": "TTL",
+          "receiver_type": "*stringTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "key"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "oauth/oauth": {
+    "info": {
+      "go_module": "github.com/kuetix/social-oauth",
+      "namespace": "oauth",
+      "class": "oauth",
+      "label": "Oauth Module",
+      "description": "Handles oauth operations for oauth service"
+    },
+    "methods": [
+      {
+        "value": "BuildAuthorizeURL",
+        "label": "BuildAuthorizeURL(provider string, redirectURIOverride string) (r domain.FlowStepResult)",
+        "names": "BuildAuthorizeURL(provider, redirectURIOverride) r",
+        "types": "BuildAuthorizeURL(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/social-oauth",
+          "file_path": "modules/oauth/transitions/oauth.go",
+          "module_path": "modules",
+          "namespace": "oauth",
+          "class": "oauth",
+          "name": "BuildAuthorizeURL",
+          "receiver_type": "*oauthTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "redirectURIOverride"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CompleteExchange",
+        "label": "CompleteExchange(provider string, code string, redirectURIOverride string) (r domain.FlowStepResult)",
+        "names": "CompleteExchange(provider, code, redirectURIOverride) r",
+        "types": "CompleteExchange(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/social-oauth",
+          "file_path": "modules/oauth/transitions/oauth.go",
+          "module_path": "modules",
+          "namespace": "oauth",
+          "class": "oauth",
+          "name": "CompleteExchange",
+          "receiver_type": "*oauthTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "code",
+            "redirectURIOverride"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "BuildAuthorizeURL",
+        "label": "BuildAuthorizeURL(provider string, redirectURIOverride string) (r domain.FlowStepResult)",
+        "names": "BuildAuthorizeURL(provider, redirectURIOverride) r",
+        "types": "BuildAuthorizeURL(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/social-oauth",
+          "file_path": "modules/oauth/transitions/oauth.go",
+          "module_path": "modules",
+          "namespace": "oauth",
+          "class": "oauth",
+          "name": "BuildAuthorizeURL",
+          "receiver_type": "*oauthTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "redirectURIOverride"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "CompleteExchange",
+        "label": "CompleteExchange(provider string, code string, redirectURIOverride string) (r domain.FlowStepResult)",
+        "names": "CompleteExchange(provider, code, redirectURIOverride) r",
+        "types": "CompleteExchange(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/social-oauth",
+          "file_path": "modules/oauth/transitions/oauth.go",
+          "module_path": "modules",
+          "namespace": "oauth",
+          "class": "oauth",
+          "name": "CompleteExchange",
+          "receiver_type": "*oauthTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "provider",
+            "code",
+            "redirectURIOverride"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1002 @@
+{
+  "jsondb/collection": {
+    "info": {
+      "go_module": "github.com/kuetix/std-jsondb",
+      "namespace": "jsondb",
+      "class": "collection",
+      "label": "Collection Module",
+      "description": "Handles collection operations for jsondb service"
+    },
+    "methods": [
+      {
+        "value": "Clear",
+        "label": "Clear(path string, collection string) (r domain.FlowStepResult)",
+        "names": "Clear(path, collection) r",
+        "types": "Clear(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "Clear",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetAll",
+        "label": "GetAll(path string, collection string) (r domain.FlowStepResult)",
+        "names": "GetAll(path, collection) r",
+        "types": "GetAll(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "GetAll",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Len",
+        "label": "Len(path string, collection string) (r domain.FlowStepResult)",
+        "names": "Len(path, collection) r",
+        "types": "Len(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "Len",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetAll",
+        "label": "GetAll(path string, collection string) (r domain.FlowStepResult)",
+        "names": "GetAll(path, collection) r",
+        "types": "GetAll(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "GetAll",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Len",
+        "label": "Len(path string, collection string) (r domain.FlowStepResult)",
+        "names": "Len(path, collection) r",
+        "types": "Len(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "Len",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Clear",
+        "label": "Clear(path string, collection string) (r domain.FlowStepResult)",
+        "names": "Clear(path, collection) r",
+        "types": "Clear(string, string) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/collection.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "collection",
+          "name": "Clear",
+          "receiver_type": "*collectionTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "jsondb/database": {
+    "info": {
+      "go_module": "github.com/kuetix/std-jsondb",
+      "namespace": "jsondb",
+      "class": "database",
+      "label": "Database Module",
+      "description": "Handles database operations for jsondb service"
+    },
+    "methods": [
+      {
+        "value": "Ping",
+        "label": "Ping(path string) (r domain.FlowStepResult)",
+        "names": "Ping(path) r",
+        "types": "Ping(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Ping",
+        "label": "Ping(path string) (r domain.FlowStepResult)",
+        "names": "Ping(path) r",
+        "types": "Ping(string) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/database.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "database",
+          "name": "Ping",
+          "receiver_type": "*databaseTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "jsondb/document": {
+    "info": {
+      "go_module": "github.com/kuetix/std-jsondb",
+      "namespace": "jsondb",
+      "class": "document",
+      "label": "Document Module",
+      "description": "Handles document operations for jsondb service"
+    },
+    "methods": [
+      {
+        "value": "Delete",
+        "label": "Delete(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Delete(path, collection, id) r",
+        "types": "Delete(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Delete",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exists",
+        "label": "Exists(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Exists(path, collection, id) r",
+        "types": "Exists(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Exists",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Get(path, collection, id) r",
+        "types": "Get(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Get",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(path string, collection string, id string, value map[string]interface{}, indexes []string) (r domain.FlowStepResult)",
+        "names": "Set(path, collection, id, value, indexes) r",
+        "types": "Set(string, string, string, map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Set",
+          "receiver_type": "*documentTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value",
+            "indexes"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetRaw",
+        "label": "SetRaw(path string, collection string, id string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "SetRaw(path, collection, id, value) r",
+        "types": "SetRaw(string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "SetRaw",
+          "receiver_type": "*documentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Get",
+        "label": "Get(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Get(path, collection, id) r",
+        "types": "Get(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Get",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Update",
+        "label": "Update(path string, collection string, id string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Update(path, collection, id, value) r",
+        "types": "Update(string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Update",
+          "receiver_type": "*documentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Delete",
+        "label": "Delete(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Delete(path, collection, id) r",
+        "types": "Delete(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Delete",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Exists",
+        "label": "Exists(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "Exists(path, collection, id) r",
+        "types": "Exists(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Exists",
+          "receiver_type": "*documentTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Set",
+        "label": "Set(path string, collection string, id string, value map[string]interface{}, indexes []string) (r domain.FlowStepResult)",
+        "names": "Set(path, collection, id, value, indexes) r",
+        "types": "Set(string, string, string, map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Set",
+          "receiver_type": "*documentTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value",
+            "indexes"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetRaw",
+        "label": "SetRaw(path string, collection string, id string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "SetRaw(path, collection, id, value) r",
+        "types": "SetRaw(string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "SetRaw",
+          "receiver_type": "*documentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Update",
+        "label": "Update(path string, collection string, id string, value map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Update(path, collection, id, value) r",
+        "types": "Update(string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/document.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "document",
+          "name": "Update",
+          "receiver_type": "*documentTransitions",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "jsondb/index": {
+    "info": {
+      "go_module": "github.com/kuetix/std-jsondb",
+      "namespace": "jsondb",
+      "class": "index",
+      "label": "Index Module",
+      "description": "Handles index operations for jsondb service"
+    },
+    "methods": [
+      {
+        "value": "DeleteIndexes",
+        "label": "DeleteIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "DeleteIndexes(path, collection, id) r",
+        "types": "DeleteIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "DeleteIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetIndexes",
+        "label": "GetIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "GetIndexes(path, collection, id) r",
+        "types": "GetIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "GetIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsExistsIndexes",
+        "label": "IsExistsIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "IsExistsIndexes(path, collection, id) r",
+        "types": "IsExistsIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "IsExistsIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetIndex",
+        "label": "SetIndex(path string, collection string, id string, value map[string]interface{}, fields []string) (r domain.FlowStepResult)",
+        "names": "SetIndex(path, collection, id, value, fields) r",
+        "types": "SetIndex(string, string, string, map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "SetIndex",
+          "receiver_type": "*indexTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value",
+            "fields"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "GetIndexes",
+        "label": "GetIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "GetIndexes(path, collection, id) r",
+        "types": "GetIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "GetIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "IsExistsIndexes",
+        "label": "IsExistsIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "IsExistsIndexes(path, collection, id) r",
+        "types": "IsExistsIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "IsExistsIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "DeleteIndexes",
+        "label": "DeleteIndexes(path string, collection string, id string) (r domain.FlowStepResult)",
+        "names": "DeleteIndexes(path, collection, id) r",
+        "types": "DeleteIndexes(string, string, string) domain.FlowStepResult",
+        "description": "Function with 3 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "DeleteIndexes",
+          "receiver_type": "*indexTransitions",
+          "num_in": 3,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "SetIndex",
+        "label": "SetIndex(path string, collection string, id string, value map[string]interface{}, fields []string) (r domain.FlowStepResult)",
+        "names": "SetIndex(path, collection, id, value, fields) r",
+        "types": "SetIndex(string, string, string, map[string]interface{}, []string) domain.FlowStepResult",
+        "description": "Function with 5 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-jsondb",
+          "file_path": "modules/jsondb/transitions/index.go",
+          "module_path": "modules",
+          "namespace": "jsondb",
+          "class": "index",
+          "name": "SetIndex",
+          "receiver_type": "*indexTransitions",
+          "num_in": 5,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "path",
+            "collection",
+            "id",
+            "value",
+            "fields"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}

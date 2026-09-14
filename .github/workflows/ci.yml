@@ -50,6 +50,14 @@ jobs:
             echo "::error::gofmt needed on:"; echo "$out"; exit 1
           fi
 
+      # modules/modules.go and modules/MODULES.md are generated from
+      # modules/modules.yaml (see cmd/gen-modules) — same sync-check shape as
+      # the vendor tree above.
+      - name: Verify generated module list is in sync
+        run: |
+          go run -mod=vendor ./cmd/gen-modules
+          git diff --exit-code -- modules/modules.go modules/MODULES.md
+
       - name: go vet
         run: go vet -mod=vendor ./...
 
@@ -61,3 +69,34 @@ jobs:
 
       - name: go test (e2e)
         run: go test -mod=vendor -tags e2e -count=1 ./tests/e2e/...
+
+  release-pipeline:
+    name: Test the release pipeline (cross-compile + installer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          check-latest: true
+          cache: true
+
+      # Builds every .goreleaser.yaml target (linux/darwin/windows x
+      # amd64/arm64) without publishing — catches a cross-compile break on
+      # every push instead of only when a v* tag is pushed for real.
+      - name: goreleaser build --snapshot (all platforms)
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: build --snapshot --clean
+        env:
+          GOFLAGS: -mod=vendor
+
+      # End-to-end test of scripts/install.sh (the public curl | sh
+      # installer) against a local fake release server — see
+      # tests/install/install_test.sh for what it covers.
+      - name: Test scripts/install.sh
+        run: bash tests/install/install_test.sh

@@ -1,0 +1,479 @@
+{
+  "cli/cli": {
+    "info": {
+      "go_module": "github.com/kuetix/std-cli",
+      "namespace": "cli",
+      "class": "cli",
+      "label": "Cli Module",
+      "description": "Handles cli operations for cli service"
+    },
+    "methods": [
+      {
+        "value": "InitCommand",
+        "label": "InitCommand(command string, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "InitCommand(command, flags) r",
+        "types": "InitCommand(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "InitCommand",
+          "receiver_type": "*cliTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "InitCommand",
+        "label": "InitCommand(command string, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "InitCommand(command, flags) r",
+        "types": "InitCommand(string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 2 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "InitCommand",
+          "receiver_type": "*cliTransitions",
+          "num_in": 2,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "RegisterCommands",
+        "label": "RegisterCommands(modulesPath string, workflowsPath string, version string, buildTime string, defaultCommand string, groups map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RegisterCommands(modulesPath, workflowsPath, version, buildTime, defaultCommand, groups) r",
+        "types": "RegisterCommands(string, string, string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "RegisterCommands",
+          "receiver_type": "*cliTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "modulesPath",
+            "workflowsPath",
+            "version",
+            "buildTime",
+            "defaultCommand",
+            "groups"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "UnregisteredCommand",
+        "label": "UnregisteredCommand(value any) (r domain.FlowStepResult)",
+        "names": "UnregisteredCommand(value) r",
+        "types": "UnregisteredCommand(any) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "UnregisteredCommand",
+          "receiver_type": "*cliTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "WorkflowExecutor",
+        "label": "WorkflowExecutor(command string, workflowPath string, config map[string]interface{}, args []string, verbose bool, debug bool, quiet bool) (result domain.FlowStepResult)",
+        "names": "WorkflowExecutor(command, workflowPath, config, args, verbose, debug, quiet) result",
+        "types": "WorkflowExecutor(string, string, map[string]interface{}, []string, bool, bool, bool) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "WorkflowExecutor",
+          "receiver_type": "*cliTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string",
+            "bool",
+            "bool",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "workflowPath",
+            "config",
+            "args",
+            "verbose",
+            "debug",
+            "quiet"
+          ],
+          "return_names": [
+            "result"
+          ]
+        }
+      },
+      {
+        "value": "RegisterCommands",
+        "label": "RegisterCommands(modulesPath string, workflowsPath string, version string, buildTime string, defaultCommand string, groups map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "RegisterCommands(modulesPath, workflowsPath, version, buildTime, defaultCommand, groups) r",
+        "types": "RegisterCommands(string, string, string, string, string, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 6 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "RegisterCommands",
+          "receiver_type": "*cliTransitions",
+          "num_in": 6,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "string",
+            "string",
+            "string",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "modulesPath",
+            "workflowsPath",
+            "version",
+            "buildTime",
+            "defaultCommand",
+            "groups"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "UnregisteredCommand",
+        "label": "UnregisteredCommand(value any) (r domain.FlowStepResult)",
+        "names": "UnregisteredCommand(value) r",
+        "types": "UnregisteredCommand(any) domain.FlowStepResult",
+        "description": "Function with 1 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "UnregisteredCommand",
+          "receiver_type": "*cliTransitions",
+          "num_in": 1,
+          "num_out": 1,
+          "arg_types": [
+            "any"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "value"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "WorkflowExecutor",
+        "label": "WorkflowExecutor(command string, workflowPath string, config map[string]interface{}, args []string, verbose bool, debug bool, quiet bool) (result domain.FlowStepResult)",
+        "names": "WorkflowExecutor(command, workflowPath, config, args, verbose, debug, quiet) result",
+        "types": "WorkflowExecutor(string, string, map[string]interface{}, []string, bool, bool, bool) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/cli.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "cli",
+          "name": "WorkflowExecutor",
+          "receiver_type": "*cliTransitions",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "string",
+            "map[string]interface{}",
+            "[]string",
+            "bool",
+            "bool",
+            "bool"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "workflowPath",
+            "config",
+            "args",
+            "verbose",
+            "debug",
+            "quiet"
+          ],
+          "return_names": [
+            "result"
+          ]
+        }
+      }
+    ]
+  },
+  "cli/command": {
+    "info": {
+      "go_module": "github.com/kuetix/std-cli",
+      "namespace": "cli",
+      "class": "command",
+      "label": "Command Module",
+      "description": "Handles command operations for cli service"
+    },
+    "methods": [
+      {
+        "value": "Echo",
+        "label": "Echo(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Echo(command, config, flagSet, flags) r",
+        "types": "Echo(string, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/command.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "command",
+          "name": "Echo",
+          "receiver_type": "*commandTransition",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Echo",
+        "label": "Echo(command string, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Echo(command, config, flagSet, flags) r",
+        "types": "Echo(string, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 4 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/command.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "command",
+          "name": "Echo",
+          "receiver_type": "*commandTransition",
+          "num_in": 4,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "config",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  },
+  "cli/help": {
+    "info": {
+      "go_module": "github.com/kuetix/std-cli",
+      "namespace": "cli",
+      "class": "help",
+      "label": "Help Module",
+      "description": "Handles help operations for cli service"
+    },
+    "methods": [
+      {
+        "value": "Help",
+        "label": "Help(command string, commands map[string]interface{}, requestedCommand map[string]interface{}, commandConfig map[string]interface{}, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Help(command, commands, requestedCommand, commandConfig, config, flagSet, flags) r",
+        "types": "Help(string, map[string]interface{}, map[string]interface{}, map[string]interface{}, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/help.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "help",
+          "name": "Help",
+          "receiver_type": "*helpTransition",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "commands",
+            "requestedCommand",
+            "commandConfig",
+            "config",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      },
+      {
+        "value": "Help",
+        "label": "Help(command string, commands map[string]interface{}, requestedCommand map[string]interface{}, commandConfig map[string]interface{}, config map[string]interface{}, flagSet *flag.FlagSet, flags map[string]interface{}) (r domain.FlowStepResult)",
+        "names": "Help(command, commands, requestedCommand, commandConfig, config, flagSet, flags) r",
+        "types": "Help(string, map[string]interface{}, map[string]interface{}, map[string]interface{}, map[string]interface{}, *flag.FlagSet, map[string]interface{}) domain.FlowStepResult",
+        "description": "Function with 7 input(s) and 1 output(s)",
+        "method": {
+          "go_module": "github.com/kuetix/std-cli",
+          "file_path": "modules/cli/transitions/help.go",
+          "module_path": "modules",
+          "namespace": "cli",
+          "class": "help",
+          "name": "Help",
+          "receiver_type": "*helpTransition",
+          "num_in": 7,
+          "num_out": 1,
+          "arg_types": [
+            "string",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "map[string]interface{}",
+            "*flag.FlagSet",
+            "map[string]interface{}"
+          ],
+          "return_types": [
+            "domain.FlowStepResult"
+          ],
+          "arg_names": [
+            "command",
+            "commands",
+            "requestedCommand",
+            "commandConfig",
+            "config",
+            "flagSet",
+            "flags"
+          ],
+          "return_names": [
+            "r"
+          ]
+        }
+      }
+    ]
+  }
+}
